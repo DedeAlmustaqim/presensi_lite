@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hyper_ui/core.dart';
+import 'package:presensi/core.dart';
 
 class QCard extends StatelessWidget {
   final String? title;

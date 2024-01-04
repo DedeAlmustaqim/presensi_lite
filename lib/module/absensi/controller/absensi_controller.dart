@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:presensi/core.dart';
-import '../view/favorite_view.dart';
+import '../view/absensi_view.dart';
 
-class FavoriteController extends State<FavoriteView> {
-  static late FavoriteController instance;
-  late FavoriteView view;
+class AbsensiController extends State<AbsensiView> {
+  static late AbsensiController instance;
+  late AbsensiView view;
 
   @override
   void initState() {

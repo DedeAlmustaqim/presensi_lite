@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hyper_ui/core.dart';
+import 'package:presensi/core.dart';
 
 class MainNavigationView extends StatefulWidget {
   MainNavigationView({Key? key}) : super(key: key);
@@ -13,9 +13,15 @@ class MainNavigationView extends StatefulWidget {
       child: Scaffold(
         body: IndexedStack(
           index: controller.selectedIndex,
-          children: [],
+          children: [
+            DashboardView(),
+            AbsensiView(),
+            DashboardView(),
+            DashboardView(),
+          ],
         ),
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           currentIndex: controller.selectedIndex,
           onTap: (newIndex) => controller.updateIndex(newIndex),
           items: [
@@ -26,28 +32,12 @@ class MainNavigationView extends StatefulWidget {
               label: "Dashboard",
             ),
             BottomNavigationBarItem(
-              icon: Badge(
-                label: Text(
-                  "4",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                child: Icon(MdiIcons.table),
-              ),
-              label: "Order",
+              icon: Icon(MdiIcons.qrcodePlus),
+              label: "Absen",
             ),
             BottomNavigationBarItem(
-              icon: Badge(
-                label: Text(
-                  "4",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-                child: Icon(Icons.favorite),
-              ),
-              label: "Favorite",
+              icon: Icon(Icons.auto_graph_outlined),
+              label: "Statistik",
             ),
             BottomNavigationBarItem(
               icon: Icon(

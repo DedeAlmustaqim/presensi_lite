@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:hyper_ui/core.dart';
+import 'package:presensi/core.dart';
 import '../controller/profile_controller.dart';
 
 class ProfileView extends StatefulWidget {

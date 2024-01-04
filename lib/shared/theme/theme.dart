@@ -1,5 +1,5 @@
 import 'package:google_fonts/google_fonts.dart';
-import 'package:hyper_ui/shared/theme/theme_config.dart';
+import 'package:presensi/shared/theme/theme_config.dart';
 import 'package:flutter/material.dart';
 
 ThemeData getDefaultTheme() {
@@ -29,22 +29,22 @@ ThemeData getDefaultTheme() {
     ),
     textTheme: TextTheme(
       titleSmall: GoogleFonts.ibmPlexSans(
-        color: textColor,
+        color: textColor1,
       ),
       titleMedium: GoogleFonts.ibmPlexSans(
-        color: textColor,
+        color: textColor1,
       ),
       titleLarge: GoogleFonts.ibmPlexSans(
-        color: textColor,
+        color: textColor1,
       ),
       bodyLarge: GoogleFonts.ibmPlexSans(
-        color: textColor,
+        color: textColor1,
       ),
       bodySmall: GoogleFonts.ibmPlexSans(
-        color: textColor,
+        color: textColor1,
       ),
       bodyMedium: GoogleFonts.ibmPlexSans(
-        color: textColor,
+        color: textColor1,
       ),
     ),
     inputDecorationTheme: InputDecorationTheme(

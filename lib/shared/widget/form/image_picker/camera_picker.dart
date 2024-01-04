@@ -213,117 +213,117 @@ class _QCameraPickerState extends State<QCameraPicker> {
           );
         });
 
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 4.0),
-      margin: EdgeInsets.only(
-        bottom: 12.0,
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Container(
-            height: 96.0,
-            width: 96.0,
-            margin: EdgeInsets.only(
-              top: 8.0,
-            ),
-            decoration: BoxDecoration(
-              color: loading ? Colors.blueGrey[900] : null,
-              image: loading
-                  ? null
-                  : DecorationImage(
-                      image: NetworkImage(
-                        imageUrl == null
-                            ? "https://i.ibb.co/S32HNjD/no-image.jpg"
-                            : imageUrl!,
-                      ),
-                      fit: BoxFit.cover,
-                    ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(
-                  16.0,
-                ),
-              ),
-            ),
-            child: Visibility(
-              visible: loading == true,
-              child: SizedBox(
-                width: 30,
-                height: 30,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      width: 20.0,
-                      height: 20.0,
-                      child: CircularProgressIndicator(
-                        color: Colors.orange,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 6.0,
-                    ),
-                    Text(
-                      "Uploading...",
-                      style: TextStyle(
-                        fontSize: 9.0,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            width: 20.0,
-          ),
-          Expanded(
-            child: FormField(
-                initialValue: false,
-                validator: (value) {
-                  return widget.validator!(imageUrl);
-                },
-                enabled: true,
-                builder: (FormFieldState<bool> field) {
-                  return TextFormField(
-                    controller: controller,
-                    obscureText: widget.obscure,
-                    readOnly: true,
-                    decoration: InputDecoration(
-                      labelText: widget.label,
-                      labelStyle: TextStyle(
-                        color: Colors.blueGrey,
-                      ),
-                      suffixIcon: Transform.scale(
-                        scale: 0.8,
-                        child: SizedBox(
-                          width: 80.0,
-                          child: ElevatedButton(
-                            style: Theme.of(context).elevatedButtonTheme.style,
-                            onPressed: () => browsePhoto(),
-                            child: Text(
-                              "Browse",
-                              style: TextStyle(
-                                fontSize: 12.0,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      helperText: widget.helper,
-                      hintText: widget.hint,
-                      errorText: field.errorText,
-                    ),
-                    onChanged: (value) {
-                      widget.onChanged(value);
-                    },
-                  );
-                }),
-          ),
-        ],
-      ),
-    );
+    // return Container(
+    //   padding: EdgeInsets.symmetric(vertical: 4.0),
+    //   margin: EdgeInsets.only(
+    //     bottom: 12.0,
+    //   ),
+    //   child: Row(
+    //     crossAxisAlignment: CrossAxisAlignment.center,
+    //     mainAxisAlignment: MainAxisAlignment.start,
+    //     children: [
+    //       Container(
+    //         height: 96.0,
+    //         width: 96.0,
+    //         margin: EdgeInsets.only(
+    //           top: 8.0,
+    //         ),
+    //         decoration: BoxDecoration(
+    //           color: loading ? Colors.blueGrey[900] : null,
+    //           image: loading
+    //               ? null
+    //               : DecorationImage(
+    //                   image: NetworkImage(
+    //                     imageUrl == null
+    //                         ? "https://i.ibb.co/S32HNjD/no-image.jpg"
+    //                         : imageUrl!,
+    //                   ),
+    //                   fit: BoxFit.cover,
+    //                 ),
+    //           borderRadius: BorderRadius.all(
+    //             Radius.circular(
+    //               16.0,
+    //             ),
+    //           ),
+    //         ),
+    //         child: Visibility(
+    //           visible: loading == true,
+    //           child: SizedBox(
+    //             width: 30,
+    //             height: 30,
+    //             child: Column(
+    //               crossAxisAlignment: CrossAxisAlignment.center,
+    //               mainAxisAlignment: MainAxisAlignment.center,
+    //               children: [
+    //                 SizedBox(
+    //                   width: 20.0,
+    //                   height: 20.0,
+    //                   child: CircularProgressIndicator(
+    //                     color: Colors.orange,
+    //                   ),
+    //                 ),
+    //                 SizedBox(
+    //                   height: 6.0,
+    //                 ),
+    //                 Text(
+    //                   "Uploading...",
+    //                   style: TextStyle(
+    //                     fontSize: 9.0,
+    //                   ),
+    //                 ),
+    //               ],
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //       SizedBox(
+    //         width: 20.0,
+    //       ),
+    //       Expanded(
+    //         child: FormField(
+    //             initialValue: false,
+    //             validator: (value) {
+    //               return widget.validator!(imageUrl);
+    //             },
+    //             enabled: true,
+    //             builder: (FormFieldState<bool> field) {
+    //               return TextFormField(
+    //                 controller: controller,
+    //                 obscureText: widget.obscure,
+    //                 readOnly: true,
+    //                 decoration: InputDecoration(
+    //                   labelText: widget.label,
+    //                   labelStyle: TextStyle(
+    //                     color: Colors.blueGrey,
+    //                   ),
+    //                   suffixIcon: Transform.scale(
+    //                     scale: 0.8,
+    //                     child: SizedBox(
+    //                       width: 80.0,
+    //                       child: ElevatedButton(
+    //                         style: Theme.of(context).elevatedButtonTheme.style,
+    //                         onPressed: () => browsePhoto(),
+    //                         child: Text(
+    //                           "Browse",
+    //                           style: TextStyle(
+    //                             fontSize: 12.0,
+    //                           ),
+    //                         ),
+    //                       ),
+    //                     ),
+    //                   ),
+    //                   helperText: widget.helper,
+    //                   hintText: widget.hint,
+    //                   errorText: field.errorText,
+    //                 ),
+    //                 onChanged: (value) {
+    //                   widget.onChanged(value);
+    //                 },
+    //               );
+    //             }),
+    //       ),
+    //     ],
+    //   ),
+    // );
   }
 }

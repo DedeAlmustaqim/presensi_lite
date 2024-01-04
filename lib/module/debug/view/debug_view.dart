@@ -1,6 +1,8 @@
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:hyper_ui/core.dart';
+import 'package:presensi/core.dart';
 
 class DebugView extends StatefulWidget {
   final BuildContext context;
@@ -34,219 +36,209 @@ class DebugView extends StatefulWidget {
           if (controller.previewMode)
             Downloadable(
               child: Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: NetworkImage(
-                          controller.background,
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      controller.background,
+                    ),
+                    fit: BoxFit.fitWidth,
+                  ),
+                ),
+                child: Stack(
+                  children: [
+                    Align(
+                      alignment: Alignment.centerLeft,
+                      child: Container(
+                        margin: EdgeInsets.only(
+                          left: 100.0,
+                          bottom: 80.0,
                         ),
-                        fit: BoxFit.fitWidth,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              transform: Matrix4.translationValues(0.0, 20, 0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  DebugPopInput(
+                                    value: controller.tag,
+                                    onSubmitted: (value) async {
+                                      controller.tag = value;
+                                      controller.setState(() {});
+                                      controller.saveConfig();
+                                    },
+                                    child: Text(
+                                      controller.tag,
+                                      textAlign: TextAlign.left,
+                                      style: GoogleFonts.robotoCondensed(
+                                        fontSize: 60.0 * controller.factor,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: 1000.0,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  DebugPopInput(
+                                    value: controller.title,
+                                    onSubmitted: (value) async {
+                                      controller.title = value;
+                                      controller.setState(() {});
+                                      controller.saveConfig();
+                                    },
+                                    child: Text(
+                                      controller.title,
+                                      textAlign: TextAlign.left,
+                                      style: GoogleFonts.robotoCondensed(
+                                        fontSize: 132.0 * controller.factor,
+                                        fontWeight: FontWeight.bold,
+                                        color: Color(0xffffcd25),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              width: MediaQuery.of(context).size.width,
+                              transform: Matrix4.translationValues(0.0, -20, 0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  DebugPopInput(
+                                    value: controller.subtitle,
+                                    onSubmitted: (value) async {
+                                      controller.subtitle = value;
+                                      controller.setState(() {});
+                                      controller.saveConfig();
+                                    },
+                                    child: Text(
+                                      controller.subtitle,
+                                      textAlign: TextAlign.left,
+                                      style: GoogleFonts.robotoCondensed(
+                                        fontSize: 60.0 * controller.factor,
+                                        fontWeight: FontWeight.bold,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                    child: Stack(
-                      children: [
-                        Align(
-                          alignment: Alignment.centerLeft,
-                          child: Container(
-                            margin: EdgeInsets.only(
-                              left: 100.0,
-                              bottom: 80.0,
-                            ),
-                            child: Column(
+                    if (controller.socialMedia)
+                      Positioned(
+                        left: 100.0,
+                        bottom: 100.0,
+                        child: Column(
+                          children: [
+                            Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  transform:
-                                      Matrix4.translationValues(0.0, 20, 0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      DebugPopInput(
-                                        value: controller.tag,
-                                        onSubmitted: (value) async {
-                                          controller.tag = value;
-                                          controller.setState(() {});
-                                          controller.saveConfig();
-                                        },
-                                        child: Text(
-                                          controller.tag,
-                                          textAlign: TextAlign.left,
-                                          style: GoogleFonts.robotoCondensed(
-                                            fontSize: 60.0 * controller.factor,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
+                                InkWell(
+                                  onTap: () async {
+                                    await DownloadableState.instance.capture();
+                                  },
+                                  child: DebugSocialMedia(
+                                    color: Color(0xffd32322),
+                                    url:
+                                        "https://icons.iconarchive.com/icons/dakirby309/simply-styled/256/YouTube-icon.png",
+                                    label: "@CapekNgoding",
                                   ),
                                 ),
-                                Container(
-                                  width: 1000.0,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      DebugPopInput(
-                                        value: controller.title,
-                                        onSubmitted: (value) async {
-                                          controller.title = value;
-                                          controller.setState(() {});
-                                          controller.saveConfig();
-                                        },
-                                        child: Text(
-                                          controller.title,
-                                          textAlign: TextAlign.left,
-                                          style: GoogleFonts.robotoCondensed(
-                                            fontSize: 132.0 * controller.factor,
-                                            fontWeight: FontWeight.bold,
-                                            color: Color(0xffffcd25),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
+                                const SizedBox(
+                                  width: 20.0,
                                 ),
-                                Container(
-                                  width: MediaQuery.of(context).size.width,
-                                  transform:
-                                      Matrix4.translationValues(0.0, -20, 0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      DebugPopInput(
-                                        value: controller.subtitle,
-                                        onSubmitted: (value) async {
-                                          controller.subtitle = value;
-                                          controller.setState(() {});
-                                          controller.saveConfig();
-                                        },
-                                        child: Text(
-                                          controller.subtitle,
-                                          textAlign: TextAlign.left,
-                                          style: GoogleFonts.robotoCondensed(
-                                            fontSize: 60.0 * controller.factor,
-                                            fontWeight: FontWeight.bold,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        if (controller.socialMedia)
-                          Positioned(
-                            left: 100.0,
-                            bottom: 100.0,
-                            child: Column(
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    InkWell(
-                                      onTap: () async {
-                                        await DownloadableState.instance
-                                            .capture();
-                                      },
-                                      child: DebugSocialMedia(
-                                        color: Color(0xffd32322),
-                                        url:
-                                            "https://icons.iconarchive.com/icons/dakirby309/simply-styled/256/YouTube-icon.png",
-                                        label: "@CapekNgoding",
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 20.0,
-                                    ),
-                                    DebugSocialMedia(
-                                      color: Colors.black,
-                                      url:
-                                          "https://icons.iconarchive.com/icons/arturo-wibawa/akar/256/tiktok-icon.png",
-                                      label: "@CodingWithDeny",
-                                      iconColor: Colors.white,
-                                    ),
-                                  ],
-                                ),
-                                SizedBox(
-                                  height: 12.0,
-                                ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    DebugSocialMedia(
-                                      color: Color(0xff1d93d5),
-                                      url:
-                                          "https://icons.iconarchive.com/icons/limav/flat-gradient-social/256/Linkedin-icon.png",
-                                      label: "Deny Ocr",
-                                    ),
-                                    const SizedBox(
-                                      width: 20.0,
-                                    ),
-                                    DebugSocialMedia(
-                                      color: Color(0xff8b26ce),
-                                      url:
-                                          "https://icons.iconarchive.com/icons/uiconstock/socialmedia/256/Instagram-icon.png",
-                                      label: "deniansyah93",
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        Positioned(
-                          right: 100,
-                          top: 40,
-                          bottom: 10,
-                          width: 362.0,
-                          child: Container(
-                            padding: EdgeInsets.only(
-                              top: 50.0,
-                              left: 8.0,
-                              right: 8.0,
-                              bottom: 8.0,
-                            ),
-                            decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(8.0),
-                              ),
-                              boxShadow: [
-                                BoxShadow(
+                                DebugSocialMedia(
                                   color: Colors.black,
-                                  blurRadius: 12,
-                                  offset: Offset(0, 11),
+                                  url:
+                                      "https://icons.iconarchive.com/icons/arturo-wibawa/akar/256/tiktok-icon.png",
+                                  label: "@CodingWithDeny",
+                                  iconColor: Colors.white,
                                 ),
                               ],
                             ),
-                            child: Container(
-                              height: 100,
-                              width: 100,
-                              clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.all(
-                                  Radius.circular(8.0),
+                            SizedBox(
+                              height: 12.0,
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                DebugSocialMedia(
+                                  color: Color(0xff1d93d5),
+                                  url:
+                                      "https://icons.iconarchive.com/icons/limav/flat-gradient-social/256/Linkedin-icon.png",
+                                  label: "Deny Ocr",
                                 ),
-                              ),
-                              child: child!,
+                                const SizedBox(
+                                  width: 20.0,
+                                ),
+                                DebugSocialMedia(
+                                  color: Color(0xff8b26ce),
+                                  url:
+                                      "https://icons.iconarchive.com/icons/uiconstock/socialmedia/256/Instagram-icon.png",
+                                  label: "deniansyah93",
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    Positioned(
+                      right: 100,
+                      top: 40,
+                      bottom: 10,
+                      width: 362.0,
+                      child: Container(
+                        padding: EdgeInsets.only(
+                          top: 50.0,
+                          left: 8.0,
+                          right: 8.0,
+                          bottom: 8.0,
+                        ),
+                        decoration: BoxDecoration(
+                          color: Colors.black,
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(8.0),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black,
+                              blurRadius: 12,
+                              offset: Offset(0, 11),
+                            ),
+                          ],
+                        ),
+                        child: Container(
+                          height: 100,
+                          width: 100,
+                          clipBehavior: Clip.antiAlias,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(8.0),
                             ),
                           ),
+                          child: child!,
                         ),
-                      ],
+                      ),
                     ),
-                  ) ??
-                  Container(
-                    width: 0,
-                    height: 0,
-                  ),
+                  ],
+                ),
+              ),
             ),
           if (controller.previewMode)
             Padding(
