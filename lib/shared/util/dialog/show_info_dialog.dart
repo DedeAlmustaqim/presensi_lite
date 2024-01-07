@@ -2,7 +2,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:presensi/core.dart';
 import 'package:flutter/material.dart';
 
-Future showInfoDialog(String message) async {
+Future showInfoDialog(String message, String title) async {
   await showDialog<void>(
     context: globalContext,
     barrierDismissible: true,
@@ -16,29 +16,29 @@ Future showInfoDialog(String message) async {
               child: Wrap(
                 children: [
                   Container(
-                    padding: const EdgeInsets.all(20.0),
+                    padding: EdgeInsets.all(20.0),
                     width: MediaQuery.of(context).size.width,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const Text(
-                          "Info",
+                        Text(
+                          title,
                           style: TextStyle(
                             fontSize: 18.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 20.0,
                         ),
                         Text(
                           message,
-                          style: const TextStyle(
+                          style: TextStyle(
                             fontSize: 14.0,
                           ),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 20.0,
                         ),
                         ElevatedButton(
@@ -46,7 +46,7 @@ Future showInfoDialog(String message) async {
                             backgroundColor: Colors.blueGrey,
                           ),
                           onPressed: () => Get.back(),
-                          child: const Text("Ok"),
+                          child: Text("Ok"),
                         ),
                       ],
                     ),

@@ -31,7 +31,7 @@ showLoading({
                         width: 12.0,
                       ),
                       Text(
-                        message ?? "Loading...",
+                        message ?? "Memuat...",
                         style: const TextStyle(
                           fontSize: 10.0,
                         ),

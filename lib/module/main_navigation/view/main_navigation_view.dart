@@ -20,32 +20,35 @@ class MainNavigationView extends StatefulWidget {
             DashboardView(),
           ],
         ),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          currentIndex: controller.selectedIndex,
-          onTap: (newIndex) => controller.updateIndex(newIndex),
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                MdiIcons.viewDashboard,
+        bottomNavigationBar: Container(
+          height: MediaQuery.of(context).size.height * 0.08,
+          child: BottomNavigationBar(
+            type: BottomNavigationBarType.fixed,
+            currentIndex: controller.selectedIndex,
+            onTap: (newIndex) => controller.updateIndex(newIndex),
+            items: [
+              BottomNavigationBarItem(
+                icon: Icon(
+                  MdiIcons.viewDashboard,
+                ),
+                label: "Dashboard",
               ),
-              label: "Dashboard",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(MdiIcons.qrcodePlus),
-              label: "Absen",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.auto_graph_outlined),
-              label: "Statistik",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.person,
+              BottomNavigationBarItem(
+                icon: Icon(MdiIcons.qrcodePlus),
+                label: "Absen",
               ),
-              label: "Profile",
-            ),
-          ],
+              BottomNavigationBarItem(
+                icon: Icon(Icons.auto_graph_outlined),
+                label: "Statistik",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.person,
+                ),
+                label: "Profile",
+              ),
+            ],
+          ),
         ),
       ),
     );
