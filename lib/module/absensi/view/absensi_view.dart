@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:presensi/core.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
-import '../controller/absensi_controller.dart';
 
 class AbsensiView extends StatefulWidget {
   AbsensiView({Key? key}) : super(key: key);
@@ -159,7 +158,7 @@ class AbsensiView extends StatefulWidget {
                 left: 20,
                 right: 20,
                 child: Container(
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: MediaQuery.of(context).size.height * 0.18,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -175,7 +174,6 @@ class AbsensiView extends StatefulWidget {
                     ],
                   ),
                   child: Container(
-                    padding: EdgeInsets.all(10.0),
                     child: Row(
                       children: [
                         Container(
@@ -216,46 +214,96 @@ class AbsensiView extends StatefulWidget {
                                     fontSize: 12.0,
                                   ),
                                 ),
-                                SizedBox(
-                                  height: 10.0,
-                                ),
-                                Expanded(
-                                  child: ZoomTapAnimation(
-                                    onTap: controller.isLoading
-                                        ? null
-                                        : () => controller.scanAbsen(),
-                                    child: Container(
-                                      margin: const EdgeInsets.all(10.0),
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(8.0),
-                                        ),
-                                        color: controller.isLoading
-                                            ? disabledColor
-                                            : primaryColor,
-                                      ),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Icon(
-                                            Icons.qr_code,
-                                            size: 24.0,
-                                            color: Colors.white,
+                                Spacer(),
+                                Container(
+                                  margin: const EdgeInsets.only(
+                                    bottom: 10.0,
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      ZoomTapAnimation(
+                                        onTap: controller.isLoading
+                                            ? null
+                                            : () => controller.checkIn(),
+                                        child: Container(
+                                          padding: const EdgeInsets.all(10.0),
+                                          margin: const EdgeInsets.symmetric(
+                                            horizontal: 2.0,
                                           ),
-                                          SizedBox(
-                                            width: 10.0,
-                                          ),
-                                          Text(
-                                            "SCAN",
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              color: Colors.white,
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(8.0),
                                             ),
+                                            color: controller.isLoading
+                                                ? disabledColor
+                                                : primaryColor,
                                           ),
-                                        ],
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Icon(
+                                                MdiIcons.qrcodeScan,
+                                                size: 12.0,
+                                                color: Colors.white,
+                                              ),
+                                              SizedBox(
+                                                width: 2.0,
+                                              ),
+                                              Text(
+                                                "CHECK IN",
+                                                style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
                                       ),
-                                    ),
+                                      ZoomTapAnimation(
+                                        onTap: controller.isLoading
+                                            ? null
+                                            : () {
+                                                controller.checkIn();
+                                              },
+                                        child: Container(
+                                          padding: const EdgeInsets.all(10.0),
+                                          margin: const EdgeInsets.symmetric(
+                                            horizontal: 2.0,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(8.0),
+                                            ),
+                                            color: controller.isLoading
+                                                ? disabledColor
+                                                : orangeColor,
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            children: [
+                                              Icon(
+                                                MdiIcons.qrcodeScan,
+                                                size: 12.0,
+                                                color: Colors.white,
+                                              ),
+                                              SizedBox(
+                                                width: 2.0,
+                                              ),
+                                              Text(
+                                                "CHECK OUT",
+                                                style: TextStyle(
+                                                  fontSize: 10,
+                                                  color: Colors.white,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],

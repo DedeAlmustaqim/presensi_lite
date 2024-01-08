@@ -32,7 +32,7 @@ class DashboardView extends StatefulWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Hai",
+                        DB.get("token").toString(),
                         style: TextStyle(
                           fontSize: 14.0,
                           color: Colors.white,
@@ -75,7 +75,6 @@ class DashboardView extends StatefulWidget {
                       viewportFraction: 1.0,
                       onPageChanged: (index, reason) {
                         controller.currentIndex = index;
-                        controller.setState(() {});
                       },
                     ),
                     items: images.map((imageUrl) {
@@ -266,7 +265,6 @@ class DashboardView extends StatefulWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   // var item = {};
-                  bool selected = index == 0;
 
                   return ZoomTapAnimation(
                     onTap: () {},
@@ -372,7 +370,6 @@ class DashboardView extends StatefulWidget {
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   // var item = {};
-                  bool selected = index == 0;
 
                   return ZoomTapAnimation(
                     onTap: () {},

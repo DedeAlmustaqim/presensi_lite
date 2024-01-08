@@ -4,9 +4,11 @@ import 'package:flutter/services.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent, // transparent status bar
   ));
+  await DB.init();
   await Diointerceptors.init();
   runMainApp();
 }
@@ -49,19 +51,19 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
       navigatorKey: Get.navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: getDefaultTheme(),
-      home: MainNavigationView(),
+      home: LoginView(),
       onGenerateRoute: (routeSettings) {
         print(routeSettings.name);
         return null;
       },
-      builder: (context, child) {
-        print(Get.currentContext.toString());
-        return DebugView(
-          context: context,
-          child: child,
-          visible: true,
-        );
-      },
+      // builder: (context, child) {
+      //   print(Get.currentContext.toString());
+      //   return DebugView(
+      //     context: context,
+      //     child: child,
+      //     visible: true,
+      //   );
+      // },
     );
   }
 }

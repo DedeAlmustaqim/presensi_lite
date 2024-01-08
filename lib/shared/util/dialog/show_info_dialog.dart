@@ -2,7 +2,11 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:presensi/core.dart';
 import 'package:flutter/material.dart';
 
-Future showInfoDialog(String message, String title) async {
+Future showInfoDialog(
+  String message,
+  String title,
+  Icon? icon,
+) async {
   await showDialog<void>(
     context: globalContext,
     barrierDismissible: true,
@@ -29,11 +33,15 @@ Future showInfoDialog(String message, String title) async {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        SizedBox(
-                          height: 20.0,
-                        ),
+                        Divider(),
+                        icon ??
+                            const Icon(
+                              Icons.info,
+                              size: 24.0,
+                            ),
                         Text(
                           message,
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                             fontSize: 14.0,
                           ),
@@ -43,10 +51,15 @@ Future showInfoDialog(String message, String title) async {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.blueGrey,
+                            backgroundColor: primaryColor,
                           ),
                           onPressed: () => Get.back(),
-                          child: Text("Ok"),
+                          child: Text(
+                            "Oke",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
                         ),
                       ],
                     ),

@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:presensi/core.dart';
+import 'package:presensi/model/user_model.dart';
 import '../view/dashboard_view.dart';
 
 class DashboardController extends State<DashboardView> {
@@ -18,6 +20,7 @@ class DashboardController extends State<DashboardView> {
 
   @override
   Widget build(BuildContext context) => widget.build(context, this);
+
   int currentIndex = 0;
   final CarouselController carouselController = CarouselController();
 
