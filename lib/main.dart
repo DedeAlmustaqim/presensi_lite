@@ -1,15 +1,24 @@
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:presensi/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:presensi/service/userdata_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  await initializeDateFormatting('id');
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent, // transparent status bar
   ));
+
   await DB.init();
+  if (DB.getToken() != null) {
+    await UserDataService.init();
+  }
+
   await Diointerceptors.init();
+
   runMainApp();
 }
 
@@ -37,11 +46,18 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
     super.dispose();
   }
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.resumed) {
-      Navigator.of(context).pushReplacementNamed('/profile');
-    }
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   if (state == AppLifecycleState.resumed) {
+  //     Navigator.of(context).pushReplacementNamed('/profile');
+  //   }
+  // }
+
+  var token = DB.getToken();
+  Widget get mainView {
+    if (token != null) return MainNavigationView();
+
+    return LoginView();
   }
 
   @override
@@ -51,7 +67,8 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
       navigatorKey: Get.navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: getDefaultTheme(),
-      home: LoginView(),
+      // home: LoginView(),
+      home: mainView,
       onGenerateRoute: (routeSettings) {
         print(routeSettings.name);
         return null;

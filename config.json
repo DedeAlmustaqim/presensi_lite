@@ -1,7 +1,8 @@
 {
     "modules": [
         "absensi",
-        "auth/login"
+        "auth/login",
+        "ijin"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

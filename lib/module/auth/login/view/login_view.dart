@@ -10,7 +10,8 @@ class LoginView extends StatefulWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(DB.getToken().toString()),
+        // title: Text("controller.user!.name.toString()"),
+        title: Text("Presensi Login"),
         actions: [],
       ),
       body: SingleChildScrollView(
@@ -44,10 +45,6 @@ class LoginView extends StatefulWidget {
                 QButton(
                   label: "Login",
                   onPressed: () => controller.doLogin(),
-                ),
-                QButton(
-                  label: "hapus",
-                  onPressed: () => controller.clearData(),
                 ),
               ],
             ),

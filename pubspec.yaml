@@ -26,20 +26,21 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   flutter_staggered_grid_view: ^0.7.0
   flutter_svg: ^2.0.9
+  flutter_year_picker: ^0.0.1
   freezed_annotation: ^2.4.1
   geolocator: ^10.1.0
   google_fonts: ^6.1.0
   image_picker: ^1.0.4
-  intl: ^0.18.1
+  intl: 0.18.1
   json_annotation: ^4.8.1
   material_design_icons_flutter: ^7.0.7296
+  month_picker_dialog: ^2.4.0
   path_provider: ^2.0.11
   permission_handler: ^11.1.0
   qr_flutter: ^4.0.0
   screenshot: ^2.1.0
   shared_preferences: ^2.2.1
-  syncfusion_flutter_calendar: ^24.1.43
-  syncfusion_flutter_charts: ^24.1.43+1
+  syncfusion_flutter_datepicker: ^24.1.45
   url_launcher: ^6.1.6
   uuid: ^4.0.0
   zoom_tap_animation: ^1.1.0

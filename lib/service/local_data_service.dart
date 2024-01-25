@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:presensi/model/user_model.dart';
+import 'package:presensi/models/user_model.dart';
 import 'package:presensi/service/auth_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,15 +10,15 @@ class DB {
   static init() async {
     db = await SharedPreferences.getInstance();
     // var userMap = getUser();
-    // var token = getToken();
+    var token = getToken();
 
-    //http post request /check-token
-    //if expired
-    // AuthService.currentUser = null
-    // AuthService.token = null
+    // http post request /check-token
+    // if expired
+    // AuthService.currentUser = null;
+    // AuthService.token = null;
 
     // if (userMap != null) {
-    //   AuthService.currentUser = User.fromJson(userMap);
+    //   AuthService.currentUser = UserModel.fromJson(userMap);
     // }
     // AuthService.token = token;
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:presensi/core.dart';
+import 'package:presensi/service/userdata_service.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class DashboardView extends StatefulWidget {
@@ -32,14 +33,14 @@ class DashboardView extends StatefulWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        DB.get("token").toString(),
+                        "Hai..!!!",
                         style: TextStyle(
                           fontSize: 14.0,
                           color: Colors.white,
                         ),
                       ),
                       Text(
-                        "Miss Queen",
+                        UserDataService.userData!.name.toString(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 16.0,
@@ -49,12 +50,12 @@ class DashboardView extends StatefulWidget {
                     ],
                   ),
                   Spacer(),
-                  CircleAvatar(
-                    radius: 30,
-                    backgroundImage: NetworkImage(
-                      "https://images.unsplash.com/photo-1541823709867-1b206113eafd?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                    ),
-                  ),
+                  // CircleAvatar(
+                  //   radius: 30,
+                  //   backgroundImage: NetworkImage(
+                  //     UserDataService.userData!.img.toString(),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -124,7 +125,9 @@ class DashboardView extends StatefulWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "Kamis, 04 Januari 2023",
+                            // UserDataService.userData!.nmUnit.toString(),
+                            DateFormat('EEEE, dd MMMM yyyy', 'id')
+                                .format(DateTime.now()),
                             style: TextStyle(
                               fontSize: 16.0,
                               color: textColor1,
@@ -144,7 +147,7 @@ class DashboardView extends StatefulWidget {
                           Column(
                             children: [
                               Text(
-                                "Masuk",
+                                "Check In",
                                 style: TextStyle(
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
@@ -167,7 +170,7 @@ class DashboardView extends StatefulWidget {
                           Column(
                             children: [
                               Text(
-                                "Pulang",
+                                "Check Out",
                                 style: TextStyle(
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.bold,
@@ -208,12 +211,15 @@ class DashboardView extends StatefulWidget {
                   return Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      CircleAvatar(
-                        radius: 25,
-                        backgroundColor: primaryColor,
-                        child: Icon(
-                          item['icon'],
-                          color: Colors.white,
+                      ZoomTapAnimation(
+                        onTap: () => controller.onItemTap(context, item),
+                        child: CircleAvatar(
+                          radius: 25,
+                          backgroundColor: primaryColor,
+                          child: Icon(
+                            item['icon'],
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                       SizedBox(

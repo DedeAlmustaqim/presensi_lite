@@ -1,29 +1,34 @@
 import 'package:presensi/core.dart';
 import 'package:presensi/models/user_detail.dart';
 
-class ScanQr {
-  final url = AppConfig.baseUrl;
+class UserDataService {
+  static UserDetail? userData;
+  static init() async {
+    await getUser();
+  }
 
-  checkLocation(String lat, String long) async {
-    var response = await Dio().post(
-      "$url/api/user/verifikasi_loc",
+  static Future getUser() async {
+    var url = AppConfig.baseUrl;
+    var response = await Dio().get(
+      "$url/api/user/${AppConfig.idUser}",
       options: Options(
         headers: {
           "Content-Type": "application/json",
-          "Authorization":
-              "Bearer 216|p1IAjmy7jIvYRX79XZoksNr7rnJKH0dGweXl8m9x4c665d71",
+          "Authorization": "Bearer ${AppConfig.token}",
         },
       ),
-      data: {"id": AppConfig.idUser, "latitude": "$lat", "longitude": "$long"},
     );
     Map<String, dynamic> obj = response.data;
+    Map<String, dynamic> userMap = obj["data"];
+    userData = UserDetail.fromJson(userMap);
 
-    return obj['data'];
+    print(userData);
   }
 
-  Future postQrIn(String qrIn) async {
+  getIzin({required String date}) async {
+    var url = AppConfig.baseUrl;
     var response = await Dio().post(
-      "$url/api/user/qr_in",
+      "$url/api/user/get_ijin_bulanan",
       options: Options(
         headers: {
           "Content-Type": "application/json",
@@ -31,29 +36,38 @@ class ScanQr {
         },
       ),
       data: {
-        "qr_in": qrIn,
-        "id": 1,
-      },
-    );
-    Map obj = response.data;
-    return obj['data'];
-  }
-
-  Future postQrOut(String qrIn) async {
-    var response = await Dio().post(
-      "$url/api/user/qr_out",
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer ${AppConfig.token}",
-        },
-      ),
-      data: {
-        "qr_in": qrIn,
         "id": AppConfig.idUser,
+        "date": date,
       },
     );
+
     Map obj = response.data;
+
+    print(obj);
+
+    return obj['data'];
+  }
+
+  getRekap({required String date}) async {
+    var url = AppConfig.baseUrl;
+    var response = await Dio().post(
+      "$url/api/user/get_rekap_bulanan",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer ${AppConfig.token}",
+        },
+      ),
+      data: {
+        "id": AppConfig.idUser,
+        "date": date,
+      },
+    );
+
+    Map obj = response.data;
+
+    print(obj);
+
     return obj['data'];
   }
 }

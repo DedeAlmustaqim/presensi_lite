@@ -2,9 +2,11 @@ import 'package:barcode_scan2/platform_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:presensi/core.dart';
+import 'package:presensi/models/user_detail.dart';
 import 'package:presensi/service/location_service.dart';
 import 'package:presensi/service/permission_service.dart';
 import 'package:presensi/service/scan_qr_service.dart';
+import 'package:presensi/service/userdata_service.dart';
 
 class AbsensiController extends State<AbsensiView> {
   static late AbsensiController instance;
@@ -12,10 +14,12 @@ class AbsensiController extends State<AbsensiView> {
   String latitude = 'Loading...';
   String longitude = 'Loading...';
   bool isLoading = false;
+  UserDetail? userData = UserDataService.userData;
 
   @override
   void initState() {
     instance = this;
+
     super.initState();
   }
 
@@ -38,9 +42,36 @@ class AbsensiController extends State<AbsensiView> {
     } else if (user['success'] == false) {
       hideLoading();
       showInfoDialog(
-        "Anda diluar radius titik absen",
-        "Gagal",
-        Icon(
+        message: "Anda diluar radius titik absen",
+        title: "Gagal",
+        icon: Icon(
+          Icons.warning,
+          size: 50.0,
+          color: orangeColor,
+        ),
+      );
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  checkOut() async {
+    setState(() {
+      isLoading = true;
+    });
+
+    var user = await checkPermisionLokasi();
+
+    if (user['success'] == true) {
+      hideLoading();
+      _postCheckOut();
+    } else if (user['success'] == false) {
+      hideLoading();
+      showInfoDialog(
+        message: "Anda diluar radius titik absen",
+        title: "Gagal",
+        icon: Icon(
           Icons.warning,
           size: 50.0,
           color: orangeColor,
@@ -74,9 +105,9 @@ class AbsensiController extends State<AbsensiView> {
       String msg = postQr['msg'];
 
       showInfoDialog(
-        "$msg",
-        "$judul",
-        success
+        message: "$msg",
+        title: "$judul",
+        icon: success
             ? Icon(
                 Icons.check,
                 size: 60.0,
@@ -93,9 +124,9 @@ class AbsensiController extends State<AbsensiView> {
       });
     } catch (e) {
       showInfoDialog(
-        "Terjadi kesalahan",
-        "Error",
-        const Icon(
+        message: "Terjadi kesalahan",
+        title: "Error",
+        icon: Icon(
           Icons.error,
           size: 60.0,
           color: Colors.red,
@@ -105,5 +136,56 @@ class AbsensiController extends State<AbsensiView> {
         isLoading = false;
       });
     }
+  }
+
+  void _postCheckOut() async {
+    final result = await BarcodeScanner.scan();
+    try {
+      var postQr = await ScanQr().postQrIn(result.rawContent);
+      bool success = postQr['success'];
+      String judul = postQr['judul'];
+      String msg = postQr['msg'];
+
+      showInfoDialog(
+        message: "$msg",
+        title: "$judul",
+        icon: success
+            ? Icon(
+                Icons.check,
+                size: 60.0,
+                color: successColor,
+              )
+            : Icon(
+                Icons.warning_amber,
+                size: 60.0,
+                color: orangeColor,
+              ),
+      );
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      showInfoDialog(
+        message: "Terjadi kesalahan",
+        title: "Error",
+        icon: Icon(
+          Icons.error,
+          size: 60.0,
+          color: Colors.red,
+        ),
+      );
+      setState(() {
+        isLoading = false;
+      });
+    }
+  }
+
+  refresUserData() async {
+    showLoading();
+    await UserDataService.getUser();
+    setState(() {
+      userData = UserDataService.userData;
+    });
+    hideLoading();
   }
 }

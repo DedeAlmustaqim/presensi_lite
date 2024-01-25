@@ -2,11 +2,11 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:presensi/core.dart';
 import 'package:flutter/material.dart';
 
-Future showInfoDialog(
-  String message,
-  String title,
+Future showInfoDialog({
+  required String message,
+  required String title,
   Icon? icon,
-) async {
+}) async {
   await showDialog<void>(
     context: globalContext,
     barrierDismissible: true,
@@ -37,7 +37,8 @@ Future showInfoDialog(
                         icon ??
                             const Icon(
                               Icons.info,
-                              size: 24.0,
+                              size: 40.0,
+                              color: Colors.amber,
                             ),
                         Text(
                           message,

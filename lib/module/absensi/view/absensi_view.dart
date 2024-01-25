@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:presensi/core.dart';
+import 'package:presensi/service/userdata_service.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class AbsensiView extends StatefulWidget {
@@ -7,8 +9,24 @@ class AbsensiView extends StatefulWidget {
 
   Widget build(context, AbsensiController controller) {
     controller.view = this;
+
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          ZoomTapAnimation(
+            onTap: () {
+              controller.refresUserData();
+            },
+            child: const Icon(
+              Icons.refresh,
+              color: Colors.white,
+              size: 24.0,
+            ),
+          ),
+          const SizedBox(
+            width: 10.0,
+          ),
+        ],
         toolbarHeight: MediaQuery.of(context).size.height * 0.04,
         backgroundColor: primaryColor,
         title: Container(
@@ -24,7 +42,7 @@ class AbsensiView extends StatefulWidget {
                 ),
               ),
               Text(
-                "Lakukan Absensi dengan menekan tombol SCAN",
+                "Lakukan Absensi dengan menekan tombol CHECK IN/CHEK COUT",
                 style: TextStyle(
                   fontSize: 9.0,
                   color: Colors.white,
@@ -48,8 +66,12 @@ class AbsensiView extends StatefulWidget {
                     QLocationPicker(
                       enableEdit: false,
                       id: "location",
-                      latitude: -2.1694967326176386,
-                      longitude: 115.2223670529902,
+                      latitude: double.tryParse(
+                              UserDataService.userData!.lat ?? "") ??
+                          0.0,
+                      longitude: double.tryParse(
+                              UserDataService.userData!.long ?? "") ??
+                          0.0,
                       onChanged: (latitude, longitude) {},
                     ),
                   ],
@@ -99,18 +121,28 @@ class AbsensiView extends StatefulWidget {
                           Divider(),
                           Expanded(
                             child: Text(
-                              "Badan Perencanaan Pembangunan dan Pengembangan Litbang Daerah",
+                              UserDataService.userData!.nmUnit.toString(),
                               maxLines: 2,
                               style: TextStyle(
                                 fontSize: 10.0,
                               ),
                             ),
                           ),
-                          Text(
-                            "Radius : 100 m",
-                            style: TextStyle(
-                              fontSize: 10.0,
-                            ),
+                          Row(
+                            children: [
+                              Text(
+                                "Radius (m) : ",
+                                style: TextStyle(
+                                  fontSize: 10.0,
+                                ),
+                              ),
+                              Text(
+                                UserDataService.userData!.radius.toString(),
+                                style: TextStyle(
+                                  fontSize: 10.0,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
@@ -181,7 +213,7 @@ class AbsensiView extends StatefulWidget {
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               image: NetworkImage(
-                                "https://images.unsplash.com/photo-1541823709867-1b206113eafd?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+                                UserDataService.userData!.img.toString(),
                               ),
                               fit: BoxFit.cover,
                             ),
@@ -196,20 +228,30 @@ class AbsensiView extends StatefulWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Miss Queen",
+                                  UserDataService.userData!.name.toString(),
                                   style: TextStyle(
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Text(
-                                  "Senior Developer",
-                                  style: TextStyle(
-                                    fontSize: 12.0,
-                                  ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "NIP : ",
+                                      style: TextStyle(
+                                        fontSize: 10.0,
+                                      ),
+                                    ),
+                                    Text(
+                                      UserDataService.userData!.nip.toString(),
+                                      style: TextStyle(
+                                        fontSize: 10.0,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 Text(
-                                  "Digital Native Development",
+                                  UserDataService.userData!.nmUnit.toString(),
                                   style: TextStyle(
                                     fontSize: 12.0,
                                   ),
@@ -262,10 +304,13 @@ class AbsensiView extends StatefulWidget {
                                         ),
                                       ),
                                       ZoomTapAnimation(
+                                        // onTap: () {
+                                        //   controller.getUser();
+                                        // },
                                         onTap: controller.isLoading
                                             ? null
                                             : () {
-                                                controller.checkIn();
+                                                controller.checkOut();
                                               },
                                         child: Container(
                                           padding: const EdgeInsets.all(10.0),

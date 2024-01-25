@@ -494,6 +494,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
+  flutter_localizations:
+    dependency: transitive
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   flutter_map:
     dependency: "direct main"
     description:
@@ -552,6 +557,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_year_picker:
+    dependency: "direct main"
+    description:
+      name: flutter_year_picker
+      sha256: "202f09d0928af1cc9a8c577590396ed2d428bceb15151eba4e0f29983834feae"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   freezed:
     dependency: "direct dev"
     description:
@@ -880,6 +893,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.4"
+  month_picker_dialog:
+    dependency: "direct main"
+    description:
+      name: month_picker_dialog
+      sha256: a9cb49811d9b1c859211f70fe8e3542c86c4fc3e3667df7fca9526ceee4af675
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.4.0"
+  nested:
+    dependency: transitive
+    description:
+      name: nested
+      sha256: "03bac4c528c64c95c722ec99280375a6f2fc708eec17c7b3f07253b626cd2a20"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.0"
   octo_image:
     dependency: transitive
     description:
@@ -1080,6 +1109,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.1.0"
+  provider:
+    dependency: transitive
+    description:
+      name: provider
+      sha256: "9a96a0a19b594dbc5bf0f1f27d2bc67d5f95957359b461cd9feb44ed6ae75096"
+      url: "https://pub.dev"
+    source: hosted
+    version: "6.1.1"
   pub_semver:
     dependency: transitive
     description:
@@ -1285,38 +1322,22 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.0"
-  syncfusion_flutter_calendar:
-    dependency: "direct main"
-    description:
-      name: syncfusion_flutter_calendar
-      sha256: b31182b348742b0f2285849179490afd89e321514b8e0eadeab6d7377373c9f2
-      url: "https://pub.dev"
-    source: hosted
-    version: "24.1.43"
-  syncfusion_flutter_charts:
-    dependency: "direct main"
-    description:
-      name: syncfusion_flutter_charts
-      sha256: d720751869540bc0b18e063414e9c8d41c924cca01e3aad3538d404c31d00e2d
-      url: "https://pub.dev"
-    source: hosted
-    version: "24.1.43+1"
   syncfusion_flutter_core:
     dependency: transitive
     description:
       name: syncfusion_flutter_core
-      sha256: "1b40729aa10a727150a6cc56e532c770f4baded83846fca8700efd908d0f4d0a"
+      sha256: "4afb43254d436e1d41a2ee2761908650ce3ad3453f5bebd283dfe3185d5026a2"
       url: "https://pub.dev"
     source: hosted
-    version: "24.1.43"
+    version: "24.1.45"
   syncfusion_flutter_datepicker:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: syncfusion_flutter_datepicker
-      sha256: "3f9a8e8b585dd992d2321c899ec8d914634fb99eba02cf7a91c48a098bf62820"
+      sha256: "22e9845e3389a7554f5ccf683032ba4ce4cf9a19f656f5e811a075df31f78c9e"
       url: "https://pub.dev"
     source: hosted
-    version: "24.1.43"
+    version: "24.1.45"
   synchronized:
     dependency: transitive
     description:
@@ -1341,14 +1362,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.1"
-  timezone:
-    dependency: transitive
-    description:
-      name: timezone
-      sha256: "1cfd8ddc2d1cfd836bc93e67b9be88c3adaeca6f40a00ca999104c30693cdca0"
-      url: "https://pub.dev"
-    source: hosted
-    version: "0.9.2"
   timing:
     dependency: transitive
     description:

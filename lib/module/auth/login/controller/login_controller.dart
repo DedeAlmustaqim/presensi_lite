@@ -1,9 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:presensi/core.dart';
-import 'package:presensi/model/user_model.dart';
-import '../view/login_view.dart';
+import 'package:presensi/models/user_model.dart';
 
 class LoginController extends State<LoginView> {
   static late LoginController instance;
@@ -15,6 +12,7 @@ class LoginController extends State<LoginView> {
     DB.init();
     // email = DB.get("email");
     // password = DB.get("password");
+
     super.initState();
   }
 
@@ -28,6 +26,7 @@ class LoginController extends State<LoginView> {
   String? password;
   String? token;
   String? idUser;
+
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   doLogin() async {
@@ -36,14 +35,15 @@ class LoginController extends State<LoginView> {
       return;
     }
 
+    print(email);
+    print(password);
     showLoading();
+    
     await AuthService().login(
       email: email!,
       password: password!,
     );
-    hideLoading();
-
-    // Get.offAll(MainNavigationView());
+    
   }
 
   clearData() {

@@ -17,7 +17,7 @@ class MainNavigationView extends StatefulWidget {
             DashboardView(),
             AbsensiView(),
             DashboardView(),
-            DashboardView(),
+            ProfileView(),
           ],
         ),
         bottomNavigationBar: Container(
