@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:presensi/core.dart';
-import 'package:presensi/service/userdata_service.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class AbsensiView extends StatefulWidget {
@@ -227,10 +225,13 @@ class AbsensiView extends StatefulWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                const SizedBox(
+                                  height: 5.0,
+                                ),
                                 Text(
                                   UserDataService.userData!.name.toString(),
                                   style: TextStyle(
-                                    fontSize: 16.0,
+                                    fontSize: 12.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),

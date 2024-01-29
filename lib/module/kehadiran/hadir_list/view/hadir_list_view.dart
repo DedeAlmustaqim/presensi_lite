@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:presensi/core.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
-import '../controller/hadir_list_controller.dart';
 
 class HadirListView extends StatefulWidget {
   const HadirListView({Key? key}) : super(key: key);
@@ -10,7 +9,6 @@ class HadirListView extends StatefulWidget {
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
     controller.view = this;
 
-    final List data = controller.dataList;
     return Scaffold(
       appBar: AppBar(
         title: const Text("Kehadiran"),
@@ -77,105 +75,108 @@ class HadirListView extends StatefulWidget {
                     ),
                   ],
                 ),
-
-                Text(
-                  "text",
-                  style: TextStyle(
-                    fontSize: 10.0,
-                  ),
-                ),
                 Divider(),
-                if (!controller.isShowData)
-                  IntrinsicWidth(
-                    child: DataTable(
-                      horizontalMargin: 2,
-                      headingRowHeight: 30,
-                      dataTextStyle: TextStyle(fontSize: 11),
-                      columns: [
-                        DataColumn(
-                          label: Text(
-                            'Tanggal',
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: primaryColor,
-                            ),
-                          ),
-                          numeric: false, // Kolom bukan kolom numerik
-                        ),
-                        DataColumn(
-                          label: Expanded(
-                              child: Text(
-                            'Check In',
-                            softWrap: true,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: primaryColor,
-                            ),
-                          )),
-                        ),
-                        DataColumn(
-                          label: Expanded(
-                              child: Text(
-                            'Check Out',
-                            softWrap: true,
-                            style: TextStyle(
-                              fontSize: 12,
-                              fontWeight: FontWeight.bold,
-                              color: primaryColor,
-                            ),
-                          )),
-                        ),
-                      ],
-                      rows: List<DataRow>.empty(growable: true)
-                        ..addAll(data.map((rowData) {
-                          return DataRow(
-                            cells: [
-                              DataCell(Text(rowData['Name'].toString())),
-                              DataCell(Text(rowData['Age'].toString())),
-                              DataCell(Text(rowData['Occupation'].toString())),
-                            ],
-                          );
-                        })),
-                    ),
-                  ),
+                if (controller.isShowData)
+                  ListView.builder(
+                    itemCount: controller.dataList.length,
+                    shrinkWrap: true,
+                    physics: ScrollPhysics(),
+                    itemBuilder: (BuildContext context, int index) {
+                      var item = controller.dataList[index];
+                      DateTime? dateTimeIn = item['tgl_in'] != null
+                          ? DateTime.parse(item['tgl_in'])
+                          : null;
+                      DateTime? dateTimeOut = item['tgl_out'] != null
+                          ? DateTime.parse(item['tgl_out'])
+                          : null;
 
-                // if (controller.isShowData)
-                //   ListView.builder(
-                //     itemCount: controller.izinData.length,
-                //     shrinkWrap: true,
-                //     physics: ScrollPhysics(),
-                //     itemBuilder: (BuildContext context, int index) {
-                //       var item = controller.izinData[index];
-                //       DateTime dateTime = DateTime.parse(item['created_at']);
-                //       return Card(
-                //         child: ListTile(
-                //           tileColor: Colors.white,
-                //           title: Text(
-                //             DateFormat('EEEE, dd MMMM yyyy', 'id')
-                //                 .format(dateTime),
-                //           ),
-                //           subtitle: Column(
-                //             mainAxisAlignment: MainAxisAlignment.start,
-                //             crossAxisAlignment: CrossAxisAlignment.start,
-                //             children: [
-                //               if (item['ket_absen_in'] != null)
-                //                 Text(
-                //                   "Check In : ${item["ket_absen_in"]}",
-                //                   style: TextStyle(fontSize: 12),
-                //                 ),
-                //               if (item['ket_absen_out'] != null)
-                //                 Text(
-                //                   "Check Out : ${item["ket_absen_out"]}",
-                //                   style: TextStyle(fontSize: 12),
-                //                 ),
-                //             ],
-                //           ),
-                //         ),
-                //       );
-                //     },
-                //   ),
+                      return Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(12.0),
+                          ),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color(0x19000000),
+                              blurRadius: 5,
+                              offset: Offset(0, 0),
+                            ),
+                          ],
+                          color: Colors.white,
+                        ),
+                        margin: const EdgeInsets.all(5.0),
+                        padding: const EdgeInsets.all(10.0),
+                        child: Column(
+                          children: [
+                            dateTimeIn != null
+                                ? Text(
+                                    DateFormat('EEEE, dd MMMM yyyy', 'id')
+                                        .format(dateTimeIn),
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                    ),
+                                  )
+                                : dateTimeOut != null
+                                    ? Text(
+                                        DateFormat('EEEE, dd MMMM yyyy', 'id')
+                                            .format(dateTimeOut),
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                        ),
+                                      )
+                                    : SizedBox(),
+                            Divider(),
+                            SizedBox(
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Column(
+                                    children: [
+                                      Text(
+                                        "Check In",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16.0,
+                                            color: successColor),
+                                      ),
+                                      Text(
+                                        item['jam_in'] != null
+                                            ? item['jam_in'].toString()
+                                            : "Belum Check In",
+                                        style: TextStyle(
+                                          fontSize: 12.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  Column(
+                                    children: [
+                                      Text(
+                                        "Check Out",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16.0,
+                                            color: warningColor),
+                                      ),
+                                      Text(
+                                        item['jam_out'] != null
+                                            ? item['jam_out'].toString()
+                                            : "Belum Check Out",
+                                        style: TextStyle(
+                                          fontSize: 12.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
               ],
             ),
           ),

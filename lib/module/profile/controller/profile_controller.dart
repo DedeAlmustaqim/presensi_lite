@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:presensi/core.dart';
-import 'package:presensi/models/user_detail.dart';
-import 'package:presensi/service/userdata_service.dart';
-import '../view/profile_view.dart';
 
 class ProfileController extends State<ProfileView> {
   static late ProfileController instance;
@@ -28,7 +25,9 @@ class ProfileController extends State<ProfileView> {
 
   doLogout() async {
     showLoading(message: "Logout");
-    await DB.clearDatabase();
+    // await AuthService().logout();
+    DB.clearDatabase();
+
     hideLoading();
     Get.offAll(LoginView());
   }

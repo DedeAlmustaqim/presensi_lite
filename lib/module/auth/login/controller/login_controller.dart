@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:presensi/core.dart';
-import 'package:presensi/models/user_model.dart';
 
 class LoginController extends State<LoginView> {
   static late LoginController instance;
@@ -26,6 +25,7 @@ class LoginController extends State<LoginView> {
   String? password;
   String? token;
   String? idUser;
+  bool isVisible = true;
 
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -38,12 +38,16 @@ class LoginController extends State<LoginView> {
     print(email);
     print(password);
     showLoading();
-    
+
     await AuthService().login(
       email: email!,
       password: password!,
     );
-    
+  }
+
+  showPass() async {
+    isVisible = !isVisible;
+    setState(() {});
   }
 
   clearData() {

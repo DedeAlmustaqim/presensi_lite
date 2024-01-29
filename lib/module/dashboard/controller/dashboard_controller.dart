@@ -1,19 +1,21 @@
-import 'package:carousel_slider/carousel_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:presensi/core.dart';
-import 'package:presensi/module/izin/izin_list/view/ijin_view.dart';
-
-import '../view/dashboard_view.dart';
 
 class DashboardController extends State<DashboardView> {
   static late DashboardController instance;
   late DashboardView view;
+  String? timeCheckIn;
+  String? timeCheckOut;
+  List imgBanner = [];
+  List infoData = [];
+  List newsData = [];
 
   @override
   void initState() {
+    getToday();
+    getBanner();
+    getInfo();
+    getNews();
     instance = this;
     super.initState();
   }
@@ -27,60 +29,48 @@ class DashboardController extends State<DashboardView> {
   int currentIndex = 0;
   final CarouselController carouselController = CarouselController();
 
-  List<Map<String, dynamic>> menuItems = [
-    {
-      'name': 'Kehadiran',
-      'icon': MdiIcons.clock,
-      'page': (BuildContext context) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => HadirListView(),
-          ),
-        );
-      },
-    },
-    {
-      'name': 'Kalender',
-      'icon': Icons.calendar_month,
-      'page': (BuildContext context) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => IjinView(),
-          ),
-        );
-      },
-    },
-    {
-      'name': 'Ijin',
-      'icon': MdiIcons.clockAlert,
-      'page': (BuildContext context) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => IjinView(),
-          ),
-        );
-      },
-    },
-    {
-      'name': 'Lembur',
-      'icon': MdiIcons.officeBuilding,
-      'page': (BuildContext context) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => ProfileView(),
-          ),
-        );
-      },
-    },
-    // Tambahkan item menu lainnya sesuai kebutuhan
-  ];
+  getToday() async {
+    var userToday = await UserDataService().getToday();
 
-  onItemTap(BuildContext context, Map<String, dynamic> menuItem) {
-    // Panggil fungsi Navigator.push berdasarkan item menu
-    menuItem['page'](context);
+    for (var data in userToday!) {
+      setState(() {
+        timeCheckIn = data['jam_in'];
+        timeCheckOut = data['jam_out'];
+      });
+    }
+  }
+
+  getBanner() async {
+    var banner = await DashboardService().getBanner();
+    for (var data in banner!) {
+      setState(() {
+        imgBanner.add(data['img_path']);
+      });
+    }
+    print(banner);
+  }
+
+  getInfo() async {
+    var info = await DashboardService().getInfo();
+    setState(() {
+      infoData = info;
+    });
+  }
+
+  getNews() async {
+    var news = await DashboardService().getNews();
+    setState(() {
+      newsData = news;
+    });
+    print(newsData);
+  }
+
+  refresh() async {
+    showLoading();
+    getToday();
+    getBanner();
+    getInfo();
+    getNews();
+    hideLoading();
   }
 }

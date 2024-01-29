@@ -1,8 +1,6 @@
 {
     "modules": [
-        "absensi",
-        "auth/login",
-        "ijin"
+        "news_detail"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

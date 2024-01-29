@@ -16,7 +16,7 @@ class MainNavigationView extends StatefulWidget {
           children: [
             DashboardView(),
             AbsensiView(),
-            DashboardView(),
+            HadirListView(),
             ProfileView(),
           ],
         ),
@@ -39,8 +39,8 @@ class MainNavigationView extends StatefulWidget {
                 label: "Absen",
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.auto_graph_outlined),
-                label: "Statistik",
+                icon: Icon(Icons.event_available),
+                label: "Kehadiran",
               ),
               BottomNavigationBarItem(
                 icon: Icon(

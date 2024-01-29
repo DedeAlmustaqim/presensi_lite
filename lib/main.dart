@@ -2,12 +2,16 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:presensi/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:presensi/service/userdata_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await initializeDateFormatting('id');
+  // SystemChrome.setPreferredOrientations([
+  //   DeviceOrientation.portraitUp,
+  //   DeviceOrientation.portraitDown,
+  // ]);
+
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent, // transparent status bar
   ));
@@ -46,12 +50,12 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
     super.dispose();
   }
 
-  // @override
-  // void didChangeAppLifecycleState(AppLifecycleState state) {
-  //   if (state == AppLifecycleState.resumed) {
-  //     Navigator.of(context).pushReplacementNamed('/profile');
-  //   }
-  // }
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.resumed) {
+      Navigator.of(context).pushReplacementNamed('/profile');
+    }
+  }
 
   var token = DB.getToken();
   Widget get mainView {
@@ -62,6 +66,8 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
+    // PermissionService().checkCameraPermission();
+    // PermissionService().checkLocationPermission();
     return MaterialApp(
       title: 'Presensi',
       navigatorKey: Get.navigatorKey,

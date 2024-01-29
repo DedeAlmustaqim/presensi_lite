@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
 import 'package:presensi/core.dart';
-import '../view/hadir_list_view.dart';
 
 class HadirListController extends State<HadirListView> {
   static late HadirListController instance;
@@ -26,7 +25,6 @@ class HadirListController extends State<HadirListView> {
   showDateRekap() async {
     showMonthPicker(
       context: context,
-      // initialDate: DateTime.now(),
     ).then(
       (date) {
         if (date != null) {
@@ -49,14 +47,11 @@ class HadirListController extends State<HadirListView> {
     if (data != null && data.isNotEmpty) {
       setState(() {
         isShowData = true;
-        print(isShowData);
       });
     } else {
       setState(() {
         isShowData = false;
-        print(isShowData);
       });
     }
-    print(dataList);
   }
 }

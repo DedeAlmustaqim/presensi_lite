@@ -1,11 +1,9 @@
 import 'package:presensi/core.dart';
-import 'package:presensi/models/user_model.dart';
 
 class AuthService {
   var url = AppConfig.baseUrl;
-  static String? idUser;
-  static String? token;
-  static UserModel? currentUser;
+
+  static Dio dio = Dio();
 
   login({
     required String email,
@@ -23,24 +21,15 @@ class AuthService {
         "password": password,
       },
     );
-    // Map obj = response.data;
-    // return obj['data'];
 
     Map<String, dynamic> obj = response.data;
     bool status = obj["success"];
     Map<String, dynamic> userMap = obj["data"];
 
-    currentUser = UserModel.fromJson(userMap);
-
     if (status) {
-      token = currentUser!.token;
-      idUser = currentUser!.id.toString();
+      await DB.setToken(userMap['token']!);
+      await DB.set("id", userMap['id'].toString());
 
-      print(token);
-      print(idUser);
-
-      DB.setToken(token!);
-      DB.set("id", idUser!);
       await UserDataService.init();
       hideLoading();
       Get.offAll(MainNavigationView());
@@ -52,7 +41,7 @@ class AuthService {
   }
 
   logout() async {
-    await Dio().post(
+    await dio.post(
       "${url}/api/logout",
       options: Options(
         headers: {

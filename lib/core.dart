@@ -20,9 +20,12 @@ export 'package:presensi/module/kehadiran/hadir_list/controller/hadir_list_contr
 export 'package:presensi/module/kehadiran/hadir_list/view/hadir_list_view.dart';
 export 'package:presensi/module/main_navigation/controller/main_navigation_controller.dart';
 export 'package:presensi/module/main_navigation/view/main_navigation_view.dart';
+export 'package:presensi/module/news_detail/controller/news_detail_controller.dart';
+export 'package:presensi/module/news_detail/view/news_detail_view.dart';
 export 'package:presensi/module/profile/controller/profile_controller.dart';
 export 'package:presensi/module/profile/view/profile_view.dart';
 export 'package:presensi/service/auth_service.dart';
+export 'package:presensi/service/dashboard_service.dart';
 export 'package:presensi/service/local_data_service.dart';
 export 'package:presensi/service/location_service.dart';
 export 'package:presensi/service/permission_service.dart';
@@ -36,6 +39,7 @@ export 'package:presensi/shared/theme/theme_size.dart';
 export 'package:presensi/shared/util/dialog/confirmation_dialog.dart';
 export 'package:presensi/shared/util/dialog/show_bottom_sheet.dart';
 export 'package:presensi/shared/util/dialog/show_custom_dialog.dart';
+export 'package:presensi/shared/util/dialog/show_info_akses_dialog.dart';
 export 'package:presensi/shared/util/dialog/show_info_dialog.dart';
 export 'package:presensi/shared/util/dio_interceptors/dio_interceptors.dart';
 export 'package:presensi/shared/util/focus_helper/focus_helper.dart';
@@ -75,6 +79,7 @@ export 'package:presensi/shared/widget/form/location_picker/location_picker.dart
 export 'package:presensi/shared/widget/form/location_picker/location_picker_map_view.dart';
 export 'package:presensi/shared/widget/form/location_picker/map_viewer.dart';
 export 'package:presensi/shared/widget/form/memo_field/memo_field.dart';
+export 'package:presensi/shared/widget/form/nik_formatter/nik_formatter.dart';
 export 'package:presensi/shared/widget/form/number_field/numberfield.dart';
 export 'package:presensi/shared/widget/form/radio/radio.dart';
 export 'package:presensi/shared/widget/form/rating/rating_field.dart';

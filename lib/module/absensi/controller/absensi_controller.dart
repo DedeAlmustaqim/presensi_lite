@@ -3,10 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:presensi/core.dart';
 import 'package:presensi/models/user_detail.dart';
-import 'package:presensi/service/location_service.dart';
-import 'package:presensi/service/permission_service.dart';
-import 'package:presensi/service/scan_qr_service.dart';
-import 'package:presensi/service/userdata_service.dart';
 
 class AbsensiController extends State<AbsensiView> {
   static late AbsensiController instance;
@@ -83,9 +79,13 @@ class AbsensiController extends State<AbsensiView> {
     }
   }
 
-  Future checkPermisionLokasi() async {
+  checkPermisionLokasi() async {
+    setState(() {
+      isLoading = false;
+    });
     await PermissionService().checkLocationPermission();
     await PermissionService().checkCameraPermission();
+
     Position position = await LocationService().getLocation();
 
     showLoading(message: "Cek Lokasi ...");
@@ -122,9 +122,11 @@ class AbsensiController extends State<AbsensiView> {
       setState(() {
         isLoading = false;
       });
+      HadirListController.instance.getRekap();
+      DashboardController.instance.getToday();
     } catch (e) {
       showInfoDialog(
-        message: "Terjadi kesalahan",
+        message: "Terjadi Kesalahan",
         title: "Error",
         icon: Icon(
           Icons.error,
@@ -141,7 +143,7 @@ class AbsensiController extends State<AbsensiView> {
   void _postCheckOut() async {
     final result = await BarcodeScanner.scan();
     try {
-      var postQr = await ScanQr().postQrIn(result.rawContent);
+      var postQr = await ScanQr().postQrOut(result.rawContent);
       bool success = postQr['success'];
       String judul = postQr['judul'];
       String msg = postQr['msg'];
@@ -161,6 +163,8 @@ class AbsensiController extends State<AbsensiView> {
                 color: orangeColor,
               ),
       );
+      HadirListController.instance.getRekap();
+      DashboardController.instance.getToday();
       setState(() {
         isLoading = false;
       });

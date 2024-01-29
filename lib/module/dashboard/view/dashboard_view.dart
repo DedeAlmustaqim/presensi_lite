@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:presensi/core.dart';
-import 'package:presensi/service/userdata_service.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class DashboardView extends StatefulWidget {
@@ -50,27 +50,22 @@ class DashboardView extends StatefulWidget {
                     ],
                   ),
                   Spacer(),
-                  // CircleAvatar(
-                  //   radius: 30,
-                  //   backgroundImage: NetworkImage(
-                  //     UserDataService.userData!.img.toString(),
-                  //   ),
-                  // ),
+                  CircleAvatar(
+                    radius: 30,
+                    backgroundImage: NetworkImage(
+                      UserDataService.userData!.img.toString(),
+                    ),
+                  ),
                 ],
               ),
             ),
             Builder(builder: (context) {
-              List images = [
-                "https://images.unsplash.com/photo-1501504905252-473c47e087f8?q=80&w=1674&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                "https://images.unsplash.com/photo-1502465771179-51f3535da42c?q=80&w=1738&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-              ];
-
               return Column(
                 children: [
                   CarouselSlider(
                     carouselController: controller.carouselController,
                     options: CarouselOptions(
-                      height: 160.0,
+                      height: 175.0,
                       autoPlay: true,
                       enlargeCenterPage: false,
                       viewportFraction: 1.0,
@@ -78,13 +73,13 @@ class DashboardView extends StatefulWidget {
                         controller.currentIndex = index;
                       },
                     ),
-                    items: images.map((imageUrl) {
+                    items: controller.imgBanner.map((imageUrl) {
                       return Builder(
                         builder: (BuildContext context) {
                           return Container(
                             width: MediaQuery.of(context).size.width,
                             decoration: BoxDecoration(
-                              color: Colors.amber,
+                              color: Colors.grey.shade200,
                               image: DecorationImage(
                                 image: NetworkImage(
                                   imageUrl,
@@ -101,7 +96,7 @@ class DashboardView extends StatefulWidget {
               );
             }),
             Transform.translate(
-              offset: Offset(0, -25),
+              offset: Offset(0, -10),
               child: Container(
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.all(
@@ -155,9 +150,11 @@ class DashboardView extends StatefulWidget {
                                 ),
                               ),
                               Text(
-                                "08:00",
+                                controller.timeCheckIn != null
+                                    ? controller.timeCheckIn.toString()
+                                    : "Belum Check In",
                                 style: TextStyle(
-                                  fontSize: 16.0,
+                                  fontSize: 12.0,
                                 ),
                               ),
                             ],
@@ -177,9 +174,11 @@ class DashboardView extends StatefulWidget {
                                     color: orangeColor),
                               ),
                               Text(
-                                "15:30",
+                                controller.timeCheckOut != null
+                                    ? controller.timeCheckOut.toString()
+                                    : "Belum Check Out",
                                 style: TextStyle(
-                                  fontSize: 16.0,
+                                  fontSize: 12.0,
                                 ),
                               ),
                             ],
@@ -191,53 +190,6 @@ class DashboardView extends StatefulWidget {
                     ],
                   ),
                 ),
-              ),
-            ),
-            Container(
-              child: GridView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 5.0),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  childAspectRatio: 1.0,
-                  crossAxisCount: 4,
-                  mainAxisSpacing: 2,
-                  crossAxisSpacing: 2,
-                ),
-                itemCount: controller.menuItems.length,
-                shrinkWrap: true,
-                physics: ScrollPhysics(),
-                itemBuilder: (BuildContext context, int index) {
-                  var item = controller.menuItems[index];
-
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ZoomTapAnimation(
-                        onTap: () => controller.onItemTap(context, item),
-                        child: CircleAvatar(
-                          radius: 25,
-                          backgroundColor: primaryColor,
-                          child: Icon(
-                            item['icon'],
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5.0,
-                      ),
-                      Expanded(
-                        child: Text(
-                          item["name"],
-                          style: TextStyle(
-                            fontSize: 12.0,
-                            color: textColor1,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                },
               ),
             ),
 
@@ -267,13 +219,16 @@ class DashboardView extends StatefulWidget {
                 padding: EdgeInsets.only(
                   left: 12.0,
                 ),
-                itemCount: 10,
+                itemCount: controller.infoData.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  // var item = {};
-
+                  var item = controller.infoData[index];
+                  DateTime postTime = DateTime.parse(item['created_at']);
                   return ZoomTapAnimation(
-                    onTap: () {},
+                    onTap: () {
+                      showInfoDialog(
+                          message: item['informasi'], title: item['title']);
+                    },
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.7,
                       padding: EdgeInsets.all(20.0),
@@ -295,45 +250,62 @@ class DashboardView extends StatefulWidget {
                         children: [
                           Expanded(
                             child: Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                                  item['title'],
+                                  textAlign: TextAlign.justify,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 12.0,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 4.0,
+                                ),
+                                Text(
+                                  item['informasi'],
                                   textAlign: TextAlign.justify,
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
-                                    fontSize: 12.0,
+                                    fontSize: 10.0,
                                   ),
                                 ),
                                 Spacer(),
                                 Row(
                                   children: [
                                     Text(
-                                      "04 Januari 2024",
+                                      DateFormat('dd MMMM yyyy', 'id')
+                                          .format(postTime),
                                       style: TextStyle(
-                                        fontSize: 12.0,
+                                        fontSize: 8.0,
                                       ),
                                     ),
                                     Spacer(),
-                                    Container(
-                                      height: 20,
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(4.0),
+                                    if (item['tag'] != null)
+                                      Container(
+                                        height: 20,
+                                        width: 100,
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(4.0),
+                                          ),
+                                          color: orangeColor,
                                         ),
-                                        color: orangeColor,
-                                      ),
-                                      child: Center(
-                                        child: Text(
-                                          "Penting",
-                                          style: TextStyle(
-                                            fontSize: 12.0,
-                                            color: Colors.white,
+                                        child: Center(
+                                          child: Text(
+                                            item['tag'],
+                                            style: TextStyle(
+                                              fontSize: 12.0,
+                                              color: Colors.white,
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
                                   ],
                                 ),
                               ],
@@ -367,18 +339,20 @@ class DashboardView extends StatefulWidget {
             ),
 
             SizedBox(
-              height: 140.0,
+              height: 165.0,
               child: ListView.builder(
                 padding: EdgeInsets.only(
                   left: 12.0,
                 ),
-                itemCount: 10,
+                itemCount: controller.newsData.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
-                  // var item = {};
-
+                  var item = controller.newsData[index];
+                  DateTime postTimeNews = DateTime.parse(item['created_at']);
                   return ZoomTapAnimation(
-                    onTap: () {},
+                    onTap: () {
+                      Get.to(NewsDetailView(item: item));
+                    },
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.9,
                       padding: EdgeInsets.all(8.0),
@@ -404,11 +378,9 @@ class DashboardView extends StatefulWidget {
                               borderRadius: BorderRadius.all(
                                 Radius.circular(5.0),
                               ),
-                              color: Colors.red,
+                              color: Colors.grey.shade200,
                               image: DecorationImage(
-                                image: NetworkImage(
-                                  "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?q=80&w=1752&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-                                ),
+                                image: NetworkImage(item['thumbnail']),
                                 fit: BoxFit.cover,
                               ),
                             ),
@@ -421,36 +393,24 @@ class DashboardView extends StatefulWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Brainstorming Aplikasi Absen",
-                                  textAlign: TextAlign.justify,
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontSize: 14.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Divider(
-                                  color: textColor2,
-                                ),
-                                Text(
-                                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                                  item['title'],
                                   textAlign: TextAlign.justify,
                                   maxLines: 2,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     fontSize: 12.0,
+                                    fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                Spacer(),
+                                Divider(),
+                                HtmlWidget(
+                                  item['content'].substring(0, 120),
+                                  textStyle: TextStyle(
+                                    fontSize: 10,
+                                  ),
+                                ),
                                 Row(
                                   children: [
-                                    Text(
-                                      "04 Januari 2024",
-                                      style: TextStyle(
-                                        fontSize: 12.0,
-                                      ),
-                                    ),
                                     Spacer(),
                                     Text(
                                       "Selengkapnya...",
@@ -458,6 +418,19 @@ class DashboardView extends StatefulWidget {
                                         fontSize: 8.0,
                                       ),
                                     ),
+                                  ],
+                                ),
+                                Spacer(),
+                                Row(
+                                  children: [
+                                    Text(
+                                      DateFormat('dd MMMM yyyy', 'id')
+                                          .format(postTimeNews),
+                                      style: TextStyle(
+                                        fontSize: 10.0,
+                                      ),
+                                    ),
+                                    Spacer(),
                                     Icon(
                                       Icons.bookmark,
                                       size: 20.0,

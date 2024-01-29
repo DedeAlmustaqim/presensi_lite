@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:presensi/core.dart';
-import 'package:presensi/service/userdata_service.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
-import '../controller/profile_controller.dart';
 
 class ProfileView extends StatefulWidget {
   ProfileView({Key? key}) : super(key: key);

@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:presensi/core.dart';
 
-Dio dio = Dio();
+// Dio dio = Dio();
 
 class Diointerceptors {
-  static init() {
+  static Dio dio = Dio();
+  static Future<Dio> init() async {
     dio.options = BaseOptions(
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer 123123asfasfz1231'
+        'Authorization': 'Bearer ${AppConfig.token}'
       },
     );
 
@@ -32,5 +33,6 @@ class Diointerceptors {
         },
       ),
     );
+    return dio;
   }
 }
