@@ -6,7 +6,7 @@ class PermissionService {
     PermissionStatus status = await Permission.location.status;
 
     if (status != PermissionStatus.granted) {
-      showInfoAksesDialog(message: "Izinkan Akses Lokasi", title: "");
+      await showInfoAksesDialog(message: "Izinkan Akses Lokasi", title: "");
       openAppSettings();
     }
   }
@@ -15,7 +15,7 @@ class PermissionService {
     PermissionStatus status = await Permission.camera.status;
 
     if (status != PermissionStatus.granted) {
-      showInfoAksesDialog(message: "Izinkan Akses Kamera", title: "");
+      await showInfoAksesDialog(message: "Izinkan Akses Kamera", title: "");
       openAppSettings();
     }
   }

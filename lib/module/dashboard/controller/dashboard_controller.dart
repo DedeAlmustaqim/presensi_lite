@@ -16,6 +16,7 @@ class DashboardController extends State<DashboardView> {
     getBanner();
     getInfo();
     getNews();
+    UserDataService.init();
     instance = this;
     super.initState();
   }

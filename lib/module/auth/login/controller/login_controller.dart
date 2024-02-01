@@ -22,6 +22,7 @@ class LoginController extends State<LoginView> {
   Widget build(BuildContext context) => widget.build(context, this);
 
   String? email;
+  String? nik;
   String? password;
   String? token;
   String? idUser;
@@ -40,7 +41,7 @@ class LoginController extends State<LoginView> {
     showLoading();
 
     await AuthService().login(
-      email: email!,
+      nik: nik!,
       password: password!,
     );
   }

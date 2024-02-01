@@ -1,29 +1,35 @@
 import 'package:presensi/core.dart';
 import 'package:presensi/models/user_detail.dart';
+import 'package:presensi/models/user_model.dart';
 
 class UserDataService {
-  static late Dio dio = Dio();
-
   static UserDetail? userData;
   static init() async {
-    if (AppConfig.idUser == null) {
-      DB.clearDatabase();
-      Get.offAll(LoginView);
-    }
-    dio = await Diointerceptors.init(); // Use await here
     await getUser();
   }
 
   static getUser() async {
-    var url = AppConfig.baseUrl;
-    var response = await dio.get(
-      "$url/api/user/${AppConfig.idUser}",
-    );
-    Map<String, dynamic> obj = response.data;
-    Map<String, dynamic> userMap = obj["data"];
-    userData = UserDetail.fromJson(userMap);
+    try {
+      var url = AppConfig.baseUrl;
+      var response = await Dio().get(
+        "$url/api/user/${AuthService.id}}",
+        // "$url/api/user/1",
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer ${AuthService.token}",
+          },
+        ),
+      );
+      Map obj = response.data;
 
-    print(userData);
+      userData = UserDetail.fromJson(obj['data']);
+
+      print(userData);
+    } on Exception {
+      hideLoading();
+      showInfoDialog(message: "Koneksi ke server gagal", title: "Error");
+    }
   }
 
   getIzin({required String date}) async {
@@ -33,11 +39,11 @@ class UserDataService {
       options: Options(
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer ${AppConfig.token}",
+          "Authorization": "Bearer ${AuthService.token}",
         },
       ),
       data: {
-        "id": AppConfig.idUser,
+        "id": AuthService.id,
         "date": date,
       },
     );
@@ -54,11 +60,11 @@ class UserDataService {
       options: Options(
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer ${AppConfig.token}",
+          "Authorization": "Bearer ${AuthService.token}",
         },
       ),
       data: {
-        "id": AppConfig.idUser,
+        "id": AuthService.id,
         "date": date,
       },
     );
@@ -75,11 +81,11 @@ class UserDataService {
       options: Options(
         headers: {
           "Content-Type": "application/json",
-          "Authorization": "Bearer ${AppConfig.token}",
+          "Authorization": "Bearer ${AuthService.token}",
         },
       ),
       data: {
-        "id": AppConfig.idUser,
+        "id": AuthService.id,
       },
     );
     Map obj = response.data;

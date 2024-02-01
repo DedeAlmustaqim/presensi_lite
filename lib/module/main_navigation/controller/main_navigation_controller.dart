@@ -7,7 +7,8 @@ class MainNavigationController extends State<MainNavigationView> {
   late MainNavigationView view;
 
   @override
-  void initState() {
+  initState() {
+    // UserDataService.init();
     instance = this;
     super.initState();
   }

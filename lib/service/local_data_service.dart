@@ -7,6 +7,7 @@ class DB {
 
   static init() async {
     db = await SharedPreferences.getInstance();
+    getUserId();
     // var userMap = getUser();
     // var token = getToken();
 
@@ -58,6 +59,6 @@ class DB {
   }
 
   static int? getUserId() {
-    return db.getInt('user_id');
+    return db.getInt('id_user');
   }
 }

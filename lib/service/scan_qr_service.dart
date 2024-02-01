@@ -4,54 +4,68 @@ class ScanQr {
   final url = AppConfig.baseUrl;
   static Dio dio = Diointerceptors.dio;
   checkLocation(String lat, String long) async {
-    var response = await Dio().post(
-      "$url/api/user/verifikasi_loc",
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer ${AppConfig.token}",
-        },
-      ),
-      data: {"id": AppConfig.idUser, "latitude": "$lat", "longitude": "$long"},
-    );
-    Map<String, dynamic> obj = response.data;
+    try {
+      var response = await Dio().post(
+        "$url/api/user/verifikasi_loc",
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer ${AuthService.token}",
+          },
+        ),
+        data: {"id": AuthService.id, "latitude": "$lat", "longitude": "$long"},
+      );
+      Map<String, dynamic> obj = response.data;
 
-    return obj['data'];
+      return obj['data'];
+    } on Exception {
+      hideLoading();
+      showInfoDialog(message: "Koneksi ke server gagal", title: "Error");
+    }
   }
 
   Future postQrIn(String qrIn) async {
-    var response = await Dio().post(
-      "$url/api/user/qr_in",
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer ${AppConfig.token}",
+    try {
+      var response = await Dio().post(
+        "$url/api/user/qr_in",
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer ${AuthService.token}",
+          },
+        ),
+        data: {
+          "qr_in": qrIn,
+          "id": AuthService.id,
         },
-      ),
-      data: {
-        "qr_in": qrIn,
-        "id": AppConfig.idUser,
-      },
-    );
-    Map obj = response.data;
-    return obj['data'];
+      );
+      Map obj = response.data;
+      return obj['data'];
+    } on Exception {
+      hideLoading();
+      showInfoDialog(message: "Koneksi ke server gagal", title: "Error");
+    }
   }
 
   Future postQrOut(String qrOut) async {
-    var response = await Dio().post(
-      "$url/api/user/qr_out",
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer ${AppConfig.token}",
+    try {
+      var response = await Dio().post(
+        "$url/api/user/qr_out",
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer ${AuthService.token}",
+          },
+        ),
+        data: {
+          "qr_out": qrOut,
+          "id": AuthService.id,
         },
-      ),
-      data: {
-        "qr_out": qrOut,
-        "id": AppConfig.idUser,
-      },
-    );
-    Map obj = response.data;
-    return obj['data'];
+      );
+      Map obj = response.data;
+      return obj['data'];
+    } on Exception {
+      showInfoDialog(message: "Koneksi ke server gagal", title: "Error");
+    }
   }
 }

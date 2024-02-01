@@ -6,13 +6,6 @@ import 'package:presensi/core.dart';
 class Diointerceptors {
   static Dio dio = Dio();
   static Future<Dio> init() async {
-    dio.options = BaseOptions(
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ${AppConfig.token}'
-      },
-    );
-
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (RequestOptions options, RequestInterceptorHandler handler) {

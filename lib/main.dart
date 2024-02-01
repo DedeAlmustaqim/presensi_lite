@@ -17,10 +17,12 @@ void main() async {
   ));
 
   await DB.init();
-  if (DB.getToken() != null) {
-    await UserDataService.init();
+  var token = DB.getToken();
+  var id = DB.getUserId();
+  if (token != null) {
+    AuthService.id = id;
+    await UserDataService.getUser();
   }
-
   await Diointerceptors.init();
 
   runMainApp();
@@ -59,6 +61,7 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
 
   var token = DB.getToken();
   Widget get mainView {
+    // if (token != null) return UserDataService.init();
     if (token != null) return MainNavigationView();
 
     return LoginView();

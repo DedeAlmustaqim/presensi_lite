@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:presensi/core.dart';
+import 'package:tap_debouncer/tap_debouncer.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class AbsensiView extends StatefulWidget {
@@ -148,38 +149,38 @@ class AbsensiView extends StatefulWidget {
                     SizedBox(
                       height: 10.0,
                     ),
-                    ZoomTapAnimation(
-                      onTap: () {
-                        showLoading();
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8.0),
-                          ),
-                          color: Colors.white,
-                        ),
-                        height: 40,
-                        child: Row(
-                          children: [
-                            Icon(
-                              MdiIcons.map,
-                              color: primaryColor,
-                            ),
-                            const SizedBox(
-                              width: 5.0,
-                            ),
-                            Text(
-                              "Buka Map",
-                              style: TextStyle(
-                                fontSize: 12.0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                    // ZoomTapAnimation(
+                    //   onTap: () {
+                    //     showLoading();
+                    //   },
+                    //   child: Container(
+                    //     padding: const EdgeInsets.all(10.0),
+                    //     decoration: BoxDecoration(
+                    //       borderRadius: BorderRadius.all(
+                    //         Radius.circular(8.0),
+                    //       ),
+                    //       color: Colors.white,
+                    //     ),
+                    //     height: 40,
+                    //     child: Row(
+                    //       children: [
+                    //         Icon(
+                    //           MdiIcons.map,
+                    //           color: primaryColor,
+                    //         ),
+                    //         const SizedBox(
+                    //           width: 5.0,
+                    //         ),
+                    //         Text(
+                    //           "Buka Map",
+                    //           style: TextStyle(
+                    //             fontSize: 12.0,
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),
@@ -264,91 +265,100 @@ class AbsensiView extends StatefulWidget {
                                   ),
                                   child: Row(
                                     children: [
-                                      ZoomTapAnimation(
-                                        onTap: controller.isLoading
-                                            ? null
-                                            : () => controller.checkIn(),
-                                        child: Container(
-                                          padding: const EdgeInsets.all(10.0),
-                                          margin: const EdgeInsets.symmetric(
-                                            horizontal: 2.0,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(8.0),
-                                            ),
-                                            color: controller.isLoading
-                                                ? disabledColor
-                                                : primaryColor,
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Icon(
-                                                MdiIcons.qrcodeScan,
-                                                size: 12.0,
-                                                color: Colors.white,
-                                              ),
-                                              SizedBox(
-                                                width: 2.0,
-                                              ),
-                                              Text(
-                                                "CHECK IN",
-                                                style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.white,
+                                      TapDebouncer(
+                                          onTap: () async =>
+                                              controller.checkIn(),
+                                          builder: (BuildContext context,
+                                              TapDebouncerFunc? onTap) {
+                                            return ZoomTapAnimation(
+                                              onTap: onTap,
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.all(10.0),
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                  horizontal: 2.0,
+                                                ),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                    Radius.circular(8.0),
+                                                  ),
+                                                  color: controller.isLoading
+                                                      ? disabledColor
+                                                      : primaryColor,
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Icon(
+                                                      MdiIcons.qrcodeScan,
+                                                      size: 12.0,
+                                                      color: Colors.white,
+                                                    ),
+                                                    SizedBox(
+                                                      width: 2.0,
+                                                    ),
+                                                    Text(
+                                                      "CHECK IN",
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      ZoomTapAnimation(
-                                        // onTap: () {
-                                        //   controller.getUser();
-                                        // },
-                                        onTap: controller.isLoading
-                                            ? null
-                                            : () {
-                                                controller.checkOut();
-                                              },
-                                        child: Container(
-                                          padding: const EdgeInsets.all(10.0),
-                                          margin: const EdgeInsets.symmetric(
-                                            horizontal: 2.0,
-                                          ),
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.all(
-                                              Radius.circular(8.0),
-                                            ),
-                                            color: controller.isLoading
-                                                ? disabledColor
-                                                : orangeColor,
-                                          ),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.start,
-                                            children: [
-                                              Icon(
-                                                MdiIcons.qrcodeScan,
-                                                size: 12.0,
-                                                color: Colors.white,
-                                              ),
-                                              SizedBox(
-                                                width: 2.0,
-                                              ),
-                                              Text(
-                                                "CHECK OUT",
-                                                style: TextStyle(
-                                                  fontSize: 10,
-                                                  color: Colors.white,
+                                            );
+                                          }),
+                                      TapDebouncer(
+                                          onTap: () async =>
+                                              controller.checkOut(),
+                                          builder: (BuildContext context,
+                                              TapDebouncerFunc? onTap) {
+                                            return ZoomTapAnimation(
+                                              onTap: onTap,
+                                              child: Container(
+                                                padding:
+                                                    const EdgeInsets.all(10.0),
+                                                margin:
+                                                    const EdgeInsets.symmetric(
+                                                  horizontal: 2.0,
+                                                ),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.all(
+                                                    Radius.circular(8.0),
+                                                  ),
+                                                  color: controller.isLoading
+                                                      ? disabledColor
+                                                      : warningColor,
+                                                ),
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.start,
+                                                  children: [
+                                                    Icon(
+                                                      MdiIcons.qrcodeScan,
+                                                      size: 12.0,
+                                                      color: Colors.white,
+                                                    ),
+                                                    SizedBox(
+                                                      width: 2.0,
+                                                    ),
+                                                    Text(
+                                                      "CHECK IN",
+                                                      style: TextStyle(
+                                                        fontSize: 10,
+                                                        color: Colors.white,
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
+                                            );
+                                          }),
                                     ],
                                   ),
                                 ),

@@ -35,11 +35,16 @@ Future showInfoDialog({
                                   size: 40.0,
                                   color: Colors.amber,
                                 ),
-                            Text(
-                              title,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
+                            const SizedBox(
+                              width: 10.0,
+                            ),
+                            Expanded(
+                              child: Text(
+                                title,
+                                style: TextStyle(
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ],

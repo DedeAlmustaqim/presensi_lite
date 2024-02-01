@@ -19,15 +19,42 @@ class LoginView extends StatefulWidget {
                 key: controller.formKey,
                 child: Column(
                   children: [
-                    QTextField(
-                      label: "Email",
-                      validator: Validator.email,
-                      suffixIcon: Icons.email,
-                      value: controller.email,
-                      onChanged: (value) {
-                        controller.email = value;
-                        // DB.set("email", value);
-                      },
+                    Image.asset(
+                      "assets/icon/icon.png",
+                      width: 120.0,
+                      height: 120.0,
+                      fit: BoxFit.fill,
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    // QTextField(
+                    //   label: "Email",
+                    //   validator: Validator.email,
+                    //   suffixIcon: Icons.email,
+                    //   value: controller.email,
+                    //   onChanged: (value) {
+                    //     controller.email = value;
+                    //     // DB.set("email", value);
+                    //   },
+                    // ),
+                    Container(
+                      margin: const EdgeInsets.only(
+                        bottom: 12.0,
+                      ),
+                      child: TextFormField(
+                        maxLength: 16,
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          labelText: "NIK",
+                          suffixIcon: Icon(
+                            MdiIcons.cardAccountDetails,
+                          ),
+                        ),
+                        onChanged: (value) {
+                          controller.nik = value;
+                        },
+                      ),
                     ),
                     QTextField(
                       label: "Password",
