@@ -1,6 +1,7 @@
 {
     "modules": [
-        "news_detail"
+        "news_detail",
+        "setting/ubah_pass"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

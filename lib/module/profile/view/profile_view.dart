@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:presensi/core.dart';
+import 'package:presensi/shared/widget/form/textfield/text_field_pass.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class ProfileView extends StatefulWidget {
@@ -72,7 +73,6 @@ class ProfileView extends StatefulWidget {
                     Container(
                       padding: EdgeInsets.all(10.0),
                       decoration: BoxDecoration(
-                        color: Colors.white,
                         borderRadius: BorderRadius.all(
                           Radius.circular(12.0),
                         ),
@@ -210,6 +210,125 @@ class ProfileView extends StatefulWidget {
                     title: Text(
                       UserDataService.userData!.email.toString(),
                       style: TextStyle(color: textColor1),
+                    ),
+                  ),
+                  Divider(),
+                  ListTile(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (context) {
+                          return Dialog(
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(16.0),
+                            ),
+                            elevation: 0,
+                            backgroundColor: Colors.transparent,
+                            child: Center(
+                              child: Container(
+                                padding: EdgeInsets.all(20.0),
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(16.0),
+                                ),
+                                child: Form(
+                                  key: controller.formKey,
+                                  child: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      Text(
+                                        "Ubah Password",
+                                        style: TextStyle(
+                                          fontSize: 16.0,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      SizedBox(height: 10.0),
+                                      QTextFieldPass(
+                                        label: "Password Baru",
+                                        helper: "Minimal 8 Karakter",
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Password baru tidak boleh kosong';
+                                          }
+                                          if (value.length < 8) {
+                                            return 'Password baru harus memiliki minimal 8 karakter';
+                                          }
+                                          return null;
+                                        },
+                                        value: null,
+                                        onChanged: (value) {
+                                          controller.newPass = value;
+                                        },
+                                      ),
+                                      QTextFieldPass(
+                                        label: "Konfirmasi Password",
+                                        helper:
+                                            "Harus sama dengan Kolom Password",
+                                        validator: (value) {
+                                          if (value == null || value.isEmpty) {
+                                            return 'Konfirmasi password tidak boleh kosong';
+                                          }
+                                          if (value != controller.newPass) {
+                                            return 'Konfirmasi password harus sama dengan password baru';
+                                          }
+                                          return null;
+                                        },
+                                        value: null,
+                                        onChanged: (value) {
+                                          controller.confirmPass = value;
+                                        },
+                                      ),
+                                      SizedBox(height: 20.0),
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: dangerColor,
+                                            ),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text(
+                                              "Batal",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                          SizedBox(width: 10.0),
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                              backgroundColor: primaryColor,
+                                            ),
+                                            onPressed: () {
+                                              controller.update_pass();
+                                            },
+                                            child: Text(
+                                              "Simpan",
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    leading: Icon(Icons.key),
+                    minLeadingWidth: 0.0,
+                    title: Text(
+                      'Ubah Password',
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ),
                   Divider(),

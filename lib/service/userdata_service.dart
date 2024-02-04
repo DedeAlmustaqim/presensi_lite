@@ -1,6 +1,5 @@
 import 'package:presensi/core.dart';
 import 'package:presensi/models/user_detail.dart';
-import 'package:presensi/models/user_model.dart';
 
 class UserDataService {
   static UserDetail? userData;
@@ -91,5 +90,24 @@ class UserDataService {
     Map obj = response.data;
 
     return obj['data'];
+  }
+
+  change_pass(String newPass, String confirmPass) async {
+    var response = await Dio().post(
+      "${AppConfig.baseUrl}/api/user/update_pass",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer ${AuthService.token}",
+        },
+      ),
+      data: {
+        "id": AuthService.id,
+        "new_pass": newPass,
+        "new_pass_repeat": confirmPass
+      },
+    );
+    Map obj = response.data;
+    return obj['success'];
   }
 }

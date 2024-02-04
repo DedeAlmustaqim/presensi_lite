@@ -120,95 +120,91 @@ class AbsensiController extends State<AbsensiView> {
 
   void _postCheckIn() async {
     final result = await BarcodeScanner.scan();
-    if (result != null) {
-      try {
-        var postQr = await ScanQr().postQrIn(result.rawContent);
-        bool success = postQr['success'];
-        String judul = postQr['judul'];
-        String msg = postQr['msg'];
+    try {
+      var postQr = await ScanQr().postQrIn(result.rawContent);
+      bool success = postQr['success'];
+      String judul = postQr['judul'];
+      String msg = postQr['msg'];
 
-        showInfoDialog(
-          message: "$msg",
-          title: "$judul",
-          icon: success
-              ? Icon(
-                  Icons.check,
-                  size: 60.0,
-                  color: successColor,
-                )
-              : Icon(
-                  Icons.warning_amber,
-                  size: 60.0,
-                  color: orangeColor,
-                ),
-        );
-        setState(() {
-          isLoading = false;
-        });
-        HadirListController.instance.getRekap();
-        DashboardController.instance.getToday();
-      } catch (e) {
-        showInfoDialog(
-          message: "Terjadi Kesalahan",
-          title: "Error",
-          icon: Icon(
-            Icons.error,
-            size: 60.0,
-            color: Colors.red,
-          ),
-        );
-        setState(() {
-          isLoading = false;
-        });
-      }
+      showInfoDialog(
+        message: "$msg",
+        title: "$judul",
+        icon: success
+            ? Icon(
+                Icons.check,
+                size: 60.0,
+                color: successColor,
+              )
+            : Icon(
+                Icons.warning_amber,
+                size: 60.0,
+                color: orangeColor,
+              ),
+      );
+      setState(() {
+        isLoading = false;
+      });
+      HadirListController.instance.getRekap();
+      DashboardController.instance.getToday();
+    } catch (e) {
+      showInfoDialog(
+        message: "Terjadi Kesalahan",
+        title: "Error",
+        icon: Icon(
+          Icons.error,
+          size: 60.0,
+          color: Colors.red,
+        ),
+      );
+      setState(() {
+        isLoading = false;
+      });
     }
   }
 
   void _postCheckOut() async {
     final result = await BarcodeScanner.scan();
-    if (result != null) {
-      try {
-        var postQr = await ScanQr().postQrOut(result.rawContent);
-        bool success = postQr['success'];
-        String judul = postQr['judul'];
-        String msg = postQr['msg'];
+    try {
+      var postQr = await ScanQr().postQrOut(result.rawContent);
+      bool success = postQr['success'];
+      String judul = postQr['judul'];
+      String msg = postQr['msg'];
 
-        showInfoDialog(
-          message: "$msg",
-          title: "$judul",
-          icon: success
-              ? Icon(
-                  Icons.check,
-                  size: 60.0,
-                  color: successColor,
-                )
-              : Icon(
-                  Icons.warning_amber,
-                  size: 60.0,
-                  color: orangeColor,
-                ),
-        );
-        HadirListController.instance.getRekap();
-        DashboardController.instance.getToday();
-        setState(() {
-          isLoading = false;
-        });
-      } catch (e) {
-        showInfoDialog(
-          message: "Terjadi kesalahan",
-          title: "Error",
-          icon: Icon(
-            Icons.error,
-            size: 60.0,
-            color: Colors.red,
-          ),
-        );
-        setState(() {
-          isLoading = false;
-        });
-      }
+      showInfoDialog(
+        message: "$msg",
+        title: "$judul",
+        icon: success
+            ? Icon(
+                Icons.check,
+                size: 60.0,
+                color: successColor,
+              )
+            : Icon(
+                Icons.warning_amber,
+                size: 60.0,
+                color: orangeColor,
+              ),
+      );
+      HadirListController.instance.getRekap();
+      DashboardController.instance.getToday();
+      setState(() {
+        isLoading = false;
+      });
+    } catch (e) {
+      showInfoDialog(
+        message: "Terjadi kesalahan",
+        title: "Error",
+        icon: Icon(
+          Icons.error,
+          size: 60.0,
+          color: Colors.red,
+        ),
+      );
+      setState(() {
+        isLoading = false;
+      });
     }
-  }
+    }
 
   refresUserData() async {
     showLoading();

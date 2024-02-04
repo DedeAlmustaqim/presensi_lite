@@ -24,6 +24,8 @@ export 'package:presensi/module/news_detail/controller/news_detail_controller.da
 export 'package:presensi/module/news_detail/view/news_detail_view.dart';
 export 'package:presensi/module/profile/controller/profile_controller.dart';
 export 'package:presensi/module/profile/view/profile_view.dart';
+export 'package:presensi/module/setting/ubah_pass/controller/ubah_pass_controller.dart';
+export 'package:presensi/module/setting/ubah_pass/view/ubah_pass_view.dart';
 export 'package:presensi/service/auth_service.dart';
 export 'package:presensi/service/dashboard_service.dart';
 export 'package:presensi/service/local_data_service.dart';

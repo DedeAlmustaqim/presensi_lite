@@ -5,7 +5,9 @@ class ProfileController extends State<ProfileView> {
   static late ProfileController instance;
   late ProfileView view;
   bool isDetail = false;
-
+  GlobalKey<FormState> formKey = GlobalKey<FormState>();
+  String? newPass;
+  String? confirmPass;
   @override
   void initState() {
     instance = this;
@@ -23,8 +25,27 @@ class ProfileController extends State<ProfileView> {
     });
   }
 
+  update_pass() async {
+    if (formKey.currentState?.validate() ?? false) {
+      showLoading();
+      try {
+        hideLoading();
+        var success =
+            await UserDataService().change_pass(newPass!, confirmPass!);
+        print(success);
+        if (success) {
+          showInfoDialog(message: "Berhasil ubah Password", title: '');
+        } else {
+          showInfoDialog(message: "Gagal ubah Password", title: '');
+        }
+      } on Exception catch (err) {
+        hideLoading();
+        print(err);
+      }
+    }
+  }
+
   doLogout() async {
-    bool confirm = false;
     await showDialog<void>(
       context: context,
       barrierDismissible: true,
@@ -64,7 +85,6 @@ class ProfileController extends State<ProfileView> {
                     Colors.red, // Warna latar belakang tombol "Yes"
               ),
               onPressed: () async {
-                confirm = true;
 
                 hideLoading();
                 await AuthService().clearCache();

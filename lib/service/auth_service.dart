@@ -47,7 +47,7 @@ class AuthService {
       }
       if (!status) {
         hideLoading();
-        showInfoDialog(message: "Email/Password Salah", title: "Gagal Login");
+        showInfoDialog(message: "NIK/Password Salah", title: "Gagal Login");
         // print(status);
       }
     } on Exception catch (err) {

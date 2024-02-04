@@ -45,7 +45,7 @@ class NewsDetailView extends StatefulWidget {
             ),
             Container(
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: Theme.of(context).primaryColor,
                 borderRadius: BorderRadius.all(
                   Radius.circular(5.0),
                 ),

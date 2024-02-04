@@ -102,7 +102,7 @@ class DashboardView extends StatefulWidget {
                   borderRadius: BorderRadius.all(
                     Radius.circular(12.0),
                   ),
-                  color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                   boxShadow: [
                     BoxShadow(
                       color: Color(0x19000000),
@@ -193,8 +193,6 @@ class DashboardView extends StatefulWidget {
               ),
             ),
 
-            //Pengumuman
-
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               margin: EdgeInsets.symmetric(vertical: 5.0),
@@ -234,7 +232,7 @@ class DashboardView extends StatefulWidget {
                       padding: EdgeInsets.all(20.0),
                       margin: EdgeInsets.only(right: 10.0, bottom: 10),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).primaryColor,
                         boxShadow: [
                           BoxShadow(
                             color: Color(0x19000000),
@@ -358,7 +356,7 @@ class DashboardView extends StatefulWidget {
                       padding: EdgeInsets.all(8.0),
                       margin: EdgeInsets.only(right: 10.0, bottom: 10),
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: Theme.of(context).primaryColor,
                         boxShadow: [
                           BoxShadow(
                             color: Color(0x19000000),
