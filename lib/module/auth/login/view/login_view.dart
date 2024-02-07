@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:presensi/core.dart';
+import 'package:presensi/shared/widget/form/textfield/text_field_pass.dart';
 
 class LoginView extends StatefulWidget {
   LoginView({Key? key}) : super(key: key);
@@ -8,6 +9,7 @@ class LoginView extends StatefulWidget {
     controller.view = this;
 
     return Scaffold(
+      backgroundColor: primaryColor,
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -19,6 +21,14 @@ class LoginView extends StatefulWidget {
                 key: controller.formKey,
                 child: Column(
                   children: [
+                    Text(
+                      "ATEI BARTIM",
+                      style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                     Image.asset(
                       "assets/icon/icon.png",
                       width: 120.0,
@@ -28,16 +38,6 @@ class LoginView extends StatefulWidget {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    // QTextField(
-                    //   label: "Email",
-                    //   validator: Validator.email,
-                    //   suffixIcon: Icons.email,
-                    //   value: controller.email,
-                    //   onChanged: (value) {
-                    //     controller.email = value;
-                    //     // DB.set("email", value);
-                    //   },
-                    // ),
                     Container(
                       margin: const EdgeInsets.only(
                         bottom: 12.0,
@@ -56,41 +56,34 @@ class LoginView extends StatefulWidget {
                         },
                       ),
                     ),
-                    QTextField(
+                    QTextFieldPass(
                       label: "Password",
                       obscure: controller.isVisible,
                       validator: Validator.required,
-                      suffixIcon: Icons.password,
+                      suffixIcon: !controller.isVisible
+                          ? Icons.remove_red_eye
+                          : MdiIcons.eyeLock,
                       value: controller.password,
                       onChanged: (value) {
                         controller.password = value;
                         // DB.set("password", value);
                       },
                     ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            controller.showPass();
-                          },
-                          child: Text(
-                            "Tampilkan Password",
-                            style: TextStyle(
-                              fontSize: 12.0,
-                              color: primaryColor,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                     const SizedBox(
                       height: 20.0,
                     ),
-                    QButton(
-                      label: "Login",
-                      onPressed: () => controller.doLogin(),
+                    OutlinedButton.icon(
+                      icon: const Icon(Icons.login),
+                      label: const Text("Login"),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        side: const BorderSide(
+                          color: Colors.white,
+                        ),
+                      ),
+                      onPressed: () {
+                        controller.doLogin();
+                      },
                     ),
                   ],
                 ),
@@ -98,6 +91,41 @@ class LoginView extends StatefulWidget {
             ),
           ],
         ),
+      ),
+      floatingActionButton: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            "Powered by",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 8.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(
+            width: 5.0,
+          ),
+          Text(
+            "Digital Native",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(
+            width: 5.0,
+          ),
+          Text(
+            'Versi ${AppConfig.version.toString()}',
+            style: TextStyle(
+              fontSize: 10.0,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
     );
   }

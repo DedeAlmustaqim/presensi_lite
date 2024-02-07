@@ -15,13 +15,10 @@ class DashboardView extends StatefulWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [
-                    primaryColor,
-                    secondaryColor,
-                  ],
+                color: Theme.of(context).primaryColorLight,
+                image: DecorationImage(
+                  image: AssetImage("assets/icon/header.png"),
+                  fit: BoxFit.cover,
                 ),
               ),
               padding:
@@ -53,7 +50,9 @@ class DashboardView extends StatefulWidget {
                   CircleAvatar(
                     radius: 30,
                     backgroundImage: NetworkImage(
-                      UserDataService.userData!.img.toString(),
+                      UserDataService.userData!.img.toString() +
+                          '?v=' +
+                          DateTime.now().millisecondsSinceEpoch.toString(),
                     ),
                   ),
                 ],
@@ -197,7 +196,6 @@ class DashboardView extends StatefulWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               margin: EdgeInsets.symmetric(vertical: 5.0),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
                     "Pengumuman",
@@ -205,6 +203,13 @@ class DashboardView extends StatefulWidget {
                       fontSize: 14.0,
                       color: primaryColor,
                       fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Spacer(),
+                  InkWell(
+                    child: Text(
+                      "Lihat Semua",
+                      style: TextStyle(fontSize: 10.0, color: primaryColor),
                     ),
                   ),
                 ],
@@ -322,7 +327,6 @@ class DashboardView extends StatefulWidget {
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               margin: EdgeInsets.symmetric(vertical: 5.0),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   Text(
                     "Berita",
@@ -330,6 +334,16 @@ class DashboardView extends StatefulWidget {
                       fontSize: 14.0,
                       color: primaryColor,
                       fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Spacer(),
+                  InkWell(
+                    child: Text(
+                      "Lihat Semua",
+                      style: TextStyle(
+                        color: primaryColor,
+                        fontSize: 10.0,
+                      ),
                     ),
                   ),
                 ],

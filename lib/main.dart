@@ -33,7 +33,9 @@ runMainApp() async {
 }
 
 class MainApp extends StatefulWidget {
-  const MainApp({Key? key}) : super(key: key);
+  const MainApp({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<MainApp> createState() => _MainAppState();
@@ -76,20 +78,11 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
       navigatorKey: Get.navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: getDefaultTheme(),
-      // home: LoginView(),
       home: mainView,
       onGenerateRoute: (routeSettings) {
         print(routeSettings.name);
         return null;
       },
-      // builder: (context, child) {
-      //   print(Get.currentContext.toString());
-      //   return DebugView(
-      //     context: context,
-      //     child: child,
-      //     visible: true,
-      //   );
-      // },
     );
   }
 }

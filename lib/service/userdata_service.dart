@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:presensi/core.dart';
 import 'package:presensi/models/user_detail.dart';
 
@@ -92,7 +93,7 @@ class UserDataService {
     return obj['data'];
   }
 
-  change_pass(String newPass, String confirmPass) async {
+  changePass(String newPass, String confirmPass) async {
     var response = await Dio().post(
       "${AppConfig.baseUrl}/api/user/update_pass",
       options: Options(
@@ -109,5 +110,59 @@ class UserDataService {
     );
     Map obj = response.data;
     return obj['success'];
+  }
+
+  getComment({int? itemId}) async {
+    var response = await Dio().post(
+      "${AppConfig.baseUrl}/api/news/get_comments",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer ${AuthService.token}",
+        },
+      ),
+      data: {
+        "id": itemId,
+      },
+    );
+    Map obj = response.data;
+    return obj['data'];
+  }
+
+  sendComment({int? itemId, String? comment}) async {
+    var response = await Dio().post(
+      "${AppConfig.baseUrl}/api/news_comment",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer ${AuthService.token}",
+        },
+      ),
+      data: {"id_user": AppConfig.id, "id_news": itemId, "comment": comment},
+    );
+    Map obj = response.data;
+
+    if (obj['success']) {
+      showInfoDialog(message: obj['message'], title: "Berhasil");
+    } else {
+      showInfoDialog(message: obj['message'], title: "Gagal");
+    }
+  }
+
+  delNews({int? idNews}) async {
+    var response = await Dio().delete(
+      "${AppConfig.baseUrl}/api/news_comment/$idNews",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer ${AuthService.token}",
+        },
+      ),
+    );
+    Map obj = response.data;
+
+    var success = obj['success'];
+
+    return success;
   }
 }

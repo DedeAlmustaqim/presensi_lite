@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:presensi/core.dart';
 
 class QTextFieldPass extends StatefulWidget {
   final String? id;
@@ -77,6 +78,14 @@ class _QTextFieldState extends State<QTextFieldPass> {
         maxLength: widget.maxLength,
         obscureText: widget.obscure,
         decoration: InputDecoration(
+          suffixIcon: widget.suffixIcon != null
+              ? IconButton(
+                  icon: Icon(widget.suffixIcon),
+                  onPressed: () {
+                    LoginController.instance.showPass();
+                  },
+                )
+              : null,
           fillColor: Colors.grey.shade300,
           labelText: widget.label,
           helperText: widget.helper,

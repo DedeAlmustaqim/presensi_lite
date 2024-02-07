@@ -211,7 +211,11 @@ class AbsensiView extends StatefulWidget {
                         decoration: BoxDecoration(
                           image: DecorationImage(
                             image: NetworkImage(
-                              UserDataService.userData!.img.toString(),
+                              UserDataService.userData!.img.toString() +
+                                  '?v=' +
+                                  DateTime.now()
+                                      .millisecondsSinceEpoch
+                                      .toString(),
                             ),
                             fit: BoxFit.cover,
                           ),
@@ -254,8 +258,8 @@ class AbsensiView extends StatefulWidget {
                               Text(
                                 UserDataService.userData!.nmUnit.toString(),
                                 style: TextStyle(
-                                      fontSize: 10.0,
-                                    ),
+                                  fontSize: 10.0,
+                                ),
                               ),
                               Spacer(),
                               Container(

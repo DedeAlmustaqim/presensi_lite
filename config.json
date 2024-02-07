@@ -1,7 +1,8 @@
 {
     "modules": [
         "news_detail",
-        "setting/ubah_pass"
+        "setting/ubah_pass",
+        "berita_list"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

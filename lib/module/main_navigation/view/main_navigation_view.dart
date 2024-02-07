@@ -23,7 +23,8 @@ class MainNavigationView extends StatefulWidget {
         bottomNavigationBar: Container(
           height: MediaQuery.of(context).size.height * 0.08,
           child: BottomNavigationBar(
-            selectedItemColor: primaryColor,
+            backgroundColor: Theme.of(context).primaryColorLight,
+            selectedItemColor: Colors.white,
             type: BottomNavigationBarType.fixed,
             currentIndex: controller.selectedIndex,
             onTap: (newIndex) => controller.updateIndex(newIndex),

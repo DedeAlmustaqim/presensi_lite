@@ -18,31 +18,92 @@ class ProfileView extends StatefulWidget {
             Container(
               padding: EdgeInsets.only(top: 30.0, bottom: 20),
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  transform: GradientRotation(1.0),
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    primaryColor,
-                    secondaryColor,
+                color: Theme.of(context).primaryColorLight,
+                image: DecorationImage(
+                  image: AssetImage("assets/icon/header.png"),
+                  fit: BoxFit.cover,
+                ),
+              ),
+              // Tampilkan ini bila controller.imageFile == null
+              child: Center(
+                child: Column(
+                  children: [
+                    if (controller.imageFile != null)
+                      CircleAvatar(
+                        radius: 75,
+                        backgroundImage: FileImage(controller.imageFile!),
+                      ),
+                    if (controller.imageFile == null)
+                      CircleAvatar(
+                        radius: 75.0,
+                        backgroundImage: NetworkImage(
+                          UserDataService.userData!.img.toString() +
+                              '?v=' +
+                              DateTime.now().millisecondsSinceEpoch.toString(),
+                        ),
+                        child: Column(
+                          children: [
+                            Spacer(),
+                            InkWell(
+                              onTap: () {
+                                controller.getImage();
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(5.0),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(6.0),
+                                  ),
+                                  color: Colors.white,
+                                ),
+                                child: Text(
+                                  "Ganti Foto",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 10),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    const SizedBox(
+                      height: 5.0,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (controller.imageFile != null)
+                          ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors
+                                    .blue // Warna latar belakang sesuai kebutuhan Anda
+                                ),
+                            onPressed: () {
+                              controller.uploadPhoto();
+                            },
+                            child: Text(
+                              'Simpan',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        const SizedBox(
+                          width: 5.0,
+                        ),
+                        if (controller.imageFile != null)
+                          ElevatedButton(
+                            onPressed: () {
+                              controller.delImagePick();
+                            },
+                            child: Text('Batal'),
+                          ),
+                      ],
+                    ),
                   ],
                 ),
               ),
-              child: Column(
-                children: [
-                  Center(
-                    child: CircleAvatar(
-                      radius: 60.0,
-                      backgroundImage: NetworkImage(
-                        UserDataService.userData!.img.toString(),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 10.0,
             ),
             Container(
               padding: EdgeInsets.all(10.0),
@@ -76,13 +137,6 @@ class ProfileView extends StatefulWidget {
                         borderRadius: BorderRadius.all(
                           Radius.circular(12.0),
                         ),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x19000000),
-                            blurRadius: 5,
-                            offset: Offset(0, 0),
-                          ),
-                        ],
                       ),
                       margin: EdgeInsets.symmetric(horizontal: 10.0),
                       child: Column(
@@ -126,7 +180,6 @@ class ProfileView extends StatefulWidget {
                               ],
                             ),
                           ),
-                          Divider(),
                           SizedBox(
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -163,7 +216,6 @@ class ProfileView extends StatefulWidget {
                               ],
                             ),
                           ),
-                          Divider(),
                           SizedBox(
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -305,6 +357,7 @@ class ProfileView extends StatefulWidget {
                                             ),
                                             onPressed: () {
                                               controller.update_pass();
+                                              Navigator.pop(context);
                                             },
                                             child: Text(
                                               "Simpan",

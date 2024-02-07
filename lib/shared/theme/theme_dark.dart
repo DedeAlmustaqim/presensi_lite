@@ -3,6 +3,7 @@ import 'package:presensi/core.dart';
 
 ThemeData getDarkTheme() {
   return ThemeData.dark().copyWith(
+      primaryColorLight: Colors.black,
       appBarTheme: AppBarTheme(
         elevation: 0.6,
         titleTextStyle: GoogleFonts.lato(

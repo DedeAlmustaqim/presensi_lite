@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 ThemeData getDefaultTheme() {
   return ThemeData().copyWith(
     primaryColor: Colors.white,
+    primaryColorLight: primaryColor,
     scaffoldBackgroundColor: scaffoldBackgroundColor,
     colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
     appBarTheme: AppBarTheme(
