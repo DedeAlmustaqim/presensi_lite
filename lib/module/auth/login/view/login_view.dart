@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:presensi/core.dart';
-import 'package:presensi/shared/widget/form/textfield/text_field_pass.dart';
 
 class LoginView extends StatefulWidget {
   LoginView({Key? key}) : super(key: key);

@@ -17,6 +17,7 @@ class NewsDetailView extends StatefulWidget {
 
     return Scaffold(
       body: SingleChildScrollView(
+        controller: controller.scrollController,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -185,6 +186,24 @@ class NewsDetailView extends StatefulWidget {
                 ],
               ),
             ),
+            const SizedBox(
+              height: 10.0,
+            ),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              child: Row(
+                children: [
+                  Spacer(),
+                  Text(
+                    '${controller.totalComment.toString()} Komentar',
+                    style: TextStyle(
+                      fontSize: 14.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Builder(builder: (context) {
               return ListView.builder(
                 padding: EdgeInsets.only(
@@ -237,13 +256,55 @@ class NewsDetailView extends StatefulWidget {
                                   children: [
                                     Row(
                                       children: [
-                                        Text(
-                                          itemComment['name'],
-                                          style: TextStyle(
-                                              fontSize: 14.0,
-                                              fontWeight: FontWeight.bold,
-                                              color: textColor1),
-                                        ),
+                                        (itemComment['id_user'] == 1)
+                                            ? Column(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.start,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Text(
+                                                        '${itemComment['name']}',
+                                                        style: TextStyle(
+                                                          fontSize: 14.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          color: Colors.red,
+                                                        ),
+                                                      ),
+                                                      const SizedBox(
+                                                        width: 5.0,
+                                                      ),
+                                                      const Badge(
+                                                        label: Text(
+                                                          "Dev",
+                                                          style: TextStyle(
+                                                            color: Colors.white,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Text(
+                                                    'ATEI BARTIM DEVELOPER',
+                                                    style: TextStyle(
+                                                      fontSize: 8.0,
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.red,
+                                                    ),
+                                                  ),
+                                                ],
+                                              )
+                                            : Text(
+                                                itemComment['name'],
+                                                style: TextStyle(
+                                                  fontSize: 14.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
                                         Spacer(),
                                         if (itemComment['id_user'] ==
                                             AppConfig.id)

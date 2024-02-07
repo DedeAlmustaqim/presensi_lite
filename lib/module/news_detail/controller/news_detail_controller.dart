@@ -13,6 +13,16 @@ class NewsDetailController extends State<NewsDetailView> {
   @override
   void initState() {
     getNewsComments();
+    scrollController.addListener(() {
+      double offset = scrollController.offset;
+      double maxOffset = scrollController.position.maxScrollExtent;
+      print(offset);
+      print(maxOffset);
+
+      if (offset == maxOffset) {
+        nextPage();
+      }
+    });
     instance = this;
     super.initState();
   }
@@ -23,13 +33,32 @@ class NewsDetailController extends State<NewsDetailView> {
   @override
   Widget build(BuildContext context) => widget.build(context, this);
 
+  int page = 1;
+  ScrollController scrollController = ScrollController();
+  int? totalComment;
   getNewsComments() async {
     if (mounted) {
-      var listComment = await UserDataService().getComment(itemId: itemId);
-      setState(() {
-        newsComments = listComment;
-      });
+      var listComment =
+          await UserDataService().getComment(itemId: itemId, page: page);
+
+      newsComments = listComment['data'];
+      totalComment = listComment['total'];
+      setState(() {});
     }
+  }
+
+  nextPage() async {
+    page++;
+    showLoading();
+    Map newCommentData =
+        await UserDataService().getComment(itemId: itemId, page: page);
+    var newsListComments = newCommentData['data'];
+    if (newCommentData.isEmpty) {
+      page--;
+    }
+    newsComments.addAll(newsListComments);
+    hideLoading();
+    setState(() {});
   }
 
   hapusComment() async {

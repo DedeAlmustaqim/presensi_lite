@@ -10,4 +10,13 @@ class UrlLauncher {
       throw 'Could not open the map.';
     }
   }
+
+  static Future<void> privacyPolicy() async {
+    String url = 'https://presensi.baritotimurkab.go.id/privacy_policy';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Gagal membuka link.';
+    }
+  }
 }

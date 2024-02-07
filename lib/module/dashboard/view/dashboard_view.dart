@@ -207,9 +207,16 @@ class DashboardView extends StatefulWidget {
                   ),
                   Spacer(),
                   InkWell(
+                    onTap: () {
+                      Get.to(InfoListView());
+                    },
                     child: Text(
                       "Lihat Semua",
-                      style: TextStyle(fontSize: 10.0, color: primaryColor),
+                      style: TextStyle(
+                        fontSize: 12.0,
+                        color: primaryColor,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ],
@@ -338,11 +345,15 @@ class DashboardView extends StatefulWidget {
                   ),
                   Spacer(),
                   InkWell(
+                    onTap: () {
+                      Get.to(NewsListView());
+                    },
                     child: Text(
                       "Lihat Semua",
                       style: TextStyle(
+                        fontSize: 12.0,
                         color: primaryColor,
-                        fontSize: 10.0,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),

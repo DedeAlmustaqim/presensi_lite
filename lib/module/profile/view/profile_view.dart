@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:presensi/core.dart';
-import 'package:presensi/shared/widget/form/textfield/text_field_pass.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class ProfileView extends StatefulWidget {
@@ -386,6 +385,9 @@ class ProfileView extends StatefulWidget {
                   ),
                   Divider(),
                   ListTile(
+                    onTap: () {
+                      UrlLauncher.privacyPolicy();
+                    },
                     leading: Icon(Icons.privacy_tip),
                     minLeadingWidth: 0.0,
                     title: Text(

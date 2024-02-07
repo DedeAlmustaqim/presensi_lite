@@ -2,19 +2,17 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:presensi/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:geolocator/geolocator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   await initializeDateFormatting('id');
-  // SystemChrome.setPreferredOrientations([
-  //   DeviceOrientation.portraitUp,
-  //   DeviceOrientation.portraitDown,
-  // ]);
-
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent, // transparent status bar
   ));
+  await VersiService.init();
 
   await DB.init();
   var token = DB.getToken();
@@ -42,6 +40,10 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
+  bool ready = false;
+  bool isNotSafeDevice = false;
+  Position? position;
+  late LocationServiceResponse locationServiceResponse;
   @override
   void initState() {
     super.initState();
@@ -63,7 +65,7 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
 
   var token = DB.getToken();
   Widget get mainView {
-    // if (token != null) return UserDataService.init();
+    if (AppConfig.version != VersiService.version) return VersionView();
     if (token != null) return MainNavigationView();
 
     return LoginView();
@@ -71,18 +73,12 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    // PermissionService().checkCameraPermission();
-    // PermissionService().checkLocationPermission();
     return MaterialApp(
-      title: 'Presensi',
+      title: 'ATEI BARTIM',
       navigatorKey: Get.navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: getDefaultTheme(),
       home: mainView,
-      onGenerateRoute: (routeSettings) {
-        print(routeSettings.name);
-        return null;
-      },
     );
   }
 }

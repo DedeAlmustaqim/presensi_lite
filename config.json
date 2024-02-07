@@ -2,7 +2,10 @@
     "modules": [
         "news_detail",
         "setting/ubah_pass",
-        "berita_list"
+        "news_list",
+        "info_list",
+        "privacy_policy",
+        "dialog/version"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

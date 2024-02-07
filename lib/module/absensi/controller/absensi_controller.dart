@@ -69,8 +69,8 @@ class AbsensiController extends State<AbsensiView> {
         message: "Anda diluar radius titik absen",
         title: "Gagal",
         icon: Icon(
-          Icons.warning,
-          size: 50.0,
+          Icons.info_outline,
+          size: 24.0,
           color: orangeColor,
         ),
       );
@@ -93,8 +93,8 @@ class AbsensiController extends State<AbsensiView> {
         message: "Anda diluar radius titik absen",
         title: "Gagal",
         icon: Icon(
-          Icons.warning,
-          size: 50.0,
+          Icons.info_outline,
+          size: 24.0,
           color: orangeColor,
         ),
       );
@@ -204,7 +204,7 @@ class AbsensiController extends State<AbsensiView> {
         isLoading = false;
       });
     }
-    }
+  }
 
   refresUserData() async {
     showLoading();

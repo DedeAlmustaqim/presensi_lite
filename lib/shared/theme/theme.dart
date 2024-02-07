@@ -11,11 +11,11 @@ ThemeData getDefaultTheme() {
     appBarTheme: AppBarTheme(
       elevation: 0.6,
       titleTextStyle: GoogleFonts.ibmPlexSans(
-        color: Color(0xff495057),
+        color: Colors.white,
         fontWeight: FontWeight.bold,
       ),
-      backgroundColor: Color(0xffffffff),
-      iconTheme: IconThemeData(color: Color(0xff495057)),
+      backgroundColor: primaryColor,
+      iconTheme: IconThemeData(color: Colors.white),
       actionsIconTheme: IconThemeData(
         color: Color(0xff495057),
       ),

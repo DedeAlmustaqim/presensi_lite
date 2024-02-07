@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:presensi/core.dart';
 import 'package:presensi/models/user_detail.dart';
 
@@ -112,9 +111,9 @@ class UserDataService {
     return obj['success'];
   }
 
-  getComment({int? itemId}) async {
+  getComment({int? itemId, required int page}) async {
     var response = await Dio().post(
-      "${AppConfig.baseUrl}/api/news/get_comments",
+      "${AppConfig.baseUrl}/api/news/get_comments?page=$page",
       options: Options(
         headers: {
           "Content-Type": "application/json",
@@ -126,7 +125,7 @@ class UserDataService {
       },
     );
     Map obj = response.data;
-    return obj['data'];
+    return obj;
   }
 
   sendComment({int? itemId, String? comment}) async {

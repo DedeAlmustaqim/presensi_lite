@@ -148,38 +148,44 @@ class AbsensiView extends StatefulWidget {
                   SizedBox(
                     height: 10.0,
                   ),
-                  // ZoomTapAnimation(
-                  //   onTap: () {
-                  //     showLoading();
-                  //   },
-                  //   child: Container(
-                  //     padding: const EdgeInsets.all(10.0),
-                  //     decoration: BoxDecoration(
-                  //       borderRadius: BorderRadius.all(
-                  //         Radius.circular(8.0),
-                  //       ),
-                  //       color: Colors.white,
-                  //     ),
-                  //     height: 40,
-                  //     child: Row(
-                  //       children: [
-                  //         Icon(
-                  //           MdiIcons.map,
-                  //           color: primaryColor,
-                  //         ),
-                  //         const SizedBox(
-                  //           width: 5.0,
-                  //         ),
-                  //         Text(
-                  //           "Buka Map",
-                  //           style: TextStyle(
-                  //             fontSize: 12.0,
-                  //           ),
-                  //         ),
-                  //       ],
-                  //     ),
-                  //   ),
-                  // ),
+                  ZoomTapAnimation(
+                    onTap: () {
+                      UrlLauncher.openMap(
+                          double.tryParse(
+                                  UserDataService.userData!.lat ?? "") ??
+                              0.0,
+                          double.tryParse(
+                                  UserDataService.userData!.long ?? "") ??
+                              0.0);
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(10.0),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.all(
+                          Radius.circular(8.0),
+                        ),
+                        color: Colors.white,
+                      ),
+                      height: 40,
+                      child: Row(
+                        children: [
+                          Icon(
+                            MdiIcons.map,
+                            color: primaryColor,
+                          ),
+                          const SizedBox(
+                            width: 5.0,
+                          ),
+                          Text(
+                            "Buka Map",
+                            style: TextStyle(
+                              fontSize: 12.0,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
