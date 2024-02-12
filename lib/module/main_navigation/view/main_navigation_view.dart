@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 
 class MainNavigationView extends StatefulWidget {
   MainNavigationView({Key? key}) : super(key: key);

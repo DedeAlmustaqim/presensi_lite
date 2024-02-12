@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 import 'package:tap_debouncer/tap_debouncer.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
@@ -26,7 +26,6 @@ class AbsensiView extends StatefulWidget {
             width: 10.0,
           ),
         ],
-        toolbarHeight: MediaQuery.of(context).size.height * 0.05,
         backgroundColor: primaryColor,
         title: Container(
           child: Column(
@@ -40,8 +39,11 @@ class AbsensiView extends StatefulWidget {
                   color: Colors.white,
                 ),
               ),
+              const SizedBox(
+                height: 5.0,
+              ),
               Text(
-                "Lakukan Absensi dengan menekan tombol CHECK IN/CHEK COUT",
+                "Lakukan Absensi dengan menekan tombol CHECK IN/CHEK OUT",
                 style: TextStyle(
                   fontSize: 9.0,
                   color: Colors.white,
@@ -58,21 +60,22 @@ class AbsensiView extends StatefulWidget {
         child: Stack(
           children: [
             Container(
-              height: MediaQuery.of(context).size.height * 0.9,
-              child: Column(
-                children: [
-                  QLocationPicker(
-                    enableEdit: false,
-                    id: "location",
-                    latitude:
-                        double.tryParse(UserDataService.userData!.lat ?? "") ??
-                            0.0,
-                    longitude:
-                        double.tryParse(UserDataService.userData!.long ?? "") ??
-                            0.0,
-                    onChanged: (latitude, longitude) {},
-                  ),
-                ],
+              child: Expanded(
+                child: Column(
+                  children: [
+                    QLocationPicker(
+                      enableEdit: false,
+                      id: "location",
+                      latitude: double.tryParse(
+                              UserDataService.userData!.lat ?? "") ??
+                          0.0,
+                      longitude: double.tryParse(
+                              UserDataService.userData!.long ?? "") ??
+                          0.0,
+                      onChanged: (latitude, longitude) {},
+                    ),
+                  ],
+                ),
               ),
             ),
             Positioned(
@@ -216,12 +219,8 @@ class AbsensiView extends StatefulWidget {
                         width: 100,
                         decoration: BoxDecoration(
                           image: DecorationImage(
-                            image: NetworkImage(
-                              UserDataService.userData!.img.toString() +
-                                  '?v=' +
-                                  DateTime.now()
-                                      .millisecondsSinceEpoch
-                                      .toString(),
+                            image: CachedNetworkImageProvider(
+                              UserDataService.userData!.img.toString(),
                             ),
                             fit: BoxFit.cover,
                           ),

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 
 class ProfileController extends State<ProfileView> {
   static late ProfileController instance;
@@ -48,8 +48,6 @@ class ProfileController extends State<ProfileView> {
       setState(() {
         imageFile = File(pickedFile.path);
       });
-
-      print(imageFile);
     }
   }
 
@@ -84,10 +82,6 @@ class ProfileController extends State<ProfileView> {
                 "Authorization": "Bearer ${AuthService.token}",
               },
             ),
-            onSendProgress: (int sent, int total) {
-              // Callback untuk progress upload
-              print('Sent: $sent, Total: $total');
-            },
           );
           hideLoading();
           UserDataService.getUser();
@@ -98,19 +92,17 @@ class ProfileController extends State<ProfileView> {
           // Handle response sesuai kebutuhan Anda
           // Misalnya, tampilkan pesan sukses atau error
         } catch (error) {
-          print('Error uploading photo: $error');
           // Handle error sesuai kebutuhan Anda
         }
 
         hideLoading();
       } catch (error) {
         hideLoading();
-        print('Error uploading photo: $error');
+
         // Handle error sesuai kebutuhan Anda
       }
     } else {
       // Tampilkan pesan bahwa foto belum dipilih
-      print('Pilih foto terlebih dahulu');
     }
   }
 
@@ -121,15 +113,14 @@ class ProfileController extends State<ProfileView> {
         hideLoading();
         var success =
             await UserDataService().changePass(newPass!, confirmPass!);
-        print(success);
+
         if (success) {
           showInfoDialog(message: "Berhasil ubah Password", title: '');
         } else {
           showInfoDialog(message: "Gagal ubah Password", title: '');
         }
-      } on Exception catch (err) {
+      } on Exception {
         hideLoading();
-        print(err);
       }
     }
   }

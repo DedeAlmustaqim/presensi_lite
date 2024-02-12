@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 
 class DashboardController extends State<DashboardView> {
   static late DashboardController instance;
@@ -48,7 +48,6 @@ class DashboardController extends State<DashboardView> {
         imgBanner.add(data['img_path']);
       });
     }
-    print(banner);
   }
 
   getInfo() async {
@@ -63,7 +62,6 @@ class DashboardController extends State<DashboardView> {
     setState(() {
       newsData = news;
     });
-    print(newsData);
   }
 
   refresh() async {

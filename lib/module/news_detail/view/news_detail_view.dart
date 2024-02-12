@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 
 class NewsDetailView extends StatefulWidget {
   final Map item;
@@ -116,6 +116,7 @@ class NewsDetailView extends StatefulWidget {
                     decoration: InputDecoration(
                       labelText: "Berikan Komentar",
                     ),
+                    textInputAction: TextInputAction.done,
                     onChanged: (value) {
                       if (value.isEmpty) {
                         // Jika nilai berubah menjadi string kosong, atur nilai TextFormField ke kosong juga
@@ -126,7 +127,9 @@ class NewsDetailView extends StatefulWidget {
                             value; // Atur nilai controller.comment ke nilai yang dimasukkan pengguna
                       }
                     },
-                    onFieldSubmitted: (value) {},
+                    onFieldSubmitted: (value) {
+                      controller.sendComments();
+                    },
                   ),
                   SizedBox(
                     height: 20.0,

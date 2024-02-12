@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class ProfileView extends StatefulWidget {
@@ -35,10 +35,8 @@ class ProfileView extends StatefulWidget {
                     if (controller.imageFile == null)
                       CircleAvatar(
                         radius: 75.0,
-                        backgroundImage: NetworkImage(
-                          UserDataService.userData!.img.toString() +
-                              '?v=' +
-                              DateTime.now().millisecondsSinceEpoch.toString(),
+                        backgroundImage: CachedNetworkImageProvider(
+                          UserDataService.userData!.img.toString(),
                         ),
                         child: Column(
                           children: [
@@ -392,15 +390,6 @@ class ProfileView extends StatefulWidget {
                     minLeadingWidth: 0.0,
                     title: Text(
                       'Kebijakan dan Privasi',
-                      style: TextStyle(color: textColor1),
-                    ),
-                  ),
-                  Divider(),
-                  ListTile(
-                    leading: Icon(Icons.info),
-                    minLeadingWidth: 0.0,
-                    title: Text(
-                      'Tentang',
                       style: TextStyle(color: textColor1),
                     ),
                   ),

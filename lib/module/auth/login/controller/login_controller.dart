@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 
 class LoginController extends State<LoginView> {
   static late LoginController instance;
@@ -36,8 +36,6 @@ class LoginController extends State<LoginView> {
       return;
     }
 
-    print(email);
-    print(password);
     showLoading();
 
     await AuthService().login(

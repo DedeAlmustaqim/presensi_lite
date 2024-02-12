@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 
 class QTextFieldPass extends StatefulWidget {
   final String? id;
@@ -78,6 +78,11 @@ class _QTextFieldState extends State<QTextFieldPass> {
         maxLength: widget.maxLength,
         obscureText: widget.obscure,
         decoration: InputDecoration(
+          labelStyle: TextStyle(
+              color: primaryColor), // Mengatur warna label menjadi putih
+          errorStyle: TextStyle(
+              color:
+                  Colors.white), // Mengatur warna teks validator menjadi putih
           suffixIcon: widget.suffixIcon != null
               ? IconButton(
                   icon: Icon(widget.suffixIcon),

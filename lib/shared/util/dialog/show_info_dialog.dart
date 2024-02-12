@@ -1,5 +1,5 @@
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 import 'package:flutter/material.dart';
 
 Future showInfoDialog({

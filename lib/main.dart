@@ -1,27 +1,12 @@
-import 'package:intl/date_symbol_data_local.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:geolocator/geolocator.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  await initializeDateFormatting('id');
-  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
     statusBarColor: Colors.transparent, // transparent status bar
   ));
-  await VersiService.init();
-
-  await DB.init();
-  var token = DB.getToken();
-  var id = DB.getUserId();
-  if (token != null) {
-    AuthService.id = id;
-    await UserDataService.getUser();
-  }
-  await Diointerceptors.init();
 
   runMainApp();
 }
@@ -40,12 +25,11 @@ class MainApp extends StatefulWidget {
 }
 
 class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
-  bool ready = false;
-  bool isNotSafeDevice = false;
-  Position? position;
-  late LocationServiceResponse locationServiceResponse;
+  String? token;
+  bool _showSplash = true;
   @override
   void initState() {
+    initialization();
     super.initState();
     WidgetsBinding.instance.addObserver(this);
   }
@@ -63,8 +47,17 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
     }
   }
 
-  var token = DB.getToken();
+  void initialization() async {
+    await InitService.init();
+    await Future.delayed(const Duration(seconds: 3));
+    setState(() {
+      _showSplash = false;
+      token = DB.getToken();
+    });
+  }
+
   Widget get mainView {
+    if (!ConnectionService.connection!) return MaintenanceView();
     if (AppConfig.version != VersiService.version) return VersionView();
     if (token != null) return MainNavigationView();
 
@@ -78,7 +71,8 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
       navigatorKey: Get.navigatorKey,
       debugShowCheckedModeBanner: false,
       theme: getDefaultTheme(),
-      home: mainView,
+      home: _showSplash ? SplashScreenView() : mainView,
+      // home: SplashScreenView(),
     );
   }
 }

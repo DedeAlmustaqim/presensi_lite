@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class NewsListView extends StatefulWidget {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class DashboardView extends StatefulWidget {
@@ -49,149 +49,193 @@ class DashboardView extends StatefulWidget {
                   Spacer(),
                   CircleAvatar(
                     radius: 30,
-                    backgroundImage: NetworkImage(
-                      UserDataService.userData!.img.toString() +
-                          '?v=' +
-                          DateTime.now().millisecondsSinceEpoch.toString(),
+                    backgroundImage: CachedNetworkImageProvider(
+                      UserDataService.userData!.img.toString(),
                     ),
                   ),
                 ],
               ),
             ),
-            Builder(builder: (context) {
-              return Column(
-                children: [
-                  CarouselSlider(
-                    carouselController: controller.carouselController,
-                    options: CarouselOptions(
-                      height: 175.0,
-                      autoPlay: true,
-                      enlargeCenterPage: false,
-                      viewportFraction: 1.0,
-                      onPageChanged: (index, reason) {
-                        controller.currentIndex = index;
-                      },
-                    ),
-                    items: controller.imgBanner.map((imageUrl) {
-                      return Builder(
-                        builder: (BuildContext context) {
-                          return Container(
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                              color: Colors.grey.shade200,
-                              image: DecorationImage(
-                                image: NetworkImage(
-                                  imageUrl,
+
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Builder(builder: (context) {
+                return Column(
+                  children: [
+                    CarouselSlider(
+                      carouselController: controller.carouselController,
+                      options: CarouselOptions(
+                        height: 160.0,
+                        autoPlay: true,
+                        enlargeCenterPage: true,
+                        viewportFraction: 1.0,
+                        onPageChanged: (index, reason) {
+                          controller.currentIndex = index;
+                          // ignore: invalid_use_of_protected_member
+                          controller.setState(() {
+                            controller.currentIndex;
+                          });
+                        },
+                      ),
+                      items: controller.imgBanner.map((imageUrl) {
+                        return Builder(
+                          builder: (BuildContext context) {
+                            return Container(
+                              width: MediaQuery.of(context).size.width,
+                              margin:
+                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                              decoration: BoxDecoration(
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Color(0x19000000),
+                                    blurRadius: 6,
+                                    offset: Offset(0, 0),
+                                  ),
+                                ],
+                                color: Colors.amber,
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(6.0),
                                 ),
-                                fit: BoxFit.cover,
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                    imageUrl,
+                                  ),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      }).toList(),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children:
+                          controller.imgBanner.asMap().entries.map((entry) {
+                        bool isSelected = controller.currentIndex == entry.key;
+                        return GestureDetector(
+                          onTap: () => controller.carouselController
+                              .animateToPage(entry.key),
+                          child: Container(
+                            width: isSelected ? 40 : 6.0,
+                            height: 6.0,
+                            margin: const EdgeInsets.only(
+                              right: 6.0,
+                              top: 12.0,
+                            ),
+                            decoration: BoxDecoration(
+                              color: isSelected
+                                  ? primaryColor
+                                  : primaryColor.withOpacity(0.6),
+                              borderRadius: const BorderRadius.all(
+                                Radius.circular(12.0),
                               ),
                             ),
-                          );
-                        },
-                      );
-                    }).toList(),
-                  ),
-                ],
-              );
-            }),
-            Transform.translate(
-              offset: Offset(0, -10),
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12.0),
-                  ),
-                  color: Theme.of(context).primaryColor,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0x19000000),
-                      blurRadius: 5,
-                      offset: Offset(0, 0),
+                          ),
+                        );
+                      }).toList(),
                     ),
                   ],
+                );
+              }),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(12.0),
                 ),
-                width: MediaQuery.of(context).size.width * 0.8,
-                child: Container(
-                  padding: EdgeInsets.all(5.0),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            // UserDataService.userData!.nmUnit.toString(),
-                            DateFormat('EEEE, dd MMMM yyyy', 'id')
-                                .format(DateTime.now()),
-                            style: TextStyle(
-                              fontSize: 16.0,
-                              color: textColor1,
-                            ),
+                color: Theme.of(context).primaryColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0x19000000),
+                    blurRadius: 5,
+                    offset: Offset(0, 0),
+                  ),
+                ],
+              ),
+              width: MediaQuery.of(context).size.width * 0.8,
+              child: Container(
+                padding: EdgeInsets.all(5.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          // UserDataService.userData!.nmUnit.toString(),
+                          DateFormat('EEEE, dd MMMM yyyy', 'id')
+                              .format(DateTime.now()),
+                          style: TextStyle(
+                            fontSize: 16.0,
+                            color: textColor1,
                           ),
-                        ],
-                      ),
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 20.0),
-                        child: Divider(
-                          color: textColor2,
                         ),
+                      ],
+                    ),
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Divider(
+                        color: textColor2,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                "Check In",
-                                style: TextStyle(
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          children: [
+                            Text(
+                              "Check In",
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.bold,
+                                color: successColor,
+                              ),
+                            ),
+                            Text(
+                              controller.timeCheckIn != null
+                                  ? controller.timeCheckIn.toString()
+                                  : "Belum Check In",
+                              style: TextStyle(
+                                fontSize: 12.0,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Container(
+                          height: 40, // Tinggi garis vertikal
+                          width: 1, // Lebar garis vertikal
+                          color: textColor2, // Warna garis vertikal
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              "Check Out",
+                              style: TextStyle(
                                   fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
-                                  color: successColor,
-                                ),
+                                  color: orangeColor),
+                            ),
+                            Text(
+                              controller.timeCheckOut != null
+                                  ? controller.timeCheckOut.toString()
+                                  : "Belum Check Out",
+                              style: TextStyle(
+                                fontSize: 12.0,
                               ),
-                              Text(
-                                controller.timeCheckIn != null
-                                    ? controller.timeCheckIn.toString()
-                                    : "Belum Check In",
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Container(
-                            height: 40, // Tinggi garis vertikal
-                            width: 1, // Lebar garis vertikal
-                            color: textColor2, // Warna garis vertikal
-                          ),
-                          Column(
-                            children: [
-                              Text(
-                                "Check Out",
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontWeight: FontWeight.bold,
-                                    color: orangeColor),
-                              ),
-                              Text(
-                                controller.timeCheckOut != null
-                                    ? controller.timeCheckOut.toString()
-                                    : "Belum Check Out",
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
 
-                      //Menu
-                    ],
-                  ),
+                    //Menu
+                  ],
                 ),
               ),
             ),
-
+            const SizedBox(
+              height: 5.0,
+            ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               margin: EdgeInsets.symmetric(vertical: 5.0),
@@ -224,7 +268,7 @@ class DashboardView extends StatefulWidget {
             ),
 
             SizedBox(
-              height: 130.0,
+              height: 150.0,
               child: ListView.builder(
                 padding: EdgeInsets.only(
                   left: 12.0,
@@ -276,13 +320,15 @@ class DashboardView extends StatefulWidget {
                                 const SizedBox(
                                   height: 4.0,
                                 ),
-                                Text(
-                                  item['informasi'],
-                                  textAlign: TextAlign.justify,
-                                  maxLines: 3,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontSize: 10.0,
+                                Flexible(
+                                  child: Text(
+                                    item['informasi'],
+                                    textAlign: TextAlign.justify,
+                                    maxLines: 3,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                      fontSize: 10.0,
+                                    ),
                                   ),
                                 ),
                                 Spacer(),

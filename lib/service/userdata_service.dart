@@ -1,5 +1,5 @@
-import 'package:presensi/core.dart';
-import 'package:presensi/models/user_detail.dart';
+import 'package:atei_bartim/core.dart';
+import 'package:atei_bartim/models/user_detail.dart';
 
 class UserDataService {
   static UserDetail? userData;
@@ -12,7 +12,6 @@ class UserDataService {
       var url = AppConfig.baseUrl;
       var response = await Dio().get(
         "$url/api/user/${AuthService.id}}",
-        // "$url/api/user/1",
         options: Options(
           headers: {
             "Content-Type": "application/json",
@@ -23,12 +22,7 @@ class UserDataService {
       Map obj = response.data;
 
       userData = UserDetail.fromJson(obj['data']);
-
-      print(userData);
-    } on Exception {
-      hideLoading();
-      showInfoDialog(message: "Koneksi ke server gagal", title: "Error");
-    }
+    } on Exception {}
   }
 
   getIzin({required String date}) async {

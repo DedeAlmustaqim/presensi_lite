@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:month_picker_dialog/month_picker_dialog.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 
 class HadirListController extends State<HadirListView> {
   static late HadirListController instance;
@@ -24,6 +24,7 @@ class HadirListController extends State<HadirListView> {
 
   showDateRekap() async {
     showMonthPicker(
+      headerColor: primaryColor,
       context: context,
     ).then(
       (date) {

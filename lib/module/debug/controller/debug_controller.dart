@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../view/debug_view.dart';
 

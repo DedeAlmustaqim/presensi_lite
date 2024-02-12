@@ -1,5 +1,5 @@
 import 'package:permission_handler/permission_handler.dart';
-import 'package:presensi/shared/util/dialog/show_info_akses_dialog.dart';
+import 'package:atei_bartim/shared/util/dialog/show_info_akses_dialog.dart';
 
 class PermissionService {
   checkLocationPermission() async {

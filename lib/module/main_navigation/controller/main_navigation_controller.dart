@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 import '../view/main_navigation_view.dart';
 
 class MainNavigationController extends State<MainNavigationView> {

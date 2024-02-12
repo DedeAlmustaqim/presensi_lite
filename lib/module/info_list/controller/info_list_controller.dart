@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 
 class InfoListController extends State<InfoListView> {
   static late InfoListController instance;
@@ -11,9 +11,6 @@ class InfoListController extends State<InfoListView> {
     scrollController.addListener(() {
       double offset = scrollController.offset;
       double maxOffset = scrollController.position.maxScrollExtent;
-      print(offset);
-      print(maxOffset);
-
       if (offset == maxOffset) {
         nextPage();
       }

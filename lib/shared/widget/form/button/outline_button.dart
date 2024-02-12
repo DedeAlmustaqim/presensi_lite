@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presensi/shared/theme/theme_config.dart';
+import 'package:atei_bartim/shared/theme/theme_config.dart';
 
 class QOutlineButton extends StatelessWidget {
   final String label;

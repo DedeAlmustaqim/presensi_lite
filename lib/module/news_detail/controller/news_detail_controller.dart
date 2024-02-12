@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 
 class NewsDetailController extends State<NewsDetailView> {
   static late NewsDetailController instance;
@@ -16,9 +16,6 @@ class NewsDetailController extends State<NewsDetailView> {
     scrollController.addListener(() {
       double offset = scrollController.offset;
       double maxOffset = scrollController.position.maxScrollExtent;
-      print(offset);
-      print(maxOffset);
-
       if (offset == maxOffset) {
         nextPage();
       }
@@ -65,7 +62,6 @@ class NewsDetailController extends State<NewsDetailView> {
     setState(() {
       comment = "";
     });
-    print(comment);
   }
 
   sendComments() async {
@@ -74,7 +70,12 @@ class NewsDetailController extends State<NewsDetailView> {
         await UserDataService().sendComment(itemId: itemId, comment: comment);
         // hideLoading();
         hapusComment();
-        getNewsComments();
+        var listComment =
+            await UserDataService().getComment(itemId: itemId, page: page);
+
+        newsComments = listComment['data'];
+        totalComment = listComment['total'];
+        setState(() {});
       } on Exception catch (err) {
         // hideLoading();
         showInfoDialog(message: err.toString(), title: "");
@@ -89,15 +90,10 @@ class NewsDetailController extends State<NewsDetailView> {
     try {
       var successDel = await UserDataService().delNews(idNews: idNews);
 
-      print(idNews);
       if (successDel) {
         getNewsComments();
         Navigator.of(context);
-      } else {
-        print(successDel);
       }
-    } on Exception catch (err) {
-      print(err);
-    }
+    } on Exception {}
   }
 }

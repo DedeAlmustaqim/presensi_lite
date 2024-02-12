@@ -1,4 +1,4 @@
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 
 class ScanQr {
   final url = AppConfig.baseUrl;

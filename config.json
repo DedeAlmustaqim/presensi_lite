@@ -5,7 +5,9 @@
         "news_list",
         "info_list",
         "privacy_policy",
-        "dialog/version"
+        "dialog/version",
+        "dialog/maintenance",
+        "splash_screen"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

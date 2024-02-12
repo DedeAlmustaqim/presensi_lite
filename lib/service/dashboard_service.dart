@@ -1,4 +1,4 @@
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 
 class DashboardService {
   getBanner() async {
@@ -38,19 +38,18 @@ class DashboardService {
   }
 
   getNews() async {
-    try {} on Exception catch (err) {
-      print(err);
-    }
-    var response = await Dio().get(
-      "${AppConfig.baseUrl}/api/news?per_page=5",
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer ${AuthService.token}",
-        },
-      ),
-    );
-    Map obj = response.data;
-    return obj['data'];
+    try {
+      var response = await Dio().get(
+        "${AppConfig.baseUrl}/api/news?per_page=5",
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer ${AuthService.token}",
+          },
+        ),
+      );
+      Map obj = response.data;
+      return obj['data'];
+    } on Exception {}
   }
 }

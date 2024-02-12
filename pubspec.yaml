@@ -1,7 +1,7 @@
-name: presensi
-description: Aplikasi Presensi by Digital Native.
+name: atei_bartim
+description: ATEI (Attendance Employee Information).
 publish_to: 'none'
-version: 1.0.0+1
+version: 1.0.0+7
 environment:
   sdk: '>=3.0.0 <4.0.0'
 dependencies:
@@ -39,7 +39,6 @@ dependencies:
   path_provider: ^2.0.11
   permission_handler: ^11.1.0
   qr_flutter: ^4.0.0
-  safe_device: ^1.1.4
   screenshot: ^2.1.0
   shared_preferences: ^2.2.1
   syncfusion_flutter_datepicker: ^24.1.45

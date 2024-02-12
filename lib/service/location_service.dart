@@ -10,10 +10,9 @@ class LocationServiceResponse {
 }
 
 class LocationService {
-static Future<LocationServiceResponse> getCurrentLocation() async {
+  static Future<LocationServiceResponse> getCurrentLocation() async {
     bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      print('Location services are disabled.');
       return LocationServiceResponse(
         errorMessage: 'Location services are disabled.',
       );
@@ -46,8 +45,6 @@ static Future<LocationServiceResponse> getCurrentLocation() async {
       Position position = await Geolocator.getCurrentPosition(
           desiredAccuracy: LocationAccuracy.high);
       return position;
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
   }
 }

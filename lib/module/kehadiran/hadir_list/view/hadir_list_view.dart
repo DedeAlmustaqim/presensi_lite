@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
 
 class HadirListView extends StatefulWidget {
@@ -93,7 +93,7 @@ class HadirListView extends StatefulWidget {
                       return Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(
-                            Radius.circular(12.0),
+                            Radius.circular(5.0),
                           ),
                           boxShadow: [
                             BoxShadow(
@@ -105,7 +105,7 @@ class HadirListView extends StatefulWidget {
                           color: Colors.white,
                         ),
                         margin: const EdgeInsets.all(5.0),
-                        padding: const EdgeInsets.all(10.0),
+                        padding: const EdgeInsets.all(5.0),
                         child: Column(
                           children: [
                             dateTimeIn != null
@@ -113,7 +113,7 @@ class HadirListView extends StatefulWidget {
                                     DateFormat('EEEE, dd MMMM yyyy', 'id')
                                         .format(dateTimeIn),
                                     style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 14,
                                     ),
                                   )
                                 : dateTimeOut != null
@@ -121,7 +121,7 @@ class HadirListView extends StatefulWidget {
                                         DateFormat('EEEE, dd MMMM yyyy', 'id')
                                             .format(dateTimeOut),
                                         style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 14,
                                         ),
                                       )
                                     : SizedBox(),
@@ -137,7 +137,7 @@ class HadirListView extends StatefulWidget {
                                         "Check In",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 16.0,
+                                            fontSize: 14.0,
                                             color: successColor),
                                       ),
                                       Text(
@@ -145,7 +145,7 @@ class HadirListView extends StatefulWidget {
                                             ? item['jam_in'].toString()
                                             : "Belum Check In",
                                         style: TextStyle(
-                                          fontSize: 12.0,
+                                          fontSize: 10.0,
                                         ),
                                       ),
                                     ],
@@ -156,7 +156,7 @@ class HadirListView extends StatefulWidget {
                                         "Check Out",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 16.0,
+                                            fontSize: 14.0,
                                             color: warningColor),
                                       ),
                                       Text(
@@ -164,7 +164,7 @@ class HadirListView extends StatefulWidget {
                                             ? item['jam_out'].toString()
                                             : "Belum Check Out",
                                         style: TextStyle(
-                                          fontSize: 12.0,
+                                          fontSize: 10.0,
                                         ),
                                       ),
                                     ],

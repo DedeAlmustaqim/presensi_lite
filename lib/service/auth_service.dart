@@ -1,5 +1,5 @@
-import 'package:presensi/core.dart';
-import 'package:presensi/models/user_model.dart';
+import 'package:atei_bartim/core.dart';
+import 'package:atei_bartim/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
@@ -30,7 +30,7 @@ class AuthService {
           "password": password,
         },
       );
-      print(response.data);
+
       Map obj = response.data;
       bool status = obj["success"];
       Map userMap = obj['data'];

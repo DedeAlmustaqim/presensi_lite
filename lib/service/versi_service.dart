@@ -1,23 +1,24 @@
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 
 class VersiService {
+  static String? version;
   static init() async {
-    getVersion();
+    await getVersion();
   }
 
-  static String? version;
   static getVersion() async {
-    var response = await Dio().get(
-      "${AppConfig.baseUrl}/api/version",
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-        },
-      ),
-    );
+    try {
+      var response = await Dio().get(
+        "${AppConfig.baseUrl}/api/version",
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+          },
+        ),
+      );
 
-    Map obj = response.data;
-    version = obj['version'];
-    print(obj['version']);
+      Map obj = response.data;
+      version = obj['version'];
+    } on Exception {}
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:presensi/core.dart';
+import 'package:atei_bartim/core.dart';
 
 // Dio dio = Dio();
 
@@ -9,12 +9,9 @@ class Diointerceptors {
     dio.interceptors.add(
       InterceptorsWrapper(
         onRequest: (RequestOptions options, RequestInterceptorHandler handler) {
-          print(options.uri);
-          print(options.headers);
           return handler.next(options);
         },
         onResponse: (Response response, ResponseInterceptorHandler handler) {
-          print("URL: ${response.realUri}");
           return handler.next(response);
         },
         onError: (DioException e, ErrorInterceptorHandler handler) {

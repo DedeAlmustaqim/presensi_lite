@@ -1,8 +1,8 @@
 import 'package:barcode_scan2/platform_wrapper.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:presensi/core.dart';
-import 'package:presensi/models/user_detail.dart';
+import 'package:atei_bartim/core.dart';
+import 'package:atei_bartim/models/user_detail.dart';
 
 class AbsensiController extends State<AbsensiView> {
   static late AbsensiController instance;
@@ -24,34 +24,6 @@ class AbsensiController extends State<AbsensiView> {
 
   @override
   void dispose() => super.dispose();
-
-  // checkIn() async {
-  //   _debouncer.debounce(
-  //       duration: duration,
-  //       onDebounce: () async {
-  //         setState(() {
-  //           isLoading = true;
-  //         });
-
-  //         var user = await checkPermisionLokasi();
-
-  //         if (user['success'] == true) {
-  //           hideLoading();
-  //           _postCheckIn();
-  //         } else if (user['success'] == false) {
-  //           hideLoading();
-  //           showInfoDialog(
-  //             message: "Anda diluar radius titik absen",
-  //             title: "Gagal",
-  //             icon: Icon(
-  //               Icons.warning,
-  //               size: 50.0,
-  //               color: orangeColor,
-  //             ),
-  //           );
-  //         }
-  //       });
-  // }
 
   checkIn() async {
     setState(() {
