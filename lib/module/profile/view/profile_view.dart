@@ -33,11 +33,11 @@ class ProfileView extends StatefulWidget {
                         backgroundImage: FileImage(controller.imageFile!),
                       ),
                     if (controller.imageFile == null)
+                      // UserDataService.userData!.img.toString()
                       CircleAvatar(
                         radius: 75.0,
                         backgroundImage: CachedNetworkImageProvider(
-                          UserDataService.userData!.img.toString(),
-                        ),
+                            UserDataService.userData!.img.toString()),
                         child: Column(
                           children: [
                             Spacer(),

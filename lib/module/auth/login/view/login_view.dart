@@ -46,6 +46,7 @@ class LoginView extends StatefulWidget {
                           maxLength: 16,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
+                            semanticCounterText: "NIK",
                             helperStyle: TextStyle(
                               color: Colors.white,
                             ),
@@ -66,6 +67,7 @@ class LoginView extends StatefulWidget {
                         ),
                       ),
                       QTextFieldPass(
+                        semanticCounterText: "Password",
                         label: "Password",
                         obscure: controller.isVisible,
                         validator: Validator.required,

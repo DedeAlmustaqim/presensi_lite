@@ -19,4 +19,14 @@ class UrlLauncher {
       throw 'Gagal membuka link.';
     }
   }
+
+  static Future<void> playStore() async {
+    String url =
+        'https://play.google.com/store/apps/details?id=com.digitalnative.atei_bartim';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Gagal membuka link.';
+    }
+  }
 }

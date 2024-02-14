@@ -50,8 +50,7 @@ class DashboardView extends StatefulWidget {
                   CircleAvatar(
                     radius: 30,
                     backgroundImage: CachedNetworkImageProvider(
-                      UserDataService.userData!.img.toString(),
-                    ),
+                        UserDataService.userData!.img.toString()),
                   ),
                 ],
               ),
@@ -92,7 +91,7 @@ class DashboardView extends StatefulWidget {
                                     offset: Offset(0, 0),
                                   ),
                                 ],
-                                color: Colors.amber,
+                                color: Colors.grey[200],
                                 borderRadius: const BorderRadius.all(
                                   Radius.circular(6.0),
                                 ),

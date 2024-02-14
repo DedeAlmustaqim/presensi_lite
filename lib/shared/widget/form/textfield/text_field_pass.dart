@@ -15,6 +15,7 @@ class QTextFieldPass extends StatefulWidget {
   final IconData? suffixIcon;
   final Function(String) onChanged;
   final Function(String)? onSubmitted;
+  final String? semanticCounterText;
 
   const QTextFieldPass({
     Key? key,
@@ -31,6 +32,7 @@ class QTextFieldPass extends StatefulWidget {
     this.enabled = true,
     this.prefixIcon,
     this.suffixIcon,
+    this.semanticCounterText,
   }) : super(key: key);
 
   @override
@@ -78,6 +80,7 @@ class _QTextFieldState extends State<QTextFieldPass> {
         maxLength: widget.maxLength,
         obscureText: widget.obscure,
         decoration: InputDecoration(
+          semanticCounterText: widget.semanticCounterText,
           labelStyle: TextStyle(
               color: primaryColor), // Mengatur warna label menjadi putih
           errorStyle: TextStyle(

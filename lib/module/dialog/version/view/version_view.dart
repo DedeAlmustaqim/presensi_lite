@@ -82,7 +82,9 @@ class VersionView extends StatefulWidget {
                     color: Colors.white,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  UrlLauncher.playStore();
+                },
               ),
             ],
           ),
