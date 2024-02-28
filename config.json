@@ -7,7 +7,15 @@
         "privacy_policy",
         "dialog/version",
         "dialog/maintenance",
-        "splash_screen"
+        "splash_screen",
+        "tms/tms_tab",
+        "tms/tms_fullday",
+        "tms/tms_moreday",
+        "kehadiran/kehadiran_tab",
+        "dinas/dinas_tab",
+        "dinas/tugas_dinas",
+        "dinas/dalam_daerah",
+        "dinas/luar_daerah"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

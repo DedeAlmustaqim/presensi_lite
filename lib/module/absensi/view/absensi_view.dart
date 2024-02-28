@@ -216,6 +216,7 @@ class AbsensiView extends StatefulWidget {
                         width: 100,
                         decoration: BoxDecoration(
                           image: DecorationImage(
+                            fit: BoxFit.cover,
                             image: CachedNetworkImageProvider(
                                 UserDataService.userData!.img.toString()),
                           ),

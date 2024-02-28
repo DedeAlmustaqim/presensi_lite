@@ -57,6 +57,7 @@ class _QRadioFieldState extends State<QRadioField> {
         builder: (FormFieldState<bool> field) {
           return InputDecorator(
             decoration: InputDecoration(
+              fillColor: Colors.white,
               labelText: widget.label,
               errorText: field.errorText,
               border: InputBorder.none,

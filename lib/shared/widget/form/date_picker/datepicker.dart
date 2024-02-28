@@ -84,6 +84,7 @@ class _QDatePickerState extends State<QDatePicker> {
             },
             readOnly: true,
             decoration: InputDecoration(
+              fillColor: Colors.white,
               labelText: widget.label,
               labelStyle: const TextStyle(
                 color: Colors.blueGrey,

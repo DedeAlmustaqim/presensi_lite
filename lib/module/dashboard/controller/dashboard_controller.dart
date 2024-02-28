@@ -27,6 +27,29 @@ class DashboardController extends State<DashboardView> {
   @override
   Widget build(BuildContext context) => widget.build(context, this);
 
+  List menuData = [
+    {
+      "label": "Kehadiran",
+      "icon": Icons.access_alarm, // Ganti dengan IconData yang sesuai
+      "page": () => Get.to(KehadiranTabView()),
+    },
+    {
+      "label": "Dinas",
+      "icon": Icons.work, // Ganti dengan IconData yang sesuai
+      "page": () => Get.to(DinasTabView()),
+    },
+    {
+      "label": "Izin",
+      "icon": Icons.event_note, // Ganti dengan IconData yang sesuai
+      "page": () => Get.to(HadirListView()),
+    },
+    {
+      "label": "Cuti",
+      "icon": Icons.airplanemode_active, // Ganti dengan IconData yang sesuai
+      "page": () => Get.to(HadirListView()),
+    },
+  ];
+
   int currentIndex = 0;
   final CarouselController carouselController = CarouselController();
 

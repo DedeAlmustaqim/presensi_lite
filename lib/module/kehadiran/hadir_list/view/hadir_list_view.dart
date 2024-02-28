@@ -9,75 +9,68 @@ class HadirListView extends StatefulWidget {
     GlobalKey<FormState> formKey = GlobalKey<FormState>();
     controller.view = this;
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("Kehadiran"),
-        actions: const [],
-      ),
-      body: SingleChildScrollView(
-        child: Form(
-          key: formKey,
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 20.0),
-            child: Column(
-              children: [
-                SizedBox(
-                  height: 10.0,
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20.0),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 10.0,
+          ),
+          Row(
+            children: [
+              Text(
+                DateFormat('MMMM yyyy', 'id').format(controller
+                    .currentDate), // Format bulan dan tahun seperti "Januari 2023",
+                style: TextStyle(
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold,
                 ),
-                Row(
-                  children: [
-                    Text(
-                      DateFormat('MMMM yyyy', 'id').format(controller
-                          .currentDate), // Format bulan dan tahun seperti "Januari 2023",
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                      ),
+              ),
+              Spacer(),
+              ZoomTapAnimation(
+                onTap: () {
+                  controller.showDateRekap();
+                },
+                child: Container(
+                  padding: EdgeInsets.all(10.0),
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 2.0,
+                  ),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(8.0),
                     ),
-                    Spacer(),
-                    ZoomTapAnimation(
-                      onTap: () {
-                        controller.showDateRekap();
-                      },
-                      child: Container(
-                        padding: EdgeInsets.all(10.0),
-                        margin: EdgeInsets.symmetric(
-                          horizontal: 2.0,
-                        ),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(8.0),
-                          ),
-                          color: primaryColor,
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Icon(
-                              MdiIcons.calendar,
-                              size: 12.0,
-                              color: Colors.white,
-                            ),
-                            SizedBox(
-                              width: 2.0,
-                            ),
-                            Text(
-                              "Pilih Bulan",
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
+                    color: primaryColor,
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Icon(
+                        MdiIcons.calendar,
+                        size: 12.0,
+                        color: Colors.white,
+                      ),
+                      SizedBox(
+                        width: 2.0,
+                      ),
+                      Text(
+                        "Pilih Bulan",
+                        style: TextStyle(
+                          fontSize: 10,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-                Divider(),
-                if (controller.isShowData)
-                  ListView.builder(
+              ),
+            ],
+          ),
+          Divider(),
+          Expanded(
+            child: controller.dataList.isNotEmpty
+                ? ListView.builder(
                     itemCount: controller.dataList.length,
                     shrinkWrap: true,
                     physics: ScrollPhysics(),
@@ -104,7 +97,7 @@ class HadirListView extends StatefulWidget {
                           ],
                           color: Colors.white,
                         ),
-                        margin: const EdgeInsets.all(5.0),
+                        margin: const EdgeInsets.symmetric(vertical: 5.0),
                         padding: const EdgeInsets.all(5.0),
                         child: Column(
                           children: [
@@ -176,11 +169,12 @@ class HadirListView extends StatefulWidget {
                         ),
                       );
                     },
+                  )
+                : Center(
+                    child: Text("Tidak ada data"),
                   ),
-              ],
-            ),
-          ),
-        ),
+          )
+        ],
       ),
     );
   }

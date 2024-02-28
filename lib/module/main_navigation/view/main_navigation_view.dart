@@ -8,7 +8,7 @@ class MainNavigationView extends StatefulWidget {
     controller.view = this;
 
     return DefaultTabController(
-      length: 4,
+      length: 5,
       initialIndex: controller.selectedIndex,
       child: Scaffold(
         body: IndexedStack(
@@ -16,13 +16,15 @@ class MainNavigationView extends StatefulWidget {
           children: [
             DashboardView(),
             AbsensiView(),
-            HadirListView(),
             ProfileView(),
           ],
         ),
         bottomNavigationBar: Container(
           height: MediaQuery.of(context).size.height * 0.08,
           child: BottomNavigationBar(
+            selectedFontSize: 12,
+            unselectedFontSize: 10,
+            iconSize: 20,
             backgroundColor: Theme.of(context).primaryColorLight,
             selectedItemColor: Colors.white,
             type: BottomNavigationBarType.fixed,
@@ -38,10 +40,6 @@ class MainNavigationView extends StatefulWidget {
               BottomNavigationBarItem(
                 icon: Icon(MdiIcons.qrcodePlus),
                 label: "Absen",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.event_available),
-                label: "Kehadiran",
               ),
               BottomNavigationBarItem(
                 icon: Icon(

@@ -233,8 +233,67 @@ class DashboardView extends StatefulWidget {
               ),
             ),
             const SizedBox(
-              height: 5.0,
+              height: 15.0,
             ),
+
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 15.0),
+              child: Builder(builder: (context) {
+                return GridView.builder(
+                  padding: EdgeInsets.zero,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: 1.2,
+                    crossAxisCount: 4,
+                    mainAxisSpacing: 5,
+                    crossAxisSpacing: 5,
+                  ),
+                  itemCount: controller.menuData.length,
+                  shrinkWrap: true,
+                  physics: ScrollPhysics(),
+                  itemBuilder: (BuildContext context, int index) {
+                    var item = controller.menuData[index];
+                    return Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: FittedBox(
+                            child: Container(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 3.0),
+                              child: ZoomTapAnimation(
+                                onTap: item['page'],
+                                child: CircleAvatar(
+                                  radius: 20,
+                                  backgroundColor: primaryColor,
+                                  child: Icon(
+                                    item["icon"],
+                                    color: Colors.white,
+                                    size: 20.0,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(
+                          item["label"],
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                              fontSize:
+                                  MediaQuery.of(context).size.width * 0.032,
+                              fontWeight: FontWeight.bold,
+                              color: primaryColor),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              }),
+            ),
+            Divider(),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 10.0),
               margin: EdgeInsets.symmetric(vertical: 5.0),
