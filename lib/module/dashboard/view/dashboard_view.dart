@@ -1,3 +1,4 @@
+import 'package:atei_bartim/shared/util/dialog/show_info_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:atei_bartim/core.dart';

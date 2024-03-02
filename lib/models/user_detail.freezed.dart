@@ -12,7 +12,7 @@ part of 'user_detail.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 UserDetail _$UserDetailFromJson(Map<String, dynamic> json) {
   return _UserDetail.fromJson(json);
@@ -20,28 +20,18 @@ UserDetail _$UserDetailFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserDetail {
+  bool? get success => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
-  @JsonKey(name: 'email_verified_at')
-  dynamic get emailVerifiedAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'created_at')
-  dynamic get createdAt => throw _privateConstructorUsedError;
-  @JsonKey(name: 'updated_at')
-  dynamic get updatedAt => throw _privateConstructorUsedError;
+  String? get nik => throw _privateConstructorUsedError;
   String? get nip => throw _privateConstructorUsedError;
-  @JsonKey(name: 'id_unit')
-  int? get idUnit => throw _privateConstructorUsedError;
   String? get jabatan => throw _privateConstructorUsedError;
   String? get img => throw _privateConstructorUsedError;
-  String? get username => throw _privateConstructorUsedError;
-  @JsonKey(name: 'current_login')
-  dynamic get currentLogin => throw _privateConstructorUsedError;
   @JsonKey(name: 'nm_unit')
   String? get nmUnit => throw _privateConstructorUsedError;
   String? get lat => throw _privateConstructorUsedError;
   String? get long => throw _privateConstructorUsedError;
-  int? get radius => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -56,22 +46,17 @@ abstract class $UserDetailCopyWith<$Res> {
       _$UserDetailCopyWithImpl<$Res, UserDetail>;
   @useResult
   $Res call(
-      {int? id,
+      {bool? success,
+      int? id,
       String? name,
       String? email,
-      @JsonKey(name: 'email_verified_at') dynamic emailVerifiedAt,
-      @JsonKey(name: 'created_at') dynamic createdAt,
-      @JsonKey(name: 'updated_at') dynamic updatedAt,
+      String? nik,
       String? nip,
-      @JsonKey(name: 'id_unit') int? idUnit,
       String? jabatan,
       String? img,
-      String? username,
-      @JsonKey(name: 'current_login') dynamic currentLogin,
       @JsonKey(name: 'nm_unit') String? nmUnit,
       String? lat,
-      String? long,
-      int? radius});
+      String? long});
 }
 
 /// @nodoc
@@ -87,24 +72,23 @@ class _$UserDetailCopyWithImpl<$Res, $Val extends UserDetail>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? success = freezed,
     Object? id = freezed,
     Object? name = freezed,
     Object? email = freezed,
-    Object? emailVerifiedAt = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
+    Object? nik = freezed,
     Object? nip = freezed,
-    Object? idUnit = freezed,
     Object? jabatan = freezed,
     Object? img = freezed,
-    Object? username = freezed,
-    Object? currentLogin = freezed,
     Object? nmUnit = freezed,
     Object? lat = freezed,
     Object? long = freezed,
-    Object? radius = freezed,
   }) {
     return _then(_value.copyWith(
+      success: freezed == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -117,26 +101,14 @@ class _$UserDetailCopyWithImpl<$Res, $Val extends UserDetail>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      emailVerifiedAt: freezed == emailVerifiedAt
-          ? _value.emailVerifiedAt
-          : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      nik: freezed == nik
+          ? _value.nik
+          : nik // ignore: cast_nullable_to_non_nullable
+              as String?,
       nip: freezed == nip
           ? _value.nip
           : nip // ignore: cast_nullable_to_non_nullable
               as String?,
-      idUnit: freezed == idUnit
-          ? _value.idUnit
-          : idUnit // ignore: cast_nullable_to_non_nullable
-              as int?,
       jabatan: freezed == jabatan
           ? _value.jabatan
           : jabatan // ignore: cast_nullable_to_non_nullable
@@ -145,14 +117,6 @@ class _$UserDetailCopyWithImpl<$Res, $Val extends UserDetail>
           ? _value.img
           : img // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      currentLogin: freezed == currentLogin
-          ? _value.currentLogin
-          : currentLogin // ignore: cast_nullable_to_non_nullable
-              as dynamic,
       nmUnit: freezed == nmUnit
           ? _value.nmUnit
           : nmUnit // ignore: cast_nullable_to_non_nullable
@@ -165,10 +129,6 @@ class _$UserDetailCopyWithImpl<$Res, $Val extends UserDetail>
           ? _value.long
           : long // ignore: cast_nullable_to_non_nullable
               as String?,
-      radius: freezed == radius
-          ? _value.radius
-          : radius // ignore: cast_nullable_to_non_nullable
-              as int?,
     ) as $Val);
   }
 }
@@ -182,22 +142,17 @@ abstract class _$$UserDetailImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int? id,
+      {bool? success,
+      int? id,
       String? name,
       String? email,
-      @JsonKey(name: 'email_verified_at') dynamic emailVerifiedAt,
-      @JsonKey(name: 'created_at') dynamic createdAt,
-      @JsonKey(name: 'updated_at') dynamic updatedAt,
+      String? nik,
       String? nip,
-      @JsonKey(name: 'id_unit') int? idUnit,
       String? jabatan,
       String? img,
-      String? username,
-      @JsonKey(name: 'current_login') dynamic currentLogin,
       @JsonKey(name: 'nm_unit') String? nmUnit,
       String? lat,
-      String? long,
-      int? radius});
+      String? long});
 }
 
 /// @nodoc
@@ -211,24 +166,23 @@ class __$$UserDetailImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? success = freezed,
     Object? id = freezed,
     Object? name = freezed,
     Object? email = freezed,
-    Object? emailVerifiedAt = freezed,
-    Object? createdAt = freezed,
-    Object? updatedAt = freezed,
+    Object? nik = freezed,
     Object? nip = freezed,
-    Object? idUnit = freezed,
     Object? jabatan = freezed,
     Object? img = freezed,
-    Object? username = freezed,
-    Object? currentLogin = freezed,
     Object? nmUnit = freezed,
     Object? lat = freezed,
     Object? long = freezed,
-    Object? radius = freezed,
   }) {
     return _then(_$UserDetailImpl(
+      success: freezed == success
+          ? _value.success
+          : success // ignore: cast_nullable_to_non_nullable
+              as bool?,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -241,26 +195,14 @@ class __$$UserDetailImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String?,
-      emailVerifiedAt: freezed == emailVerifiedAt
-          ? _value.emailVerifiedAt
-          : emailVerifiedAt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      createdAt: freezed == createdAt
-          ? _value.createdAt
-          : createdAt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      updatedAt: freezed == updatedAt
-          ? _value.updatedAt
-          : updatedAt // ignore: cast_nullable_to_non_nullable
-              as dynamic,
+      nik: freezed == nik
+          ? _value.nik
+          : nik // ignore: cast_nullable_to_non_nullable
+              as String?,
       nip: freezed == nip
           ? _value.nip
           : nip // ignore: cast_nullable_to_non_nullable
               as String?,
-      idUnit: freezed == idUnit
-          ? _value.idUnit
-          : idUnit // ignore: cast_nullable_to_non_nullable
-              as int?,
       jabatan: freezed == jabatan
           ? _value.jabatan
           : jabatan // ignore: cast_nullable_to_non_nullable
@@ -269,14 +211,6 @@ class __$$UserDetailImplCopyWithImpl<$Res>
           ? _value.img
           : img // ignore: cast_nullable_to_non_nullable
               as String?,
-      username: freezed == username
-          ? _value.username
-          : username // ignore: cast_nullable_to_non_nullable
-              as String?,
-      currentLogin: freezed == currentLogin
-          ? _value.currentLogin
-          : currentLogin // ignore: cast_nullable_to_non_nullable
-              as dynamic,
       nmUnit: freezed == nmUnit
           ? _value.nmUnit
           : nmUnit // ignore: cast_nullable_to_non_nullable
@@ -289,10 +223,6 @@ class __$$UserDetailImplCopyWithImpl<$Res>
           ? _value.long
           : long // ignore: cast_nullable_to_non_nullable
               as String?,
-      radius: freezed == radius
-          ? _value.radius
-          : radius // ignore: cast_nullable_to_non_nullable
-              as int?,
     ));
   }
 }
@@ -301,26 +231,23 @@ class __$$UserDetailImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserDetailImpl implements _UserDetail {
   _$UserDetailImpl(
-      {this.id,
+      {this.success,
+      this.id,
       this.name,
       this.email,
-      @JsonKey(name: 'email_verified_at') this.emailVerifiedAt,
-      @JsonKey(name: 'created_at') this.createdAt,
-      @JsonKey(name: 'updated_at') this.updatedAt,
+      this.nik,
       this.nip,
-      @JsonKey(name: 'id_unit') this.idUnit,
       this.jabatan,
       this.img,
-      this.username,
-      @JsonKey(name: 'current_login') this.currentLogin,
       @JsonKey(name: 'nm_unit') this.nmUnit,
       this.lat,
-      this.long,
-      this.radius});
+      this.long});
 
   factory _$UserDetailImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserDetailImplFromJson(json);
 
+  @override
+  final bool? success;
   @override
   final int? id;
   @override
@@ -328,28 +255,13 @@ class _$UserDetailImpl implements _UserDetail {
   @override
   final String? email;
   @override
-  @JsonKey(name: 'email_verified_at')
-  final dynamic emailVerifiedAt;
-  @override
-  @JsonKey(name: 'created_at')
-  final dynamic createdAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  final dynamic updatedAt;
+  final String? nik;
   @override
   final String? nip;
-  @override
-  @JsonKey(name: 'id_unit')
-  final int? idUnit;
   @override
   final String? jabatan;
   @override
   final String? img;
-  @override
-  final String? username;
-  @override
-  @JsonKey(name: 'current_login')
-  final dynamic currentLogin;
   @override
   @JsonKey(name: 'nm_unit')
   final String? nmUnit;
@@ -357,12 +269,10 @@ class _$UserDetailImpl implements _UserDetail {
   final String? lat;
   @override
   final String? long;
-  @override
-  final int? radius;
 
   @override
   String toString() {
-    return 'UserDetail(id: $id, name: $name, email: $email, emailVerifiedAt: $emailVerifiedAt, createdAt: $createdAt, updatedAt: $updatedAt, nip: $nip, idUnit: $idUnit, jabatan: $jabatan, img: $img, username: $username, currentLogin: $currentLogin, nmUnit: $nmUnit, lat: $lat, long: $long, radius: $radius)';
+    return 'UserDetail(success: $success, id: $id, name: $name, email: $email, nik: $nik, nip: $nip, jabatan: $jabatan, img: $img, nmUnit: $nmUnit, lat: $lat, long: $long)';
   }
 
   @override
@@ -370,47 +280,23 @@ class _$UserDetailImpl implements _UserDetail {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserDetailImpl &&
+            (identical(other.success, success) || other.success == success) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
-            const DeepCollectionEquality()
-                .equals(other.emailVerifiedAt, emailVerifiedAt) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
+            (identical(other.nik, nik) || other.nik == nik) &&
             (identical(other.nip, nip) || other.nip == nip) &&
-            (identical(other.idUnit, idUnit) || other.idUnit == idUnit) &&
             (identical(other.jabatan, jabatan) || other.jabatan == jabatan) &&
             (identical(other.img, img) || other.img == img) &&
-            (identical(other.username, username) ||
-                other.username == username) &&
-            const DeepCollectionEquality()
-                .equals(other.currentLogin, currentLogin) &&
             (identical(other.nmUnit, nmUnit) || other.nmUnit == nmUnit) &&
             (identical(other.lat, lat) || other.lat == lat) &&
-            (identical(other.long, long) || other.long == long) &&
-            (identical(other.radius, radius) || other.radius == radius));
+            (identical(other.long, long) || other.long == long));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      name,
-      email,
-      const DeepCollectionEquality().hash(emailVerifiedAt),
-      const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(updatedAt),
-      nip,
-      idUnit,
-      jabatan,
-      img,
-      username,
-      const DeepCollectionEquality().hash(currentLogin),
-      nmUnit,
-      lat,
-      long,
-      radius);
+  int get hashCode => Object.hash(runtimeType, success, id, name, email, nik,
+      nip, jabatan, img, nmUnit, lat, long);
 
   @JsonKey(ignore: true)
   @override
@@ -428,26 +314,23 @@ class _$UserDetailImpl implements _UserDetail {
 
 abstract class _UserDetail implements UserDetail {
   factory _UserDetail(
-      {final int? id,
+      {final bool? success,
+      final int? id,
       final String? name,
       final String? email,
-      @JsonKey(name: 'email_verified_at') final dynamic emailVerifiedAt,
-      @JsonKey(name: 'created_at') final dynamic createdAt,
-      @JsonKey(name: 'updated_at') final dynamic updatedAt,
+      final String? nik,
       final String? nip,
-      @JsonKey(name: 'id_unit') final int? idUnit,
       final String? jabatan,
       final String? img,
-      final String? username,
-      @JsonKey(name: 'current_login') final dynamic currentLogin,
       @JsonKey(name: 'nm_unit') final String? nmUnit,
       final String? lat,
-      final String? long,
-      final int? radius}) = _$UserDetailImpl;
+      final String? long}) = _$UserDetailImpl;
 
   factory _UserDetail.fromJson(Map<String, dynamic> json) =
       _$UserDetailImpl.fromJson;
 
+  @override
+  bool? get success;
   @override
   int? get id;
   @override
@@ -455,28 +338,13 @@ abstract class _UserDetail implements UserDetail {
   @override
   String? get email;
   @override
-  @JsonKey(name: 'email_verified_at')
-  dynamic get emailVerifiedAt;
-  @override
-  @JsonKey(name: 'created_at')
-  dynamic get createdAt;
-  @override
-  @JsonKey(name: 'updated_at')
-  dynamic get updatedAt;
+  String? get nik;
   @override
   String? get nip;
-  @override
-  @JsonKey(name: 'id_unit')
-  int? get idUnit;
   @override
   String? get jabatan;
   @override
   String? get img;
-  @override
-  String? get username;
-  @override
-  @JsonKey(name: 'current_login')
-  dynamic get currentLogin;
   @override
   @JsonKey(name: 'nm_unit')
   String? get nmUnit;
@@ -484,8 +352,6 @@ abstract class _UserDetail implements UserDetail {
   String? get lat;
   @override
   String? get long;
-  @override
-  int? get radius;
   @override
   @JsonKey(ignore: true)
   _$$UserDetailImplCopyWith<_$UserDetailImpl> get copyWith =>

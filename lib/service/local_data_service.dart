@@ -8,18 +8,14 @@ class DB {
   static init() async {
     db = await SharedPreferences.getInstance();
     getUserId();
-    // var userMap = getUser();
-    // var token = getToken();
+  }
 
-    // http post request /check-token
-    // if expired
-    // AuthService.currentUser = null;
-    // AuthService.token = null;
+  static setPrivacy(bool privacy) {
+    db.setBool("privacy", privacy);
+  }
 
-    // if (userMap != null) {
-    //   AuthService.currentUser = UserModel.fromJson(userMap);
-    // }
-    // AuthService.token = token;
+  static bool? getPrivacy() {
+    return db.getBool("privacy");
   }
 
   static setToken(String token) {

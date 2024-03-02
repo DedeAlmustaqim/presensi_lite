@@ -54,7 +54,7 @@ class TugasDinasView extends StatefulWidget {
                   onChanged: (value) {},
                 ),
                 QRadioField(
-                  label: "TMK pada :",
+                  label: "Dinas pada :",
                   validator: Validator.atLeastOneitem,
                   items: [
                     {

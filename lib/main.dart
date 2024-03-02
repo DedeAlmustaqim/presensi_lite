@@ -26,6 +26,7 @@ class MainApp extends StatefulWidget {
 
 class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
   String? token;
+
   bool _showSplash = true;
   @override
   void initState() {

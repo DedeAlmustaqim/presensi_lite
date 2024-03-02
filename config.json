@@ -11,11 +11,16 @@
         "tms/tms_tab",
         "tms/tms_fullday",
         "tms/tms_moreday",
-        "kehadiran/kehadiran_tab",
         "dinas/dinas_tab",
         "dinas/tugas_dinas",
         "dinas/dalam_daerah",
-        "dinas/luar_daerah"
+        "dinas/luar_daerah",
+        "izin/izin_tab",
+        "izin/izin_day",
+        "izin/izin_more_day",
+        "cuti/cuti",
+        "privacy_disclaimer",
+        "absen_detail"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

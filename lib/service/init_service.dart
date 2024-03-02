@@ -16,6 +16,7 @@ class InitService {
     await DB.init();
     var token = DB.getToken();
     var id = DB.getUserId();
+    var privacy = DB.getPrivacy();
     if (token != null) {
       AuthService.id = id;
       await UserDataService.getUser();

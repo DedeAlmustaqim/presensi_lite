@@ -126,22 +126,22 @@ class AbsensiView extends StatefulWidget {
                             ),
                           ),
                         ),
-                        Row(
-                          children: [
-                            Text(
-                              "Radius (m) : ",
-                              style: TextStyle(
-                                fontSize: 10.0,
-                              ),
-                            ),
-                            Text(
-                              UserDataService.userData!.radius.toString(),
-                              style: TextStyle(
-                                fontSize: 10.0,
-                              ),
-                            ),
-                          ],
-                        ),
+                        // Row(
+                        //   children: [
+                        //     Text(
+                        //       "Radius (m) : ",
+                        //       style: TextStyle(
+                        //         fontSize: 10.0,
+                        //       ),
+                        //     ),
+                        //     Text(
+                        //       UserDataService.userData!.radius.toString(),
+                        //       style: TextStyle(
+                        //         fontSize: 10.0,
+                        //       ),
+                        //     ),
+                        //   ],
+                        // ),
                       ],
                     ),
                   ),

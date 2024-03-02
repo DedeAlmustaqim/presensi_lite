@@ -96,6 +96,8 @@ class _QDropdownFieldState extends State<QDropdownField> {
               labelText: widget.label,
               errorText: field.errorText,
               helperText: widget.hint,
+              fillColor: Colors.white,
+              labelStyle: TextStyle(color: Colors.black54),
             ),
             child: DropdownButtonHideUnderline(
               child: ButtonTheme(

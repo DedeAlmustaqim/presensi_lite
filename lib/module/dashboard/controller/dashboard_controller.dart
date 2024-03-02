@@ -31,7 +31,7 @@ class DashboardController extends State<DashboardView> {
     {
       "label": "Kehadiran",
       "icon": Icons.access_alarm, // Ganti dengan IconData yang sesuai
-      "page": () => Get.to(KehadiranTabView()),
+      "page": () => Get.to(HadirListView()),
     },
     {
       "label": "Dinas",
@@ -41,12 +41,12 @@ class DashboardController extends State<DashboardView> {
     {
       "label": "Izin",
       "icon": Icons.event_note, // Ganti dengan IconData yang sesuai
-      "page": () => Get.to(HadirListView()),
+      "page": () => Get.to(IzinTabView()),
     },
     {
       "label": "Cuti",
       "icon": Icons.airplanemode_active, // Ganti dengan IconData yang sesuai
-      "page": () => Get.to(HadirListView()),
+      "page": () => Get.to(CutiView()),
     },
   ];
 

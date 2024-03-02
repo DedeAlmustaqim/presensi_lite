@@ -87,7 +87,7 @@ class _QDatePickerState extends State<QDatePicker> {
               fillColor: Colors.white,
               labelText: widget.label,
               labelStyle: const TextStyle(
-                color: Colors.blueGrey,
+                color: Colors.black54,
               ),
               suffixIcon: const Icon(
                 Icons.date_range,

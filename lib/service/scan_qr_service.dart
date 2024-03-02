@@ -1,4 +1,5 @@
 import 'package:atei_bartim/core.dart';
+import 'package:atei_bartim/shared/util/dialog/show_info_dialog.dart';
 
 class ScanQr {
   final url = AppConfig.baseUrl;

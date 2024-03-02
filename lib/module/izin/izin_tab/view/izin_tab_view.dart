@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
-import '../controller/kehadiran_tab_controller.dart';
+import '../controller/izin_tab_controller.dart';
 
-class KehadiranTabView extends StatefulWidget {
-  const KehadiranTabView({Key? key}) : super(key: key);
+class IzinTabView extends StatefulWidget {
+  const IzinTabView({Key? key}) : super(key: key);
 
-  Widget build(context, KehadiranTabController controller) {
+  Widget build(context, IzinTabController controller) {
     controller.view = this;
     return Scaffold(
         appBar: AppBar(
@@ -19,20 +19,20 @@ class KehadiranTabView extends StatefulWidget {
               isScrollable: true,
               controller: controller.tabController,
               tabs: [
-                Tab(text: "Kehadiran"),
-                Tab(text: "Tugas/Dinas"),
-                Tab(text: "Izin"),
-                Tab(text: "Cuti"),
+                Tab(
+                  text: 'Izin Satu Hari',
+                ),
+                Tab(
+                  text: 'Izin Lebih Satu Hari',
+                ),
               ]),
         ),
         body: TabBarView(controller: controller.tabController, children: [
-          HadirListView(),
-          HadirListView(),
-          HadirListView(),
-          HadirListView(),
+          IzinDayView(),
+          IzinMoreDayView(),
         ]));
   }
 
   @override
-  State<KehadiranTabView> createState() => KehadiranTabController();
+  State<IzinTabView> createState() => IzinTabController();
 }

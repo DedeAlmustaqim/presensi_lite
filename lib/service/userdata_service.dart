@@ -1,5 +1,6 @@
 import 'package:atei_bartim/core.dart';
 import 'package:atei_bartim/models/user_detail.dart';
+import 'package:atei_bartim/shared/util/dialog/show_info_dialog.dart';
 
 class UserDataService {
   static UserDetail? userData;

@@ -80,14 +80,15 @@ class _QTextFieldState extends State<QTextField> {
         maxLength: widget.maxLength,
         obscureText: widget.obscure,
         decoration: InputDecoration(
-            fillColor: Colors.white,
-            labelText: widget.label,
-            border: InputBorder.none,
-            hintText: widget.hint,
-            suffixIcon:
-                widget.suffixIcon != null ? Icon(widget.suffixIcon) : null,
-            helperText: widget.helper,
-            labelStyle: TextStyle(fontSize: 12, color: Colors.black54)),
+          fillColor: Colors.white,
+          labelText: widget.label,
+          border: InputBorder.none,
+          hintText: widget.hint,
+          suffixIcon:
+              widget.suffixIcon != null ? Icon(widget.suffixIcon) : null,
+          helperText: widget.helper,
+          labelStyle: TextStyle(fontSize: 12, color: Colors.black54),
+        ),
         onChanged: (value) {
           widget.onChanged(value);
         },

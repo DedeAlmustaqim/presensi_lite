@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
-import '../view/kehadiran_tab_view.dart';
+import '../view/izin_tab_view.dart';
 
-class KehadiranTabController extends State<KehadiranTabView>
+class IzinTabController extends State<IzinTabView>
     with SingleTickerProviderStateMixin {
-  static late KehadiranTabController instance;
-  late KehadiranTabView view;
+  static late IzinTabController instance;
+  late IzinTabView view;
   late TabController tabController;
   @override
   void initState() {
     instance = this;
     super.initState();
-    tabController = TabController(length: 4, vsync: this);
+    tabController = TabController(length: 2, vsync: this);
   }
 
   @override

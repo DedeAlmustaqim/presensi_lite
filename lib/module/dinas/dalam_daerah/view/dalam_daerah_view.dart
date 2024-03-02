@@ -55,30 +55,17 @@ class DalamDaerahView extends StatefulWidget {
                   },
                 ),
                 QTextField(
+                  label: "No Surat",
+                  validator: Validator.required,
+                  value: null,
+                  onChanged: (value) {},
+                ),
+                QTextField(
                   maxLine: 5,
                   label: "Keterangan",
                   validator: Validator.required,
                   value: null,
                   onChanged: (value) {},
-                ),
-                QRadioField(
-                  label: "TMK pada :",
-                  validator: Validator.atLeastOneitem,
-                  items: [
-                    {
-                      "label": "Check IN",
-                      "value": 1,
-                    },
-                    {
-                      "label": "Check Out",
-                      "value": 2,
-                    },
-                    {
-                      "label": "Full Time",
-                      "value": 2,
-                    }
-                  ],
-                  onChanged: (value, label) {},
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
