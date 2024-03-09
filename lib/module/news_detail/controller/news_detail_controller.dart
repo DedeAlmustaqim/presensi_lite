@@ -1,4 +1,3 @@
-import 'package:atei_bartim/shared/util/dialog/show_info_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
 

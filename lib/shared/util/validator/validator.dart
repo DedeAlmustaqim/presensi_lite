@@ -14,22 +14,22 @@ class Validator {
     String? fieldName,
   }) {
     if (value == null) {
-      return "This field is required";
+      return "Kolom ini Wajib disi";
     }
 
     if (value is String || value == null) {
-      if (value.toString() == "null") return "This field is required";
-      if (value.isEmpty) return "This field is required";
+      if (value.toString() == "null") return "Kolom ini Wajib disi";
+      if (value.isEmpty) return "Kolom ini Wajib disi";
     }
 
     if (value is List) {
-      if (value.isEmpty) return "This field is required";
+      if (value.isEmpty) return "Kolom ini Wajib disi";
     }
     return null;
   }
 
   static String? email(String? value) {
-    if (value!.isEmpty) return "This field is required";
+    if (value!.isEmpty) return "Kolom ini Wajib disid";
 
     final bool isValidEmail = RegExp(
             "^[a-zA-Z0-9.a-zA-Z0-9.!#\$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+.[a-zA-Z]+")
@@ -54,7 +54,7 @@ class Validator {
   static String? atLeastOneitem(List<Map<String, dynamic>> items) {
     var checkedItems = items.where((i) => i["checked"] == true).toList();
     if (checkedItems.isEmpty) {
-      return "you must choose at least one item";
+      return "Anda harus memilih salah satu";
     }
     return null;
   }

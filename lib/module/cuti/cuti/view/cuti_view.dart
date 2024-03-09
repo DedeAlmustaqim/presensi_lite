@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
-import '../controller/cuti_controller.dart';
 
 class CutiView extends StatefulWidget {
   const CutiView({Key? key}) : super(key: key);

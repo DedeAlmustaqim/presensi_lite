@@ -1,9 +1,8 @@
 import 'package:atei_bartim/core.dart';
-import 'package:atei_bartim/service/local_data_service.dart';
-import 'package:atei_bartim/state_util.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class PrivacyDialog extends StatefulWidget {
   final bool isChecked;
@@ -15,16 +14,21 @@ class PrivacyDialog extends StatefulWidget {
 }
 
 class _PrivacyDialogState extends State<PrivacyDialog> {
+  // var url = AppConfig.baseUrl;
   acceptPrivacy() async {
-    var privacy = await DB.setPrivacy(true);
-
-    await MainNavigationController().isPrivacy();
-    if (privacy == null) {
-      print('null');
-    } else {
-      print('not null');
-    }
-    // Navigator.of(context).pop(true);
+    var response = await Dio().post(
+      "${AppConfig.baseUrl}/api/user/is_agree",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer ${AuthService.token}",
+        },
+      ),
+      data: {"id": AuthService.id},
+    );
+    Map obj = response.data;
+    print(obj['success']);
+    return obj['success'];
   }
 
   late bool _isChecked;
@@ -53,8 +57,8 @@ class _PrivacyDialogState extends State<PrivacyDialog> {
           children: [
             HtmlWidget(
               html,
-              textStyle: TextStyle(fontSize: 10),
-            ),
+              textStyle: TextStyle(fontSize: 12),
+            ).animate().fadeIn(),
             SizedBox(height: 11),
             Row(
               children: [
@@ -75,15 +79,33 @@ class _PrivacyDialogState extends State<PrivacyDialog> {
       actions: <Widget>[
         TextButton(
           onPressed: _isChecked
-              ? () {
-                  Navigator.of(context).pop(true);
+              ? () async {
+                  // await acceptPrivacy();
+                  try {
+                    bool isSuccess = await acceptPrivacy();
+                    if (isSuccess) {
+                      Navigator.of(context).pop(true);
+                      await UserDataService.init();
+                      // await MainNavigationController().isPrivacy();
+                      await Get.offAll(MainNavigationView());
+                    } else {
+                      showInfoDialog(
+                          message: "Gagal Menyimpan Data", title: "Gagal");
+                    }
+                  } on Exception catch (err) {
+                    showInfoDialog(message: err.toString(), title: "Gagal");
+                  }
                 }
               : null,
-          child: Text('Setuju'),
+          child: Column(
+            children: [
+              Text('Setuju'),
+            ],
+          ),
         ),
         TextButton(
           onPressed: () async {
-            await acceptPrivacy();
+            SystemNavigator.pop();
           },
           child: Text(
             'Tidak Setuju',

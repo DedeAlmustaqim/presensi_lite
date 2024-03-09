@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
-import '../controller/izin_tab_controller.dart';
 
 class IzinTabView extends StatefulWidget {
   const IzinTabView({Key? key}) : super(key: key);

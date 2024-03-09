@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
-import '../controller/izin_more_day_controller.dart';
 
 class IzinMoreDayView extends StatefulWidget {
   const IzinMoreDayView({Key? key}) : super(key: key);

@@ -10,6 +10,7 @@ Future showCustomDialog({
     barrierDismissible: true,
     builder: (BuildContext context) {
       return AlertDialog(
+        backgroundColor: Colors.white,
         title: Text(title),
         content: SingleChildScrollView(
           child: ListBody(
@@ -18,17 +19,6 @@ Future showCustomDialog({
             ],
           ),
         ),
-        actions: <Widget>[
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blueGrey,
-            ),
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: const Text("Ok"),
-          ),
-        ],
       );
     },
   );

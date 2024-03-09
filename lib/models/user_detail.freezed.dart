@@ -28,6 +28,8 @@ mixin _$UserDetail {
   String? get nip => throw _privateConstructorUsedError;
   String? get jabatan => throw _privateConstructorUsedError;
   String? get img => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_agree')
+  String? get isAgree => throw _privateConstructorUsedError;
   @JsonKey(name: 'nm_unit')
   String? get nmUnit => throw _privateConstructorUsedError;
   String? get lat => throw _privateConstructorUsedError;
@@ -54,6 +56,7 @@ abstract class $UserDetailCopyWith<$Res> {
       String? nip,
       String? jabatan,
       String? img,
+      @JsonKey(name: 'is_agree') String? isAgree,
       @JsonKey(name: 'nm_unit') String? nmUnit,
       String? lat,
       String? long});
@@ -80,6 +83,7 @@ class _$UserDetailCopyWithImpl<$Res, $Val extends UserDetail>
     Object? nip = freezed,
     Object? jabatan = freezed,
     Object? img = freezed,
+    Object? isAgree = freezed,
     Object? nmUnit = freezed,
     Object? lat = freezed,
     Object? long = freezed,
@@ -117,6 +121,10 @@ class _$UserDetailCopyWithImpl<$Res, $Val extends UserDetail>
           ? _value.img
           : img // ignore: cast_nullable_to_non_nullable
               as String?,
+      isAgree: freezed == isAgree
+          ? _value.isAgree
+          : isAgree // ignore: cast_nullable_to_non_nullable
+              as String?,
       nmUnit: freezed == nmUnit
           ? _value.nmUnit
           : nmUnit // ignore: cast_nullable_to_non_nullable
@@ -150,6 +158,7 @@ abstract class _$$UserDetailImplCopyWith<$Res>
       String? nip,
       String? jabatan,
       String? img,
+      @JsonKey(name: 'is_agree') String? isAgree,
       @JsonKey(name: 'nm_unit') String? nmUnit,
       String? lat,
       String? long});
@@ -174,6 +183,7 @@ class __$$UserDetailImplCopyWithImpl<$Res>
     Object? nip = freezed,
     Object? jabatan = freezed,
     Object? img = freezed,
+    Object? isAgree = freezed,
     Object? nmUnit = freezed,
     Object? lat = freezed,
     Object? long = freezed,
@@ -211,6 +221,10 @@ class __$$UserDetailImplCopyWithImpl<$Res>
           ? _value.img
           : img // ignore: cast_nullable_to_non_nullable
               as String?,
+      isAgree: freezed == isAgree
+          ? _value.isAgree
+          : isAgree // ignore: cast_nullable_to_non_nullable
+              as String?,
       nmUnit: freezed == nmUnit
           ? _value.nmUnit
           : nmUnit // ignore: cast_nullable_to_non_nullable
@@ -239,6 +253,7 @@ class _$UserDetailImpl implements _UserDetail {
       this.nip,
       this.jabatan,
       this.img,
+      @JsonKey(name: 'is_agree') this.isAgree,
       @JsonKey(name: 'nm_unit') this.nmUnit,
       this.lat,
       this.long});
@@ -263,6 +278,9 @@ class _$UserDetailImpl implements _UserDetail {
   @override
   final String? img;
   @override
+  @JsonKey(name: 'is_agree')
+  final String? isAgree;
+  @override
   @JsonKey(name: 'nm_unit')
   final String? nmUnit;
   @override
@@ -272,7 +290,7 @@ class _$UserDetailImpl implements _UserDetail {
 
   @override
   String toString() {
-    return 'UserDetail(success: $success, id: $id, name: $name, email: $email, nik: $nik, nip: $nip, jabatan: $jabatan, img: $img, nmUnit: $nmUnit, lat: $lat, long: $long)';
+    return 'UserDetail(success: $success, id: $id, name: $name, email: $email, nik: $nik, nip: $nip, jabatan: $jabatan, img: $img, isAgree: $isAgree, nmUnit: $nmUnit, lat: $lat, long: $long)';
   }
 
   @override
@@ -288,6 +306,7 @@ class _$UserDetailImpl implements _UserDetail {
             (identical(other.nip, nip) || other.nip == nip) &&
             (identical(other.jabatan, jabatan) || other.jabatan == jabatan) &&
             (identical(other.img, img) || other.img == img) &&
+            (identical(other.isAgree, isAgree) || other.isAgree == isAgree) &&
             (identical(other.nmUnit, nmUnit) || other.nmUnit == nmUnit) &&
             (identical(other.lat, lat) || other.lat == lat) &&
             (identical(other.long, long) || other.long == long));
@@ -296,7 +315,7 @@ class _$UserDetailImpl implements _UserDetail {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, success, id, name, email, nik,
-      nip, jabatan, img, nmUnit, lat, long);
+      nip, jabatan, img, isAgree, nmUnit, lat, long);
 
   @JsonKey(ignore: true)
   @override
@@ -322,6 +341,7 @@ abstract class _UserDetail implements UserDetail {
       final String? nip,
       final String? jabatan,
       final String? img,
+      @JsonKey(name: 'is_agree') final String? isAgree,
       @JsonKey(name: 'nm_unit') final String? nmUnit,
       final String? lat,
       final String? long}) = _$UserDetailImpl;
@@ -345,6 +365,9 @@ abstract class _UserDetail implements UserDetail {
   String? get jabatan;
   @override
   String? get img;
+  @override
+  @JsonKey(name: 'is_agree')
+  String? get isAgree;
   @override
   @JsonKey(name: 'nm_unit')
   String? get nmUnit;

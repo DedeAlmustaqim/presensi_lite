@@ -15,7 +15,7 @@ class DashboardController extends State<DashboardView> {
     getToday();
     getBanner();
     getInfo();
-    getNews();
+    // getNews();
     UserDataService.init();
     instance = this;
     super.initState();
@@ -35,7 +35,8 @@ class DashboardController extends State<DashboardView> {
     },
     {
       "label": "Dinas",
-      "icon": Icons.work, // Ganti dengan IconData yang sesuai
+      "icon": Icons.airplanemode_active,
+      // "icon": Icons.work, // Ganti dengan IconData yang sesuai
       "page": () => Get.to(DinasTabView()),
     },
     {
@@ -45,14 +46,14 @@ class DashboardController extends State<DashboardView> {
     },
     {
       "label": "Cuti",
-      "icon": Icons.airplanemode_active, // Ganti dengan IconData yang sesuai
+      "icon": MdiIcons.bedOutline, // Ganti dengan IconData yang sesuai
       "page": () => Get.to(CutiView()),
     },
   ];
 
   int currentIndex = 0;
   final CarouselController carouselController = CarouselController();
-
+  DateTime? selectedDate;
   getToday() async {
     var userToday = await UserDataService().getToday();
 
@@ -94,5 +95,21 @@ class DashboardController extends State<DashboardView> {
     getInfo();
     getNews();
     hideLoading();
+  }
+
+  Future<void> showSelectDate(BuildContext context) async {
+    final DateTime? picked = await showDatePicker(
+      context: context,
+      initialDate: selectedDate,
+      currentDate: DateTime.now(),
+      firstDate: DateTime(2015, 8),
+      lastDate: DateTime(2101),
+      cancelText: "Batal",
+      confirmText: "Cari",
+    );
+    if (picked != null && picked != selectedDate)
+      setState(() {
+        selectedDate = picked;
+      });
   }
 }

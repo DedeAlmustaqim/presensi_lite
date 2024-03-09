@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
-import '../controller/dinas_tab_controller.dart';
 
 class DinasTabView extends StatefulWidget {
   const DinasTabView({Key? key}) : super(key: key);

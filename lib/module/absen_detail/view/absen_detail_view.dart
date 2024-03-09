@@ -211,35 +211,34 @@ class AbsenDetailView extends StatefulWidget {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Card(
-                child: ListTile(
-                  leading: Icon(
-                    Icons.info,
-                    size: 24.0,
-                  ),
-                  title: Text(
-                    "Catatan",
-                    style: TextStyle(fontSize: 12),
-                  ),
-                  subtitle: Column(
-                    children: [
-                      Text(
-                        "Anda hanya bisa mengajukan Dinas Dalam Daerah, Dinas Luar Daerah, Izin Lebih dari Satu Hari, dan Cuti jika anda belum Check In/Out pada tanggal ini",
-                        textAlign: TextAlign.justify,
-                        style: TextStyle(
-                          fontSize: 10,
+                child: Container(
+                  padding: const EdgeInsets.all(10.0),
+                  child: ListTile(
+                    title: Text(
+                      "Catatan",
+                      style: TextStyle(fontSize: 12),
+                    ),
+                    subtitle: Column(
+                      children: [
+                        Text(
+                          "Anda hanya bisa mengajukan Dinas Dalam Daerah, Dinas Luar Daerah, Izin Lebih dari Satu Hari, dan Cuti jika anda belum Check In/Out pada tanggal ini",
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                            fontSize: 10,
+                          ),
                         ),
-                      ),
-                      const SizedBox(
-                        height: 3.0,
-                      ),
-                      Text(
-                        "Sedangkan untuk Tugas Dinas dan Izin Satu Hari anda dapat memilih pada jam Check In/Out/Full Time",
-                        textAlign: TextAlign.justify,
-                        style: TextStyle(
-                          fontSize: 10,
+                        const SizedBox(
+                          height: 3.0,
                         ),
-                      ),
-                    ],
+                        Text(
+                          "Sedangkan untuk Tugas Dinas dan Izin Satu Hari anda dapat memilih pada jam Check In/Out/Full Time",
+                          textAlign: TextAlign.justify,
+                          style: TextStyle(
+                            fontSize: 10,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

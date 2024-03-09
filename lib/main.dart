@@ -59,7 +59,9 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
 
   Widget get mainView {
     if (!ConnectionService.connection!) return MaintenanceView();
+    // if (AppConfig.version != null) return MaintenanceView();
     if (AppConfig.version != VersiService.version) return VersionView();
+
     if (token != null) return MainNavigationView();
 
     return LoginView();

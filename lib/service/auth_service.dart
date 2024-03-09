@@ -1,9 +1,7 @@
 import 'package:atei_bartim/core.dart';
-import 'package:atei_bartim/shared/util/dialog/show_info_dialog.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
-  var url = AppConfig.baseUrl;
   // static UserModel? currentUser;
   static Dio dio = Dio();
 
@@ -17,7 +15,7 @@ class AuthService {
   }) async {
     try {
       var response = await dio.post(
-        "$url/api/api_login",
+        "${AppConfig.baseUrl}/api/api_login",
         options: Options(
           headers: {
             "Content-Type": "application/json",
@@ -45,12 +43,11 @@ class AuthService {
       }
       if (!status) {
         hideLoading();
-        showInfoDialog(message: "NIK/Password Salah", title: "Gagal Login");
-        // print(status);
+        showInfoDialog(message: userMap['message'], title: "Gagal Login");
       }
-    } on Exception catch (err) {
+    } on Exception {
       hideLoading();
-      showInfoDialog(message: err.toString(), title: "Error");
+      showInfoDialog(message: "Terjadi Kesalahan", title: "Error");
     }
   }
 
@@ -60,14 +57,19 @@ class AuthService {
   }
 
   logout() async {
-    await dio.post(
-      "${url}/api/logout",
-      options: Options(
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": "Bearer ${AuthService.token}",
-        },
-      ),
-    );
+    try {
+      await dio.post(
+        "${AppConfig.baseUrl}/api/logout",
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer ${AuthService.token}",
+          },
+        ),
+      );
+      return true;
+    } on Exception {
+      return false;
+    }
   }
 }

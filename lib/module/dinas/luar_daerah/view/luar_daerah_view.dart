@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
-import '../controller/luar_daerah_controller.dart';
 
 class LuarDaerahView extends StatefulWidget {
   const LuarDaerahView({Key? key}) : super(key: key);
@@ -43,7 +42,7 @@ class LuarDaerahView extends StatefulWidget {
                   validator: Validator.required,
                   value: null,
                   onChanged: (value) {
-                    print("value: $value");
+                    controller.dateStart = value;
                   },
                 ),
                 QDatePicker(
@@ -51,49 +50,219 @@ class LuarDaerahView extends StatefulWidget {
                   validator: Validator.required,
                   value: null,
                   onChanged: (value) {
-                    print("value: $value");
+                    controller.dateEnd = value;
                   },
                 ),
                 QTextField(
                   label: "No Surat",
                   validator: Validator.required,
                   value: null,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    controller.noSrt = value;
+                  },
                 ),
                 QTextField(
                   maxLine: 5,
                   label: "Keterangan",
                   validator: Validator.required,
                   value: null,
-                  onChanged: (value) {},
+                  onChanged: (value) {
+                    controller.ketDl = value;
+                  },
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     OutlinedButton.icon(
-                      icon: Icon(Icons.send),
-                      label: Text("Kirim"),
+                      icon: Icon(Icons.data_saver_on_outlined),
+                      label: Text("Proses"),
                       style: OutlinedButton.styleFrom(
                         foregroundColor: primaryColor,
                         side: BorderSide(
                           color: primaryColor,
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.confirmData();
+                        showCustomDialog(title: "Konfirmasi", children: [
+                          Column(
+                            children: [
+                              Card(
+                                child: ListTile(
+                                  subtitle: Text(
+                                    "Mohon periksa kembali data yang akan anda kirimkan",
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Divider(),
+                              Column(
+                                children: [
+                                  Text(
+                                    "Dinas Dalam Daerah",
+                                    style: TextStyle(
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          "Tanggal Berangkat",
+                                          style: TextStyle(
+                                            fontSize: 10.0,
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        ":  ",
+                                        style: TextStyle(
+                                          fontSize: 10.0,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          DateFormat.yMMMMEEEEd('id_ID')
+                                              .format(controller.dateStart!)
+                                              .toString(),
+                                          style: TextStyle(
+                                            fontSize: 10.0,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          "Tanggal Berangkat",
+                                          style: TextStyle(
+                                            fontSize: 10.0,
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        ":  ",
+                                        style: TextStyle(
+                                          fontSize: 10.0,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          DateFormat.yMMMMEEEEd('id_ID')
+                                              .format(controller.dateEnd!)
+                                              .toString(),
+                                          style: TextStyle(
+                                            fontSize: 10.0,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          "Nomor Surat",
+                                          style: TextStyle(
+                                            fontSize: 10.0,
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        ":  ",
+                                        style: TextStyle(
+                                          fontSize: 10.0,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          controller.noSrt.toString(),
+                                          style: TextStyle(
+                                            fontSize: 10.0,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Row(
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          "Keterangan",
+                                          style: TextStyle(
+                                            fontSize: 10.0,
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        ":  ",
+                                        style: TextStyle(
+                                          fontSize: 10.0,
+                                        ),
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          controller.ketDl.toString(),
+                                          style: TextStyle(
+                                            fontSize: 10.0,
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  Divider(),
+                                  SizedBox(
+                                    height: 100.0,
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      children: [
+                                        OutlinedButton.icon(
+                                          icon: Icon(Icons.send),
+                                          label: Text("Kirim"),
+                                          style: OutlinedButton.styleFrom(
+                                            foregroundColor: primaryColor,
+                                            side: BorderSide(
+                                              color: primaryColor,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            controller.sendLuarDaerah();
+                                          },
+                                        ),
+                                        OutlinedButton.icon(
+                                          icon: Icon(Icons.exit_to_app),
+                                          label: Text("Batal"),
+                                          style: OutlinedButton.styleFrom(
+                                            foregroundColor: orangeColor,
+                                            side: BorderSide(
+                                              color: orangeColor,
+                                            ),
+                                          ),
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ]);
+                      },
                     ),
                     const SizedBox(
                       width: 10.0,
-                    ),
-                    OutlinedButton.icon(
-                      icon: Icon(Icons.refresh),
-                      label: Text("Reset"),
-                      style: OutlinedButton.styleFrom(
-                        foregroundColor: dangerColor,
-                        side: BorderSide(
-                          color: dangerColor,
-                        ),
-                      ),
-                      onPressed: () {},
                     ),
                   ],
                 ),

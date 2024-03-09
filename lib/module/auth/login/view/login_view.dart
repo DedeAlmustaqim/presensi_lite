@@ -46,7 +46,7 @@ class LoginView extends StatefulWidget {
                           maxLength: 16,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
-                            semanticCounterText: "NIK",
+                            semanticCounterText: "Username",
                             helperStyle: TextStyle(
                               color: Colors.white,
                             ),

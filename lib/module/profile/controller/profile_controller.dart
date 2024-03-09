@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:atei_bartim/shared/util/dialog/show_info_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
 
@@ -167,8 +166,13 @@ class ProfileController extends State<ProfileView> {
               ),
               onPressed: () async {
                 hideLoading();
-                await AuthService().clearCache();
-                Get.offAll(LoginView());
+                var logout = await AuthService().logout();
+                if (logout) {
+                  await DB.clearDatabase();
+                  await Get.offAll(LoginView());
+                } else {
+                  showInfoDialog(message: "Terjadi Kesalahan", title: "Gagal");
+                }
               },
               child: const Text(
                 "Yes",

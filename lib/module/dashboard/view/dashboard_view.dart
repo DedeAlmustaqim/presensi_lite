@@ -1,5 +1,6 @@
 import 'package:atei_bartim/shared/util/dialog/show_info_dialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_widget_from_html/flutter_widget_from_html.dart';
 import 'package:atei_bartim/core.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
@@ -33,7 +34,7 @@ class DashboardView extends StatefulWidget {
                       Text(
                         "Hai..!!!",
                         style: TextStyle(
-                          fontSize: 14.0,
+                          fontSize: 12.0,
                           color: Colors.white,
                         ),
                       ),
@@ -58,14 +59,14 @@ class DashboardView extends StatefulWidget {
             ),
 
             Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(10.0),
               child: Builder(builder: (context) {
                 return Column(
                   children: [
                     CarouselSlider(
                       carouselController: controller.carouselController,
                       options: CarouselOptions(
-                        height: 160.0,
+                        height: 200.0,
                         autoPlay: true,
                         enlargeCenterPage: true,
                         viewportFraction: 1.0,
@@ -82,8 +83,7 @@ class DashboardView extends StatefulWidget {
                           builder: (BuildContext context) {
                             return Container(
                               width: MediaQuery.of(context).size.width,
-                              margin:
-                                  const EdgeInsets.symmetric(horizontal: 5.0),
+                              margin: EdgeInsets.symmetric(horizontal: 5.0),
                               decoration: BoxDecoration(
                                 boxShadow: [
                                   BoxShadow(
@@ -93,7 +93,7 @@ class DashboardView extends StatefulWidget {
                                   ),
                                 ],
                                 color: Colors.grey[200],
-                                borderRadius: const BorderRadius.all(
+                                borderRadius: BorderRadius.all(
                                   Radius.circular(6.0),
                                 ),
                                 image: DecorationImage(
@@ -119,7 +119,7 @@ class DashboardView extends StatefulWidget {
                           child: Container(
                             width: isSelected ? 40 : 6.0,
                             height: 6.0,
-                            margin: const EdgeInsets.only(
+                            margin: EdgeInsets.only(
                               right: 6.0,
                               top: 12.0,
                             ),
@@ -127,7 +127,7 @@ class DashboardView extends StatefulWidget {
                               color: isSelected
                                   ? primaryColor
                                   : primaryColor.withOpacity(0.6),
-                              borderRadius: const BorderRadius.all(
+                              borderRadius: BorderRadius.all(
                                 Radius.circular(12.0),
                               ),
                             ),
@@ -138,6 +138,9 @@ class DashboardView extends StatefulWidget {
                   ],
                 );
               }),
+            ),
+            SizedBox(
+              height: 20.0,
             ),
             Container(
               decoration: BoxDecoration(
@@ -233,12 +236,12 @@ class DashboardView extends StatefulWidget {
                 ),
               ),
             ),
-            const SizedBox(
+            SizedBox(
               height: 15.0,
             ),
 
             Container(
-              margin: const EdgeInsets.symmetric(horizontal: 15.0),
+              margin: EdgeInsets.symmetric(horizontal: 15.0),
               child: Builder(builder: (context) {
                 return GridView.builder(
                   padding: EdgeInsets.zero,
@@ -259,8 +262,7 @@ class DashboardView extends StatefulWidget {
                         Expanded(
                           child: FittedBox(
                             child: Container(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 3.0),
+                              padding: EdgeInsets.symmetric(horizontal: 3.0),
                               child: ZoomTapAnimation(
                                 onTap: item['page'],
                                 child: CircleAvatar(
@@ -276,7 +278,7 @@ class DashboardView extends StatefulWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(
+                        SizedBox(
                           height: 5.0,
                         ),
                         Text(
@@ -295,8 +297,98 @@ class DashboardView extends StatefulWidget {
               }),
             ),
             Divider(),
+            // Container(
+            //   margin: EdgeInsets.symmetric(horizontal: 10.0),
+            //   padding: EdgeInsets.all(5.0),
+            //   decoration: BoxDecoration(
+            //     color: Colors.white,
+            //     boxShadow: [
+            //       BoxShadow(
+            //         color: Color(0x19000000),
+            //         blurRadius: 4,
+            //         offset: Offset(0, 4),
+            //       ),
+            //     ],
+            //     borderRadius: BorderRadius.all(
+            //       Radius.circular(
+            //         5.0,
+            //       ),
+            //     ),
+            //   ),
+            //   child: Row(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       Container(
+            //         width: 96,
+            //         height: 100,
+            //         decoration: BoxDecoration(
+            //           image: DecorationImage(
+            //             image: NetworkImage(
+            //               UserDataService.userData!.img.toString(),
+            //             ),
+            //             fit: BoxFit.cover,
+            //           ),
+            //           borderRadius: BorderRadius.all(
+            //             Radius.circular(
+            //               8.0,
+            //             ),
+            //           ),
+            //         ),
+            //       ),
+            //       SizedBox(
+            //         width: 12.0,
+            //       ),
+            //       Expanded(
+            //         child: Column(
+            //           crossAxisAlignment: CrossAxisAlignment.start,
+            //           children: [
+            //             Text(
+            //               UserDataService.userData!.name.toString(),
+            //               maxLines: 1,
+            //               overflow: TextOverflow.ellipsis,
+            //               style: TextStyle(
+            //                 fontSize: 14.0,
+            //                 fontWeight: FontWeight.bold,
+            //               ),
+            //             ),
+            //             SizedBox(
+            //               height: 6.0,
+            //             ),
+            //             Text(
+            //               UserDataService.userData!.nmUnit.toString(),
+            //               style: TextStyle(
+            //                 fontSize: 12.0,
+            //                 color: Colors.grey[600],
+            //               ),
+            //             ),
+            //             SizedBox(
+            //               height: 6.0,
+            //             ),
+            //             Text(
+            //               "${UserDataService.userData!.jabatan}",
+            //               style: TextStyle(
+            //                 fontSize: 12.0,
+            //                 color: Colors.grey[600],
+            //               ),
+            //             ),
+            //             SizedBox(
+            //               height: 6.0,
+            //             ),
+            //             Text(
+            //               "NIP. ${UserDataService.userData!.nip}",
+            //               style: TextStyle(
+            //                 fontSize: 12.0,
+            //                 color: Colors.grey[600],
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
+              padding: EdgeInsets.symmetric(horizontal: 10.0),
               margin: EdgeInsets.symmetric(vertical: 5.0),
               child: Row(
                 children: [
@@ -327,7 +419,7 @@ class DashboardView extends StatefulWidget {
             ),
 
             SizedBox(
-              height: 150.0,
+              height: 175.0,
               child: ListView.builder(
                 padding: EdgeInsets.only(
                   left: 12.0,
@@ -369,14 +461,14 @@ class DashboardView extends StatefulWidget {
                                 Text(
                                   item['title'],
                                   textAlign: TextAlign.justify,
-                                  maxLines: 2,
+                                  maxLines: 4,
                                   overflow: TextOverflow.ellipsis,
                                   style: TextStyle(
                                     fontSize: 12.0,
                                     fontWeight: FontWeight.bold,
                                   ),
                                 ),
-                                const SizedBox(
+                                SizedBox(
                                   height: 4.0,
                                 ),
                                 Flexible(
@@ -434,152 +526,199 @@ class DashboardView extends StatefulWidget {
               ),
             ),
 
-            // Berita
             Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10.0),
-              margin: EdgeInsets.symmetric(vertical: 5.0),
-              child: Row(
-                children: [
-                  Text(
-                    "Berita",
-                    style: TextStyle(
-                      fontSize: 14.0,
-                      color: primaryColor,
-                      fontWeight: FontWeight.bold,
+              margin: EdgeInsets.symmetric(horizontal: 10.0),
+              child: Card(
+                color: Colors.white,
+                child: Container(
+                  padding: const EdgeInsets.all(10.0),
+                  child: ListTile(
+                    // leading: Icon(
+                    //   Icons.info,
+                    //   size: 24.0,
+                    // ),
+                    title: Text(
+                      "Cari Data Absen Anda",
+                      style: TextStyle(fontSize: 14),
                     ),
-                  ),
-                  Spacer(),
-                  InkWell(
-                    onTap: () {
-                      Get.to(NewsListView());
-                    },
-                    child: Text(
-                      "Lihat Semua",
+                    subtitle: Text(
+                      "Pilih tanggal dan temukan data absen anda pada tanggal tersebut",
+                      textAlign: TextAlign.justify,
                       style: TextStyle(
-                        fontSize: 12.0,
-                        color: primaryColor,
-                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-
-            SizedBox(
-              height: 165.0,
-              child: ListView.builder(
-                padding: EdgeInsets.only(
-                  left: 12.0,
-                ),
-                itemCount: controller.newsData.length,
-                scrollDirection: Axis.horizontal,
-                itemBuilder: (context, index) {
-                  var item = controller.newsData[index];
-                  DateTime postTimeNews = DateTime.parse(item['created_at']);
-                  return ZoomTapAnimation(
-                    onTap: () {
-                      Get.to(NewsDetailView(item: item));
-                    },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width * 0.9,
-                      padding: EdgeInsets.all(8.0),
-                      margin: EdgeInsets.only(right: 10.0, bottom: 10),
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).primaryColor,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x19000000),
-                            blurRadius: 5,
-                            offset: Offset(0, 0),
-                          ),
-                        ],
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(5.0),
+                    trailing: OutlinedButton.icon(
+                      icon: Icon(
+                        Icons.date_range,
+                        size: 16,
+                      ),
+                      label: Text(
+                        "Pilih Tanggal",
+                        style: TextStyle(
+                          fontSize: 10,
                         ),
                       ),
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 100.0,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(5.0),
-                              ),
-                              color: Colors.grey.shade200,
-                              image: DecorationImage(
-                                image: NetworkImage(item['thumbnail']),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 10.0,
-                          ),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  item['title'],
-                                  textAlign: TextAlign.justify,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontSize: 12.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                ),
-                                Divider(),
-                                HtmlWidget(
-                                  item['content'].substring(0, 120),
-                                  textStyle: TextStyle(
-                                    fontSize: 10,
-                                  ),
-                                ),
-                                Row(
-                                  children: [
-                                    Spacer(),
-                                    Text(
-                                      "Selengkapnya...",
-                                      style: TextStyle(
-                                        fontSize: 8.0,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Spacer(),
-                                Row(
-                                  children: [
-                                    Text(
-                                      DateFormat('dd MMMM yyyy', 'id')
-                                          .format(postTimeNews),
-                                      style: TextStyle(
-                                        fontSize: 10.0,
-                                      ),
-                                    ),
-                                    Spacer(),
-                                    Icon(
-                                      Icons.bookmark,
-                                      size: 20.0,
-                                      color: Colors.orange,
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: primaryColor,
+                        side: BorderSide(
+                          color: primaryColor,
+                        ),
                       ),
+                      onPressed: () {
+                        controller.showSelectDate(context);
+                      },
                     ),
-                  );
-                },
+                  ),
+                ),
               ),
             ),
+            // Berita
+            // Container(
+            //   padding: EdgeInsets.symmetric(horizontal: 10.0),
+            //   margin: EdgeInsets.symmetric(vertical: 5.0),
+            //   child: Row(
+            //     children: [
+            //       Text(
+            //         "Berita",
+            //         style: TextStyle(
+            //           fontSize: 14.0,
+            //           color: primaryColor,
+            //           fontWeight: FontWeight.bold,
+            //         ),
+            //       ),
+            //       Spacer(),
+            //       InkWell(
+            //         onTap: () {
+            //           Get.to(NewsListView());
+            //         },
+            //         child: Text(
+            //           "Lihat Semua",
+            //           style: TextStyle(
+            //             fontSize: 12.0,
+            //             color: primaryColor,
+            //             fontWeight: FontWeight.bold,
+            //           ),
+            //         ),
+            //       ),
+            //     ],
+            //   ),
+            // ),
+
+            // SizedBox(
+            //   height: 165.0,
+            //   child: ListView.builder(
+            //     padding: EdgeInsets.only(
+            //       left: 12.0,
+            //     ),
+            //     itemCount: controller.newsData.length,
+            //     scrollDirection: Axis.horizontal,
+            //     itemBuilder: (context, index) {
+            //       var item = controller.newsData[index];
+            //       DateTime postTimeNews = DateTime.parse(item['created_at']);
+            //       return ZoomTapAnimation(
+            //         onTap: () {
+            //           Get.to(NewsDetailView(item: item));
+            //         },
+            //         child: Container(
+            //           width: MediaQuery.of(context).size.width * 0.9,
+            //           padding: EdgeInsets.all(8.0),
+            //           margin: EdgeInsets.only(right: 10.0, bottom: 10),
+            //           decoration: BoxDecoration(
+            //             color: Theme.of(context).primaryColor,
+            //             boxShadow: [
+            //               BoxShadow(
+            //                 color: Color(0x19000000),
+            //                 blurRadius: 5,
+            //                 offset: Offset(0, 0),
+            //               ),
+            //             ],
+            //             borderRadius: BorderRadius.all(
+            //               Radius.circular(5.0),
+            //             ),
+            //           ),
+            //           child: Row(
+            //             children: [
+            //               Container(
+            //                 width: 100.0,
+            //                 decoration: BoxDecoration(
+            //                   borderRadius: BorderRadius.all(
+            //                     Radius.circular(5.0),
+            //                   ),
+            //                   color: Colors.grey.shade200,
+            //                   image: DecorationImage(
+            //                     image: NetworkImage(item['thumbnail']),
+            //                     fit: BoxFit.cover,
+            //                   ),
+            //                 ),
+            //               ),
+            //               SizedBox(
+            //                 width: 10.0,
+            //               ),
+            //               Expanded(
+            //                 child: Column(
+            //                   crossAxisAlignment: CrossAxisAlignment.start,
+            //                   children: [
+            //                     Text(
+            //                       item['title'],
+            //                       textAlign: TextAlign.justify,
+            //                       maxLines: 2,
+            //                       overflow: TextOverflow.ellipsis,
+            //                       style: TextStyle(
+            //                         fontSize: 12.0,
+            //                         fontWeight: FontWeight.bold,
+            //                       ),
+            //                     ),
+            //                     Divider(),
+            //                     HtmlWidget(
+            //                       item['content'].substring(0, 120),
+            //                       textStyle: TextStyle(
+            //                         fontSize: 10,
+            //                       ),
+            //                     ),
+            //                     Row(
+            //                       children: [
+            //                         Spacer(),
+            //                         Text(
+            //                           "Selengkapnya...",
+            //                           style: TextStyle(
+            //                             fontSize: 8.0,
+            //                           ),
+            //                         ),
+            //                       ],
+            //                     ),
+            //                     Spacer(),
+            //                     Row(
+            //                       children: [
+            //                         Text(
+            //                           DateFormat('dd MMMM yyyy', 'id')
+            //                               .format(postTimeNews),
+            //                           style: TextStyle(
+            //                             fontSize: 10.0,
+            //                           ),
+            //                         ),
+            //                         Spacer(),
+            //                         Icon(
+            //                           Icons.bookmark,
+            //                           size: 20.0,
+            //                           color: Colors.orange,
+            //                         ),
+            //                       ],
+            //                     ),
+            //                   ],
+            //                 ),
+            //               ),
+            //             ],
+            //           ),
+            //         ),
+            //       );
+            //     },
+            //   ),
+            // ),
           ],
         ),
       ),
-    );
+    ).animate().fadeIn().shimmer();
   }
 
   @override

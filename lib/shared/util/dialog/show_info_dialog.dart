@@ -32,7 +32,7 @@ Future showInfoDialog({
                             icon ??
                                 const Icon(
                                   Icons.info,
-                                  size: 40.0,
+                                  size: 24.0,
                                   color: Colors.amber,
                                 ),
                             const SizedBox(
@@ -42,7 +42,7 @@ Future showInfoDialog({
                               child: Text(
                                 title,
                                 style: TextStyle(
-                                  fontSize: 16.0,
+                                  fontSize: 12.0,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),

@@ -1,5 +1,3 @@
-// ignore_for_file: invalid_annotation_target
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user_detail.freezed.dart';
@@ -16,6 +14,7 @@ class UserDetail with _$UserDetail {
     String? nip,
     String? jabatan,
     String? img,
+    @JsonKey(name: 'is_agree') String? isAgree,
     @JsonKey(name: 'nm_unit') String? nmUnit,
     String? lat,
     String? long,

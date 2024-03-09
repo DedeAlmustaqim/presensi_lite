@@ -1,4 +1,3 @@
-import 'package:atei_bartim/shared/util/dialog/show_info_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
 
@@ -9,7 +8,8 @@ class MainNavigationController extends State<MainNavigationView> {
   @override
   initState() {
     // UserDataService.init();
-    // isPrivacy();
+    isPrivacy();
+
     instance = this;
     print(privacy);
     super.initState();
@@ -30,10 +30,10 @@ class MainNavigationController extends State<MainNavigationView> {
   }
 
   isPrivacy() async {
-    privacy = await DB.getPrivacy();
-
-    if (privacy == null || !privacy!) {
-      showPrivacyDialog(message: "message", title: "", context: context);
+    bool isAgree = await UserDataService.userData != null &&
+        UserDataService.userData!.isAgree!.toLowerCase() == "true";
+    if (!isAgree) {
+      await showPrivacyDialog(context: context, message: "", title: "");
     }
   }
 }
