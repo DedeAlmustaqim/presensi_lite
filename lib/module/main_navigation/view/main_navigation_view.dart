@@ -78,7 +78,7 @@ class MainNavigationView extends StatefulWidget {
           child: BottomNavigationBar(
             selectedFontSize: 12,
             unselectedFontSize: 10,
-            iconSize: 20,
+            iconSize: 24,
             backgroundColor: Theme.of(context).primaryColorLight,
             selectedItemColor: Colors.white,
             type: BottomNavigationBarType.fixed,
@@ -89,9 +89,9 @@ class MainNavigationView extends StatefulWidget {
             items: [
               BottomNavigationBarItem(
                 icon: Icon(
-                  MdiIcons.viewDashboard,
+                  MdiIcons.home,
                 ),
-                label: "Dashboard",
+                label: "Home",
               ),
               BottomNavigationBarItem(
                 icon: Icon(MdiIcons.qrcodePlus),
@@ -101,11 +101,11 @@ class MainNavigationView extends StatefulWidget {
                 icon: Icon(
                   Icons.person,
                 ),
-                label: "Profile",
+                label: "Profil",
               ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.exit_to_app), // Icon untuk menutup aplikasi
-                label: "Exit",
+                label: "Keluar",
               ),
             ],
           ),

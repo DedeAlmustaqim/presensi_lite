@@ -21,7 +21,7 @@ class TugasDinasController extends State<TugasDinasView> {
   DateTime? dateTugas;
   String? ketTugas;
   String? noSrt = "-";
-  int? partDay = 1;
+  int? partDay;
   bool isConfirmedTrue = false;
 
   confirmData() async {

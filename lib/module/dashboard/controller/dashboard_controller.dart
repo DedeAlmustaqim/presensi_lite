@@ -111,5 +111,9 @@ class DashboardController extends State<DashboardView> {
       setState(() {
         selectedDate = picked;
       });
+    if (picked != null) {
+      // Tambahkan logika atau fungsi yang sesuai dengan kebutuhan aplikasi Anda di sini
+      print("Cari sesuatu dengan tanggal: $picked");
+    }
   }
 }
