@@ -189,19 +189,25 @@ class DashboardView extends StatefulWidget {
                             Text(
                               "Check In",
                               style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.bold,
-                                color: successColor,
-                              ),
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
+                                  color: successColor),
                             ),
-                            Text(
-                              controller.timeCheckIn != null
-                                  ? controller.timeCheckIn.toString()
-                                  : "Belum Check In",
-                              style: TextStyle(
-                                fontSize: 12.0,
-                              ),
-                            ),
+                            controller.idCheckIn != 1
+                                ? Text(
+                                    controller.ketCheckIn ?? 'Belum Check In',
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                    ),
+                                  )
+                                : Text(
+                                    controller.timeCheckIn != null
+                                        ? controller.timeCheckIn.toString()
+                                        : "Belum Check In",
+                                    style: TextStyle(
+                                      fontSize: 10.0,
+                                    ),
+                                  ),
                           ],
                         ),
                         Container(
@@ -214,18 +220,25 @@ class DashboardView extends StatefulWidget {
                             Text(
                               "Check Out",
                               style: TextStyle(
-                                  fontSize: 16.0,
                                   fontWeight: FontWeight.bold,
+                                  fontSize: 14.0,
                                   color: orangeColor),
                             ),
-                            Text(
-                              controller.timeCheckOut != null
-                                  ? controller.timeCheckOut.toString()
-                                  : "Belum Check Out",
-                              style: TextStyle(
-                                fontSize: 12.0,
-                              ),
-                            ),
+                            controller.idCheckIn != 1
+                                ? Text(
+                                    controller.ketCheckOut ?? 'Belum Check Out',
+                                    style: TextStyle(
+                                      fontSize: 10,
+                                    ),
+                                  )
+                                : Text(
+                                    controller.timeCheckOut != null
+                                        ? controller.timeCheckOut.toString()
+                                        : "Belum Check Out",
+                                    style: TextStyle(
+                                      fontSize: 10.0,
+                                    ),
+                                  ),
                           ],
                         ),
                       ],

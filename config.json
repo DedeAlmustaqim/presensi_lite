@@ -20,7 +20,8 @@
         "izin/izin_more_day",
         "cuti/cuti",
         "privacy_disclaimer",
-        "absen_detail"
+        "absen_detail",
+        "absen_detail_search"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

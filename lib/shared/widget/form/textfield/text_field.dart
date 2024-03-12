@@ -87,7 +87,7 @@ class _QTextFieldState extends State<QTextField> {
           suffixIcon:
               widget.suffixIcon != null ? Icon(widget.suffixIcon) : null,
           helperText: widget.helper,
-          labelStyle: TextStyle(fontSize: 12, color: Colors.black54),
+          labelStyle: TextStyle(color: Colors.black54),
         ),
         onChanged: (value) {
           widget.onChanged(value);

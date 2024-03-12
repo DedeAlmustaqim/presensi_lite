@@ -1,39 +1,7 @@
 import 'package:atei_bartim/core.dart';
 
-class IzinService {
-  sendIzinSehari(
-      {required String date,
-      required String noSurat,
-      required String ket,
-      required String jns,
-      required int part}) async {
-    int spaceIndex = date.indexOf(' ');
-    String formattedDate = date.substring(0, spaceIndex);
-
-    try {
-      var response = await Dio().post(
-        "${AppConfig.baseUrl}/api/izin/izin_sehari",
-        options: Options(
-          headers: {
-            "Content-Type": "application/json",
-            "Authorization": "Bearer ${AuthService.token}",
-          },
-        ),
-        data: {
-          "id": AuthService.id,
-          "date": formattedDate,
-          "ket": ket,
-          "jns": jns,
-          "no_surat": noSurat,
-          "part_day": part,
-        },
-      );
-      Map obj = response.data;
-      return obj['data'];
-    } on Exception catch (err) {
-      print(err);
-    }
-  }
+class CutiService {
+  
 
   sendMoreDay({
     required String dateStart,
@@ -47,7 +15,7 @@ class IzinService {
 
     try {
       var response = await Dio().post(
-        "${AppConfig.baseUrl}/api/izin/izin_more_day",
+        "${AppConfig.baseUrl}/api/cuti/cuti_add",
         options: Options(
           headers: {
             "Content-Type": "application/json",

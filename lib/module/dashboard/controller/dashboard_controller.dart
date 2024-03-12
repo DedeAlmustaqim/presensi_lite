@@ -6,9 +6,22 @@ class DashboardController extends State<DashboardView> {
   late DashboardView view;
   String? timeCheckIn;
   String? timeCheckOut;
+  int? idCheckIn;
+  int? idCheckOut;
+  String? ketCheckIn;
+  String? ketCheckOut;
   List imgBanner = [];
   List infoData = [];
-  List newsData = [];
+  // List newsData = [];
+
+  String? timeCheckInD;
+  String? timeCheckOutD;
+  int? idCheckInD;
+  int? idCheckOutD;
+  String? ketCheckInD;
+  String? ketCheckOutD;
+  String? noSrtIn;
+  String? noSrtOut;
 
   @override
   void initState() {
@@ -61,6 +74,10 @@ class DashboardController extends State<DashboardView> {
       setState(() {
         timeCheckIn = data['jam_in'];
         timeCheckOut = data['jam_out'];
+        idCheckIn = data['id_ket_in'];
+        idCheckOut = data['id_ket_out'];
+        ketCheckIn = data['keterangan_in'];
+        ketCheckOut = data['keterangan_out'];
       });
     }
   }
@@ -81,19 +98,19 @@ class DashboardController extends State<DashboardView> {
     });
   }
 
-  getNews() async {
-    var news = await DashboardService().getNews();
-    setState(() {
-      newsData = news;
-    });
-  }
+  // getNews() async {
+  //   var news = await DashboardService().getNews();
+  //   setState(() {
+  //     newsData = news;
+  //   });
+  // }
 
   refresh() async {
     showLoading();
     getToday();
     getBanner();
     getInfo();
-    getNews();
+    // getNews();
     hideLoading();
   }
 
@@ -112,8 +129,37 @@ class DashboardController extends State<DashboardView> {
         selectedDate = picked;
       });
     if (picked != null) {
-      // Tambahkan logika atau fungsi yang sesuai dengan kebutuhan aplikasi Anda di sini
-      print("Cari sesuatu dengan tanggal: $picked");
+      try {
+        showLoading();
+        var userToday = await UserDataService().getDay(date: picked.toString());
+
+        for (var data in userToday!) {
+          setState(() {
+            timeCheckInD = data['jam_in'];
+            timeCheckOutD = data['jam_out'];
+            idCheckInD = data['id_ket_in'];
+            idCheckOutD = data['id_ket_out'];
+            ketCheckInD = data['keterangan_in'];
+            ketCheckOutD = data['keterangan_out'];
+            noSrtIn = data['no_surat_in'];
+            noSrtOut = data['no_surat_out'];
+          });
+        }
+        hideLoading();
+        Get.to(AbsenDetailSearchView(
+          dateDetail: picked.toString(),
+          idCheckIn: idCheckInD!.toInt(),
+          idCheckOut: idCheckOutD!.toInt(),
+          ketCheckIn: ketCheckInD.toString(),
+          ketCheckOut: ketCheckOutD.toString(),
+          timeCheckIn: timeCheckInD.toString(),
+          timeCheckOut: timeCheckOutD.toString(),
+          noSrtIn: noSrtIn,
+          noSrtOut: noSrtOut,
+        ));
+      } on Exception catch (err) {
+        showInfoDialog(message: "Terjadi Kesalahan Data", title: "Gagal");
+      }
     }
   }
 }

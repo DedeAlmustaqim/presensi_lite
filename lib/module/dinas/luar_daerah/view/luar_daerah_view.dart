@@ -73,10 +73,19 @@ class LuarDaerahView extends StatefulWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    OutlinedButton.icon(
-                      icon: Icon(Icons.data_saver_on_outlined),
-                      label: Text("Proses"),
-                      style: OutlinedButton.styleFrom(
+                    ElevatedButton.icon(
+                      icon: Icon(
+                        Icons.data_saver_on_outlined,
+                        size: 16,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        "Proses",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
                         foregroundColor: primaryColor,
                         side: BorderSide(
                           color: primaryColor,
@@ -142,7 +151,7 @@ class LuarDaerahView extends StatefulWidget {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          "Tanggal Berangkat",
+                                          "Tanggal Kembali",
                                           style: TextStyle(
                                             fontSize: 10.0,
                                           ),

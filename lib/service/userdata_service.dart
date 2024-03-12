@@ -86,6 +86,30 @@ class UserDataService {
     return obj['data'];
   }
 
+  String convertDate(String date) {
+    int spaceIndex = date.indexOf(' ');
+    String formattedDate = date.substring(0, spaceIndex);
+    return formattedDate;
+  }
+
+  getDay({required String date}) async {
+    String dateConvert = convertDate(date);
+    var url = AppConfig.baseUrl;
+    var response = await Dio().post(
+      "$url/api/user/get_day",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer ${AuthService.token}",
+        },
+      ),
+      data: {"id": AuthService.id, "date": dateConvert},
+    );
+    Map obj = response.data;
+
+    return obj['data'];
+  }
+
   changePass(String newPass, String confirmPass) async {
     var response = await Dio().post(
       "${AppConfig.baseUrl}/api/user/update_pass",
