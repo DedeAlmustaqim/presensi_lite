@@ -5,9 +5,17 @@ import '../view/absen_detail_search_view.dart';
 class AbsenDetailSearchController extends State<AbsenDetailSearchView> {
   static late AbsenDetailSearchController instance;
   late AbsenDetailSearchView view;
-  String? date;
+  DateTime? date = DashboardController.instance.selectedDate;
+  String convertDate(String date) {
+    int spaceIndex = date.indexOf(' ');
+    String formattedDate = date.substring(0, spaceIndex);
+    return formattedDate;
+  }
+
+  String? dateString;
   @override
   void initState() {
+    getData();
     instance = this;
     super.initState();
   }
@@ -17,4 +25,36 @@ class AbsenDetailSearchController extends State<AbsenDetailSearchView> {
 
   @override
   Widget build(BuildContext context) => widget.build(context, this);
+  String? timeCheckInParam;
+  String? timeCheckOutParam;
+  int? idCheckInParam;
+  int? idCheckOutParam;
+  String? ketCheckInParam;
+  String? ketCheckOutParam;
+  String? noSrtInParam;
+  String? noSrtOutParam;
+
+  // setDate({String? dateParam}) async {
+  //   date = dateParam;
+  //   setState(() {});
+  // }
+
+  getData() async {
+    var dateConvrt = date.toString();
+
+    var userToday = await UserDataService().getDay(date: dateConvrt);
+    for (var data in userToday!) {
+      setState(() {
+        dateString = dateConvrt;
+        timeCheckInParam = data['jam_in'] ?? null;
+        timeCheckOutParam = data['jam_out'] ?? null;
+        idCheckInParam = data['id_ket_in'] ?? null;
+        idCheckOutParam = data['id_ket_out'] ?? null;
+        ketCheckInParam = data['keterangan_in'] ?? null;
+        ketCheckOutParam = data['keterangan_out'] ?? null;
+        noSrtInParam = data['no_surat_in'] ?? null;
+        noSrtOutParam = data['no_surat_out'] ?? null;
+      });
+    }
+  }
 }

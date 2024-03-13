@@ -130,33 +130,37 @@ class DashboardController extends State<DashboardView> {
       });
     if (picked != null) {
       try {
-        showLoading();
-        var userToday = await UserDataService().getDay(date: picked.toString());
+        Get.to(AbsenDetailSearchView());
+        // AbsenDetailSearchController().setDate(dateParam: picked.toString());
+        // showLoading();
+        // var userToday = await UserDataService().getDay(date: picked.toString());
+        // print(userToday);
+        // print(picked);
 
-        for (var data in userToday!) {
-          setState(() {
-            timeCheckInD = data['jam_in'];
-            timeCheckOutD = data['jam_out'];
-            idCheckInD = data['id_ket_in'];
-            idCheckOutD = data['id_ket_out'];
-            ketCheckInD = data['keterangan_in'];
-            ketCheckOutD = data['keterangan_out'];
-            noSrtIn = data['no_surat_in'];
-            noSrtOut = data['no_surat_out'];
-          });
-        }
-        hideLoading();
-        Get.to(AbsenDetailSearchView(
-          dateDetail: picked.toString(),
-          idCheckIn: idCheckInD!.toInt(),
-          idCheckOut: idCheckOutD!.toInt(),
-          ketCheckIn: ketCheckInD.toString(),
-          ketCheckOut: ketCheckOutD.toString(),
-          timeCheckIn: timeCheckInD.toString(),
-          timeCheckOut: timeCheckOutD.toString(),
-          noSrtIn: noSrtIn,
-          noSrtOut: noSrtOut,
-        ));
+        // for (var data in userToday!) {
+        //   setState(() {
+        //     timeCheckInD = data['jam_in'];
+        //     timeCheckOutD = data['jam_out'] ?? null;
+        //     idCheckInD = data['id_ket_in'] ?? null;
+        //     idCheckOutD = data['id_ket_out'] ?? null;
+        //     ketCheckInD = data['keterangan_in'] ?? null;
+        //     ketCheckOutD = data['keterangan_out'] ?? null;
+        //     noSrtIn = data['no_surat_in'] ?? null;
+        //     noSrtOut = data['no_surat_out'] ?? null;
+        //   });
+        // }
+        // hideLoading();
+        // Get.to(AbsenDetailSearchView(
+        //   dateDetailParam: picked.toString() ?? null,
+        //   idCheckInParam: idCheckInD!.toInt() ?? 0,
+        //   idCheckOutParam: idCheckOutD!.toInt() ?? 0,
+        //   ketCheckInParam: ketCheckInD.toString() ?? null,
+        //   ketCheckOutParam: ketCheckOutD.toString() ?? null,
+        //   timeCheckInParam: timeCheckInD.toString() ?? null,
+        //   timeCheckOutParam: timeCheckOutD.toString() ?? null,
+        //   noSrtInParam: noSrtIn,
+        //   noSrtOutParam: noSrtOut,
+        // ));
       } on Exception catch (err) {
         showInfoDialog(message: "Terjadi Kesalahan Data", title: "Gagal");
       }

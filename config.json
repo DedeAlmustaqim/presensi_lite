@@ -21,7 +21,8 @@
         "cuti/cuti",
         "privacy_disclaimer",
         "absen_detail",
-        "absen_detail_search"
+        "absen_detail_search",
+        "logout_confirm"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

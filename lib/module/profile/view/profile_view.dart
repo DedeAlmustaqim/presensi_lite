@@ -396,7 +396,7 @@ class ProfileView extends StatefulWidget {
                   Divider(),
                   InkWell(
                     onTap: () {
-                      controller.doLogout();
+                      Get.to(LogoutConfirmView());
                     },
                     child: ListTile(
                       leading: Icon(Icons.exit_to_app),

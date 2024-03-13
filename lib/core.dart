@@ -44,6 +44,8 @@ export 'package:atei_bartim/module/izin/izin_tab/controller/izin_tab_controller.
 export 'package:atei_bartim/module/izin/izin_tab/view/izin_tab_view.dart';
 export 'package:atei_bartim/module/kehadiran/hadir_list/controller/hadir_list_controller.dart';
 export 'package:atei_bartim/module/kehadiran/hadir_list/view/hadir_list_view.dart';
+export 'package:atei_bartim/module/logout_confirm/controller/logout_confirm_controller.dart';
+export 'package:atei_bartim/module/logout_confirm/view/logout_confirm_view.dart';
 export 'package:atei_bartim/module/main_navigation/controller/main_navigation_controller.dart';
 export 'package:atei_bartim/module/main_navigation/view/main_navigation_view.dart';
 export 'package:atei_bartim/module/news_detail/controller/news_detail_controller.dart';

@@ -3,27 +3,18 @@ import 'package:atei_bartim/core.dart';
 import '../controller/absen_detail_search_controller.dart';
 
 class AbsenDetailSearchView extends StatefulWidget {
-  final String? dateDetail;
-  final String? timeCheckIn;
-  final String? timeCheckOut;
-  final int? idCheckIn;
-  final int? idCheckOut;
-  final String? ketCheckIn;
-  final String? ketCheckOut;
-  final String? noSrtIn;
-  final String? noSrtOut;
-  AbsenDetailSearchView(
-      {Key? key,
-      this.dateDetail,
-      this.timeCheckIn,
-      this.timeCheckOut,
-      this.idCheckIn,
-      this.idCheckOut,
-      this.ketCheckIn,
-      this.ketCheckOut,
-      this.noSrtIn,
-      this.noSrtOut})
-      : super(key: key);
+  // final String? dateDetailParam;
+  // final String? timeCheckInParam;
+  // final String? timeCheckOutParam;
+  // final int? idCheckInParam;
+  // final int? idCheckOutParam;
+  // final String? ketCheckInParam;
+  // final String? ketCheckOutParam;
+  // final String? noSrtInParam;
+  // final String? noSrtOutParam;
+  AbsenDetailSearchView({
+    Key? key,
+  }) : super(key: key);
 
   Widget build(context, AbsenDetailSearchController controller) {
     String convertDate(String date) {
@@ -35,7 +26,13 @@ class AbsenDetailSearchView extends StatefulWidget {
     controller.view = this;
     return Scaffold(
       appBar: AppBar(
-        title: Text(convertDate(dateDetail!).toString()),
+        title: Text(
+          DateFormat('EEEE, dd MMMM yyyy', 'id')
+              .format(controller.date ?? DateTime.now()),
+          style: TextStyle(
+            fontSize: 14,
+          ),
+        ),
         actions: [],
       ),
       body: SingleChildScrollView(
@@ -62,16 +59,16 @@ class AbsenDetailSearchView extends StatefulWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        idCheckIn != 1
+                        controller.idCheckInParam != 1
                             ? Text(
-                                ketCheckIn ?? 'Belum Check In',
+                                controller.ketCheckInParam ?? 'Belum Check In',
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
                                 ),
                               )
                             : Text(
-                                timeCheckIn != null
+                                controller.timeCheckInParam != null
                                     ? "Hadir"
                                     : "Belum Check In",
                                 style: TextStyle(
@@ -82,13 +79,13 @@ class AbsenDetailSearchView extends StatefulWidget {
                       ],
                     ),
                     Divider(),
-                    idCheckIn == 1
+                    controller.idCheckInParam == 1
                         //sudah absen
                         ? Row(
                             children: [
                               Expanded(
                                 child: Text(
-                                  'Anda telah melakukan Check In pada jam ${timeCheckIn}',
+                                  'Anda telah melakukan Check In pada jam ${controller.timeCheckInParam}',
                                   style: TextStyle(
                                     fontSize: 12.0,
                                   ),
@@ -98,16 +95,18 @@ class AbsenDetailSearchView extends StatefulWidget {
                           )
 
                         // keterangan
-                        : idCheckIn != null
+                        : controller.idCheckInParam != null
                             ? Column(
                                 children: [
                                   buildRow(
-                                      label: "Nomor Surat", value: noSrtIn),
+                                      label: "Nomor Surat",
+                                      value: controller.noSrtInParam),
                                   const SizedBox(
                                     height: 5.0,
                                   ),
                                   buildRow(
-                                      label: "Keterangan", value: ketCheckIn)
+                                      label: "Keterangan",
+                                      value: controller.ketCheckInParam)
                                 ],
                               )
                             // belum absen
@@ -153,16 +152,17 @@ class AbsenDetailSearchView extends StatefulWidget {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        idCheckOut != 1
+                        controller.idCheckOutParam != 1
                             ? Text(
-                                ketCheckOut ?? 'Belum Check Out',
+                                controller.ketCheckOutParam ??
+                                    'Belum Check Out',
                                 style: TextStyle(
                                   fontSize: 12,
                                   fontWeight: FontWeight.bold,
                                 ),
                               )
                             : Text(
-                                timeCheckOut != null
+                                controller.timeCheckOutParam != null
                                     ? "Hadir"
                                     : "Belum Check Out",
                                 style: TextStyle(
@@ -173,13 +173,13 @@ class AbsenDetailSearchView extends StatefulWidget {
                       ],
                     ),
                     Divider(),
-                    idCheckOut == 1
+                    controller.idCheckOutParam == 1
                         //sudah absen
                         ? Row(
                             children: [
                               Expanded(
                                 child: Text(
-                                  'Anda telah melakukan Check Out pada jam ${timeCheckOut}',
+                                  'Anda telah melakukan Check Out pada jam ${controller.timeCheckOutParam}',
                                   style: TextStyle(
                                     fontSize: 12.0,
                                   ),
@@ -189,16 +189,18 @@ class AbsenDetailSearchView extends StatefulWidget {
                           )
 
                         // keterangan
-                        : ketCheckOut != null
+                        : controller.ketCheckOutParam != null
                             ? Column(
                                 children: [
                                   buildRow(
-                                      label: "Nomor Surat", value: noSrtOut),
+                                      label: "Nomor Surat",
+                                      value: controller.noSrtOutParam),
                                   const SizedBox(
                                     height: 5.0,
                                   ),
                                   buildRow(
-                                      label: "Keterangan", value: ketCheckOut)
+                                      label: "Keterangan",
+                                      value: controller.ketCheckOutParam)
                                 ],
                               )
                             // belum absen
