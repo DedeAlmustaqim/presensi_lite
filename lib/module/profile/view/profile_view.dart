@@ -46,7 +46,7 @@ class ProfileView extends StatefulWidget {
                                 controller.getImage();
                               },
                               child: Container(
-                                padding: const EdgeInsets.all(5.0),
+                                padding: EdgeInsets.all(5.0),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(6.0),
@@ -64,7 +64,7 @@ class ProfileView extends StatefulWidget {
                           ],
                         ),
                       ),
-                    const SizedBox(
+                    SizedBox(
                       height: 5.0,
                     ),
                     Row(
@@ -86,7 +86,7 @@ class ProfileView extends StatefulWidget {
                               ),
                             ),
                           ),
-                        const SizedBox(
+                        SizedBox(
                           width: 5.0,
                         ),
                         if (controller.imageFile != null)
@@ -127,6 +127,7 @@ class ProfileView extends StatefulWidget {
                     ),
                   ),
                   Divider(),
+                  
                   if (controller.isDetail)
                     Container(
                       padding: EdgeInsets.all(10.0),
@@ -382,18 +383,16 @@ class ProfileView extends StatefulWidget {
                     ),
                   ),
                   Divider(),
-                  ListTile(
+                  listTileWidget(
+                    title: 'Kebijakan dan Privasi',
                     onTap: () {
                       UrlLauncher.privacyPolicy();
                     },
-                    leading: Icon(Icons.privacy_tip),
-                    minLeadingWidth: 0.0,
-                    title: Text(
-                      'Kebijakan dan Privasi',
-                      style: TextStyle(color: textColor1),
+                    icon: Icon(
+                      Icons.privacy_tip,
+                      size: 24.0,
                     ),
                   ),
-                  Divider(),
                   InkWell(
                     onTap: () {
                       Get.to(LogoutConfirmView());
@@ -419,4 +418,18 @@ class ProfileView extends StatefulWidget {
 
   @override
   State<ProfileView> createState() => ProfileController();
+}
+
+Widget listTileWidget({Function? onTap, String? title, Icon? icon}) {
+  return ListTile(
+    onTap: () {
+      UrlLauncher.privacyPolicy();
+    },
+    leading: icon,
+    minLeadingWidth: 0.0,
+    title: Text(
+      title.toString(),
+      style: TextStyle(color: textColor1),
+    ),
+  );
 }

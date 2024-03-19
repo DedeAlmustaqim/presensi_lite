@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
-import '../controller/absen_detail_search_controller.dart';
 
 class AbsenDetailSearchView extends StatefulWidget {
   // final String? dateDetailParam;
@@ -17,12 +16,7 @@ class AbsenDetailSearchView extends StatefulWidget {
   }) : super(key: key);
 
   Widget build(context, AbsenDetailSearchController controller) {
-    String convertDate(String date) {
-      int spaceIndex = date.indexOf(' ');
-      String formattedDate = date.substring(0, spaceIndex);
-      return formattedDate;
-    }
-
+   
     controller.view = this;
     return Scaffold(
       appBar: AppBar(

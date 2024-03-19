@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
-import '../controller/logout_confirm_controller.dart';
 
 class LogoutConfirmView extends StatefulWidget {
   LogoutConfirmView({Key? key}) : super(key: key);
@@ -66,7 +65,12 @@ class LogoutConfirmView extends StatefulWidget {
                       onPressed: () {
                         controller.doLogout();
                       },
-                      child: const Text("Ya Saya tetap Logout"),
+                      child: const Text(
+                        "Ya Saya tetap Logout",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       width: 20.0,
@@ -81,7 +85,12 @@ class LogoutConfirmView extends StatefulWidget {
                       onPressed: () {
                         Get.to(MainNavigationView());
                       },
-                      child: const Text("Batalkan Logout"),
+                      child: const Text(
+                        "Batalkan Logout",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
                     ),
                   ],
                 ),

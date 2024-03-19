@@ -43,7 +43,9 @@ class LocationService {
   Future getLocation() async {
     try {
       Position position = await Geolocator.getCurrentPosition(
+        forceAndroidLocationManager: true,
           desiredAccuracy: LocationAccuracy.high);
+          
       return position;
     } catch (e) {}
   }

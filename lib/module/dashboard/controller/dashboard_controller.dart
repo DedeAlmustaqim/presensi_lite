@@ -12,7 +12,6 @@ class DashboardController extends State<DashboardView> {
   String? ketCheckOut;
   List imgBanner = [];
   List infoData = [];
-  // List newsData = [];
 
   String? timeCheckInD;
   String? timeCheckOutD;
@@ -28,7 +27,6 @@ class DashboardController extends State<DashboardView> {
     getToday();
     getBanner();
     getInfo();
-    // getNews();
     UserDataService.init();
     instance = this;
     super.initState();
@@ -98,13 +96,6 @@ class DashboardController extends State<DashboardView> {
     });
   }
 
-  // getNews() async {
-  //   var news = await DashboardService().getNews();
-  //   setState(() {
-  //     newsData = news;
-  //   });
-  // }
-
   refresh() async {
     showLoading();
     getToday();
@@ -131,37 +122,7 @@ class DashboardController extends State<DashboardView> {
     if (picked != null) {
       try {
         Get.to(AbsenDetailSearchView());
-        // AbsenDetailSearchController().setDate(dateParam: picked.toString());
-        // showLoading();
-        // var userToday = await UserDataService().getDay(date: picked.toString());
-        // print(userToday);
-        // print(picked);
-
-        // for (var data in userToday!) {
-        //   setState(() {
-        //     timeCheckInD = data['jam_in'];
-        //     timeCheckOutD = data['jam_out'] ?? null;
-        //     idCheckInD = data['id_ket_in'] ?? null;
-        //     idCheckOutD = data['id_ket_out'] ?? null;
-        //     ketCheckInD = data['keterangan_in'] ?? null;
-        //     ketCheckOutD = data['keterangan_out'] ?? null;
-        //     noSrtIn = data['no_surat_in'] ?? null;
-        //     noSrtOut = data['no_surat_out'] ?? null;
-        //   });
-        // }
-        // hideLoading();
-        // Get.to(AbsenDetailSearchView(
-        //   dateDetailParam: picked.toString() ?? null,
-        //   idCheckInParam: idCheckInD!.toInt() ?? 0,
-        //   idCheckOutParam: idCheckOutD!.toInt() ?? 0,
-        //   ketCheckInParam: ketCheckInD.toString() ?? null,
-        //   ketCheckOutParam: ketCheckOutD.toString() ?? null,
-        //   timeCheckInParam: timeCheckInD.toString() ?? null,
-        //   timeCheckOutParam: timeCheckOutD.toString() ?? null,
-        //   noSrtInParam: noSrtIn,
-        //   noSrtOutParam: noSrtOut,
-        // ));
-      } on Exception catch (err) {
+      } on Exception {
         showInfoDialog(message: "Terjadi Kesalahan Data", title: "Gagal");
       }
     }

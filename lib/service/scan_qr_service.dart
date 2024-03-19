@@ -1,4 +1,5 @@
 import 'package:atei_bartim/core.dart';
+import 'package:flutter/material.dart';
 
 class ScanQr {
   final url = AppConfig.baseUrl;
@@ -20,7 +21,15 @@ class ScanQr {
       return obj['data'];
     } on Exception {
       hideLoading();
-      showInfoDialog(message: "Koneksi ke server gagal", title: "Error");
+      showInfoDialog(
+        message: "Koneksi ke server gagal",
+        title: "Error",
+        icon: Icon(
+          Icons.error,
+          color: Colors.red,
+          size: 24.0,
+        ),
+      );
     }
   }
 
@@ -43,7 +52,15 @@ class ScanQr {
       return obj['data'];
     } on Exception {
       hideLoading();
-      showInfoDialog(message: "Koneksi ke server gagal", title: "Error");
+      showInfoDialog(
+        message: "Koneksi ke server gagal",
+        title: "Error",
+        icon: Icon(
+          Icons.error,
+          color: Colors.red,
+          size: 24.0,
+        ),
+      );
     }
   }
 
@@ -65,7 +82,15 @@ class ScanQr {
       Map obj = response.data;
       return obj['data'];
     } on Exception {
-      showInfoDialog(message: "Koneksi ke server gagal", title: "Error");
+      showInfoDialog(
+        message: "Koneksi ke server gagal",
+        title: "Error",
+        icon: Icon(
+          Icons.error,
+          color: Colors.red,
+          size: 24.0,
+        ),
+      );
     }
   }
 }

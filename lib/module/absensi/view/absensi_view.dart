@@ -83,7 +83,7 @@ class AbsensiView extends StatefulWidget {
                 children: [
                   Container(
                     padding: EdgeInsets.all(5.0),
-                    height: 85,
+                    // height: 60,
                     width: 200,
                     decoration: BoxDecoration(
                       boxShadow: [
@@ -117,31 +117,13 @@ class AbsensiView extends StatefulWidget {
                           ],
                         ),
                         Divider(),
-                        Expanded(
-                          child: Text(
-                            UserDataService.userData!.nmUnit.toString(),
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontSize: 10.0,
-                            ),
+                        Text(
+                          UserDataService.userData!.nmUnit.toString(),
+                          maxLines: 5,
+                          style: TextStyle(
+                            fontSize: 10.0,
                           ),
                         ),
-                        // Row(
-                        //   children: [
-                        //     Text(
-                        //       "Radius (m) : ",
-                        //       style: TextStyle(
-                        //         fontSize: 10.0,
-                        //       ),
-                        //     ),
-                        //     Text(
-                        //       UserDataService.userData!.radius.toString(),
-                        //       style: TextStyle(
-                        //         fontSize: 10.0,
-                        //       ),
-                        //     ),
-                        //   ],
-                        // ),
                       ],
                     ),
                   ),

@@ -61,13 +61,6 @@ class DinasService {
       );
       Map obj = response.data;
       return obj['data'];
-      // bool success = obj["success"];
-
-      // showInfoDialog(message: '{$data["msg"]}', title: '{$data["judul"]}');
-      // print(obj);
-
-      // print(token);
-      // print('${dateStartConvert} , ${dateEndConvert}, ${ket}, ${noSurat}');
     } on Exception catch (err) {
       print(err);
     }
@@ -101,13 +94,6 @@ class DinasService {
       );
       Map obj = response.data;
       return obj['data'];
-      // bool success = obj["success"];
-
-      // showInfoDialog(message: '{$data["msg"]}', title: '{$data["judul"]}');
-      // print(obj);
-
-      // print(token);
-      // print('${dateStartConvert} , ${dateEndConvert}, ${ket}, ${noSurat}');
     } on Exception catch (err) {
       print(err);
     }

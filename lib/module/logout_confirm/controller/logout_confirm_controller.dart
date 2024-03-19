@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
-import '../view/logout_confirm_view.dart';
 
 class LogoutConfirmController extends State<LogoutConfirmView> {
   static late LogoutConfirmController instance;
@@ -47,7 +46,7 @@ class LogoutConfirmController extends State<LogoutConfirmView> {
                 Navigator.pop(context);
               },
               child: const Text(
-                "No",
+                "Batal",
                 style: TextStyle(color: Colors.black), // Warna teks tombol "No"
               ),
             ),
@@ -67,7 +66,7 @@ class LogoutConfirmController extends State<LogoutConfirmView> {
                 }
               },
               child: const Text(
-                "Yes",
+                "Ya",
                 style:
                     TextStyle(color: Colors.white), // Warna teks tombol "Yes"
               ),

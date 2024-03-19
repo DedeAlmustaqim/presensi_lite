@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 ThemeData getDefaultTheme() {
   return ThemeData().copyWith(
-    useMaterial3: false,
+    // ignore: deprecated_member_use
+    useMaterial3: true,
     primaryColor: Colors.white,
     primaryColorLight: primaryColor,
     scaffoldBackgroundColor: scaffoldBackgroundColor,

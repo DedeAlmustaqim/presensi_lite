@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
+import 'package:tap_debouncer/tap_debouncer.dart';
 
 class IzinDayView extends StatefulWidget {
   const IzinDayView({Key? key}) : super(key: key);
@@ -122,6 +123,7 @@ class IzinDayView extends StatefulWidget {
                           ),
                           style: ElevatedButton.styleFrom(
                             foregroundColor: primaryColor,
+                            backgroundColor: primaryColor,
                             side: BorderSide(
                               color: primaryColor,
                             ),
@@ -270,17 +272,26 @@ class IzinDayView extends StatefulWidget {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceAround,
                                           children: [
-                                            OutlinedButton.icon(
-                                              icon: Icon(Icons.send),
-                                              label: Text("Kirim"),
-                                              style: OutlinedButton.styleFrom(
-                                                foregroundColor: primaryColor,
-                                                side: BorderSide(
-                                                  color: primaryColor,
-                                                ),
-                                              ),
-                                              onPressed: () {
-                                                controller.sendIzinSehari();
+                                            TapDebouncer(
+                                              onTap: () =>
+                                                  controller.sendIzinSehari(),
+                                              builder: (BuildContext context,
+                                                  TapDebouncerFunc? onTap) {
+                                                return OutlinedButton.icon(
+                                                  icon: Icon(Icons.send),
+                                                  label: Text("Kirim"),
+                                                  style:
+                                                      OutlinedButton.styleFrom(
+                                                    foregroundColor:
+                                                        primaryColor,
+                                                    side: BorderSide(
+                                                      color: primaryColor,
+                                                    ),
+                                                  ),
+                                                  onPressed: () {
+                                                    controller.sendIzinSehari();
+                                                  },
+                                                );
                                               },
                                             ),
                                             OutlinedButton.icon(

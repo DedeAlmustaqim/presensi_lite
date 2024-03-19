@@ -84,10 +84,23 @@ class AbsensiController extends State<AbsensiView> {
 
     showLoading(message: "Cek Lokasi ...");
 
-    var user = await ScanQr().checkLocation(
-        position.latitude.toString(), position.longitude.toString());
+    if (position.isMocked) {
+      hideLoading();
+      showInfoDialog(
+        message: "Anda terdeteksi menggunakan lokasi palsu",
+        title: "Lokasi Palsu Terdeteksi",
+        icon: const Icon(
+          Icons.location_off_outlined,
+          color: Colors.red,
+          size: 24.0,
+        ),
+      );
+    } else {
+      var user = await ScanQr().checkLocation(
+          position.latitude.toString(), position.longitude.toString());
 
-    return user;
+      return user;
+    }
   }
 
   void _postCheckIn() async {
@@ -124,7 +137,7 @@ class AbsensiController extends State<AbsensiView> {
         title: "Error",
         icon: Icon(
           Icons.error,
-          size: 60.0,
+          size: 24.0,
           color: Colors.red,
         ),
       );

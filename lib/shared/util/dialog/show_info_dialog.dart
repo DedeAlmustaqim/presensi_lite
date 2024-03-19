@@ -28,6 +28,8 @@ Future showInfoDialog({
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             icon ??
                                 const Icon(

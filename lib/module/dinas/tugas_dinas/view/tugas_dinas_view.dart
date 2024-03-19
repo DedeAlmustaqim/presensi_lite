@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
+import 'package:tap_debouncer/tap_debouncer.dart';
 
 class TugasDinasView extends StatefulWidget {
   const TugasDinasView({Key? key}) : super(key: key);
@@ -103,6 +104,7 @@ class TugasDinasView extends StatefulWidget {
                           ),
                           style: ElevatedButton.styleFrom(
                             foregroundColor: primaryColor,
+                            backgroundColor: primaryColor,
                             side: BorderSide(
                               color: primaryColor,
                             ),
@@ -251,17 +253,26 @@ class TugasDinasView extends StatefulWidget {
                                           mainAxisAlignment:
                                               MainAxisAlignment.spaceAround,
                                           children: [
-                                            OutlinedButton.icon(
-                                              icon: Icon(Icons.send),
-                                              label: Text("Kirim"),
-                                              style: OutlinedButton.styleFrom(
-                                                foregroundColor: primaryColor,
-                                                side: BorderSide(
-                                                  color: primaryColor,
-                                                ),
-                                              ),
-                                              onPressed: () {
-                                                controller.sendTugasData();
+                                            TapDebouncer(
+                                              onTap: () =>
+                                                  controller.sendTugasData(),
+                                              builder: (BuildContext context,
+                                                  TapDebouncerFunc? onTap) {
+                                                return OutlinedButton.icon(
+                                                  icon: Icon(Icons.send),
+                                                  label: Text("Kirim"),
+                                                  style:
+                                                      OutlinedButton.styleFrom(
+                                                    foregroundColor:
+                                                        primaryColor,
+                                                    side: BorderSide(
+                                                      color: primaryColor,
+                                                    ),
+                                                  ),
+                                                  onPressed: () {
+                                                    controller.sendTugasData();
+                                                  },
+                                                );
                                               },
                                             ),
                                             OutlinedButton.icon(

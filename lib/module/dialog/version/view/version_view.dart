@@ -28,26 +28,13 @@ class VersionView extends StatefulWidget {
                 height: 120.0,
                 fit: BoxFit.fill,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.info_outline,
-                    size: 24.0,
-                    color: Colors.white,
-                  ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Text(
-                    "Pembaharuan Aplikasi Tersedia",
-                    style: TextStyle(
-                      fontSize: 16.0,
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                ],
+              Text(
+                "Pembaharuan Aplikasi Tersedia",
+                style: TextStyle(
+                  fontSize: 16.0,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(
                 height: 5.0,

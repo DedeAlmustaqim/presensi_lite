@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
-import '../view/absen_detail_search_view.dart';
 
 class AbsenDetailSearchController extends State<AbsenDetailSearchView> {
   static late AbsenDetailSearchController instance;

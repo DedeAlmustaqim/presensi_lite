@@ -1,4 +1,5 @@
 import 'package:atei_bartim/core.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
@@ -43,11 +44,26 @@ class AuthService {
       }
       if (!status) {
         hideLoading();
-        showInfoDialog(message: userMap['message'], title: "Gagal Login");
+        showInfoDialog(
+          message: userMap['message'],
+          title: "Gagal Login",
+          icon: Icon(
+            Icons.error_outline,
+            color: Colors.red,
+            size: 24.0,
+          ),
+        );
       }
     } on Exception {
       hideLoading();
-      showInfoDialog(message: "Terjadi Kesalahan", title: "Error");
+      showInfoDialog(
+        message: "Terjadi Kesalahan",
+        title: "Error",
+        icon: const Icon(
+          Icons.error,
+          size: 24.0,
+        ),
+      );
     }
   }
 

@@ -29,29 +29,16 @@ class MaintenanceView extends StatefulWidget {
                 height: 120.0,
                 fit: BoxFit.fill,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    MdiIcons.serverNetworkOff,
-                    size: 24.0,
+              Flexible(
+                child: Text(
+                  "Sepertinya anda tidak terhubung ke Server kami / Server kami dalam gangguan",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 16.0,
                     color: Colors.white,
+                    fontWeight: FontWeight.bold,
                   ),
-                  SizedBox(
-                    width: 10.0,
-                  ),
-                  Flexible(
-                    child: Text(
-                      "Sepertinya anda tidak terhubung ke Server kami",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        color: Colors.orange,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
               const SizedBox(
                 height: 10.0,

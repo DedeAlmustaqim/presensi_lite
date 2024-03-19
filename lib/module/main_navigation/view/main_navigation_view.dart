@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:atei_bartim/core.dart';
-import 'package:flutter/services.dart';
 
 class MainNavigationView extends StatefulWidget {
   MainNavigationView({Key? key}) : super(key: key);
@@ -9,7 +8,7 @@ class MainNavigationView extends StatefulWidget {
     controller.view = this;
 
     return DefaultTabController(
-      length: 4,
+      length: 3,
       initialIndex: controller.selectedIndex,
       child: Scaffold(
         body: IndexedStack(
@@ -18,59 +17,6 @@ class MainNavigationView extends StatefulWidget {
             DashboardView(),
             AbsensiView(),
             ProfileView(),
-            Container(
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Text(
-                      "Keluar dari Aplikasi ATEI..?",
-                      style: TextStyle(
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 100.0,
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          OutlinedButton(
-                            style: OutlinedButton.styleFrom(
-                              foregroundColor: primaryColor,
-                              side: BorderSide(
-                                color: primaryColor,
-                              ),
-                            ),
-                            onPressed: () {
-                              SystemNavigator.pop();
-                            },
-                            child: Text("Ya"),
-                          ),
-                          SizedBox(
-                            width: 20.0,
-                          ),
-                          OutlinedButton(
-                            style: OutlinedButton.styleFrom(
-                              foregroundColor: dangerColor,
-                              side: BorderSide(
-                                color: dangerColor,
-                              ),
-                            ),
-                            onPressed: () {
-                              Get.offAll(MainNavigationView());
-                            },
-                            child: Text("Tidak"),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
           ],
         ),
         bottomNavigationBar: Container(
@@ -102,10 +48,6 @@ class MainNavigationView extends StatefulWidget {
                   Icons.person,
                 ),
                 label: "Profil",
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.exit_to_app), // Icon untuk menutup aplikasi
-                label: "Keluar",
               ),
             ],
           ),
