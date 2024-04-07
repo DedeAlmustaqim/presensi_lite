@@ -15,9 +15,10 @@ class CutiController extends State<CutiView> {
   confirmData() async {
     bool isNotValid = formKey.currentState!.validate() == false;
     if (isNotValid) {
+      isConfirmedTrue = false;
       return;
     }
-
+    isConfirmedTrue = true;
     setState(() {});
   }
 

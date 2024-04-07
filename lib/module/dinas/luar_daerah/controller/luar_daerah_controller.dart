@@ -22,14 +22,16 @@ class LuarDaerahController extends State<LuarDaerahView> {
   String? ketDl;
   String? noSrt;
 
+  bool isConfirmedTrue = false;
+
   confirmData() async {
     bool isNotValid = formKey.currentState!.validate() == false;
     if (isNotValid) {
+      isConfirmedTrue = false;
       return;
     }
-
+    isConfirmedTrue = true;
     setState(() {});
-    // print('${dateStart}, ${dateEnd}, ${ketDd}, ${noSrt}');
   }
 
   sendLuarDaerah() async {
@@ -41,7 +43,6 @@ class LuarDaerahController extends State<LuarDaerahView> {
           noSurat: noSrt.toString(),
           ket: ketDl.toString());
       bool success = respond['success'];
-      print(success);
       if (success) {
         hideLoading();
         await showInfoDialog(

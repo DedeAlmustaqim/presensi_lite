@@ -114,10 +114,8 @@ class AbsensiController extends State<AbsensiView> {
   }
 
   void _postCheckIn() async {
+    final result = await BarcodeScanner.scan();
     try {
-      final result = await BarcodeScanner.scan();
-      print('cancel ${result.type}');
-
       var postQr = await ScanQr().postQrIn(result.rawContent);
       bool success = postQr['success'];
       String judul = postQr['judul'];
@@ -129,19 +127,20 @@ class AbsensiController extends State<AbsensiView> {
         icon: success
             ? Icon(
                 Icons.check,
-                size: 24.0,
+                size: 60.0,
                 color: successColor,
               )
             : Icon(
                 Icons.warning_amber,
-                size: 24.0,
+                size: 60.0,
                 color: orangeColor,
               ),
-        onpress: () => Get.to(MainNavigationView()),
       );
       setState(() {
         isLoading = false;
       });
+      await HadirListController.instance.getRekap();
+      await DashboardController.instance.getToday();
     } catch (e) {
       showInfoDialog(
         message: "Terjadi Kesalahan",
@@ -159,8 +158,8 @@ class AbsensiController extends State<AbsensiView> {
   }
 
   void _postCheckOut() async {
+    final result = await BarcodeScanner.scan();
     try {
-      final result = await BarcodeScanner.scan();
       var postQr = await ScanQr().postQrOut(result.rawContent);
       bool success = postQr['success'];
       String judul = postQr['judul'];
@@ -172,17 +171,17 @@ class AbsensiController extends State<AbsensiView> {
         icon: success
             ? Icon(
                 Icons.check,
-                size: 24.0,
+                size: 60.0,
                 color: successColor,
               )
             : Icon(
                 Icons.warning_amber,
-                size: 24.0,
+                size: 60.0,
                 color: orangeColor,
               ),
-        onpress: () => Get.to(MainNavigationView()),
       );
-
+      HadirListController.instance.getRekap();
+      DashboardController.instance.getToday();
       setState(() {
         isLoading = false;
       });

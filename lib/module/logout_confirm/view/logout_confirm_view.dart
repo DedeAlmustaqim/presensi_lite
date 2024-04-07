@@ -40,7 +40,7 @@ class LogoutConfirmView extends StatefulWidget {
                 height: 5.0,
               ),
               Text(
-                "Sekarang setiap kali anda logout kami akan membatasi akun anda untuk login kembali setelah 12 jam",
+                "Sekarang setiap kali anda logout kami akan membatasi akun anda untuk login kembali setelah 17 jam",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 14.0,
@@ -83,7 +83,7 @@ class LogoutConfirmView extends StatefulWidget {
                         ),
                       ),
                       onPressed: () {
-                        Get.to(MainNavigationView());
+                        Get.offAll(MainNavigationView());
                       },
                       child: const Text(
                         "Batalkan Logout",

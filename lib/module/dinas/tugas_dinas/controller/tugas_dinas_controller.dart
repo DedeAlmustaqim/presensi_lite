@@ -26,11 +26,11 @@ class TugasDinasController extends State<TugasDinasView> {
   confirmData() async {
     bool isNotValid = formKey.currentState!.validate() == false;
     if (isNotValid) {
+      isConfirmedTrue = false;
       return;
     }
-
+    isConfirmedTrue = true;
     setState(() {});
-    print('${dateTugas}, ${ketTugas}, ${noSrt}, ${partDay}');
   }
 
   sendTugasData() async {

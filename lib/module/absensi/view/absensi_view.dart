@@ -26,7 +26,6 @@ class AbsensiView extends StatefulWidget {
             width: 10.0,
           ),
         ],
-        toolbarHeight: MediaQuery.of(context).size.height * 0.05,
         backgroundColor: primaryColor,
         title: Container(
           child: Column(
@@ -40,8 +39,11 @@ class AbsensiView extends StatefulWidget {
                   color: Colors.white,
                 ),
               ),
+              const SizedBox(
+                height: 5.0,
+              ),
               Text(
-                "Lakukan Absensi dengan menekan tombol CHECK IN/CHEK COUT",
+                "Lakukan Absensi dengan menekan tombol CHECK IN/CHECK OUT",
                 style: TextStyle(
                   fontSize: 9.0,
                   color: Colors.white,
@@ -175,183 +177,210 @@ class AbsensiView extends StatefulWidget {
               bottom: 20,
               left: 20,
               right: 20,
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.18,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).primaryColor,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(8.0),
-                  ),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0x19000000),
-                      blurRadius: 24,
-                      offset: Offset(0, 11),
-                    ),
-                  ],
-                ),
-                child: Container(
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 100,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.cover,
-                            image: CachedNetworkImageProvider(
-                                UserDataService.userData!.img.toString()),
-                          ),
+              child: Column(
+                children: [
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.18,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).primaryColor,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x19000000),
+                          blurRadius: 24,
+                          offset: Offset(0, 11),
                         ),
-                      ),
-                      SizedBox(
-                        width: 10.0,
-                      ),
-                      Expanded(
-                        child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const SizedBox(
-                                height: 5.0,
+                      ],
+                    ),
+                    child: Container(
+                      child: Row(
+                        children: [
+                          Container(
+                            margin: const EdgeInsets.all(10.0),
+                            width: 100,
+                            decoration: BoxDecoration(
+                              image: DecorationImage(
+                                fit: BoxFit.cover,
+                                image: CachedNetworkImageProvider(
+                                    UserDataService.userData!.img.toString()),
                               ),
-                              Text(
-                                UserDataService.userData!.name.toString(),
-                                style: TextStyle(
-                                  fontSize: 12.0,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                              Row(
+                            ),
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          Expanded(
+                            child: Container(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    "NIP : ",
-                                    style: TextStyle(
-                                      fontSize: 10.0,
-                                    ),
+                                  const SizedBox(
+                                    height: 10.0,
                                   ),
                                   Text(
-                                    UserDataService.userData!.nip.toString(),
+                                    UserDataService.userData!.name.toString(),
                                     style: TextStyle(
-                                      fontSize: 10.0,
+                                      fontSize: 14.0,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Divider(),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "NIP.",
+                                        style: TextStyle(
+                                          fontSize: 12.0,
+                                        ),
+                                      ),
+                                      Text(
+                                        UserDataService.userData!.nip
+                                            .toString(),
+                                        style: TextStyle(
+                                          fontSize: 12.0,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Text(
+                                    UserDataService.userData!.jabatan
+                                        .toString(),
+                                    style: TextStyle(
+                                      fontSize: 12.0,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 5.0,
+                                  ),
+                                  Text(
+                                    UserDataService.userData!.nmUnit.toString(),
+                                    style: TextStyle(
+                                      fontSize: 12.0,
                                     ),
                                   ),
                                 ],
                               ),
-                              Text(
-                                UserDataService.userData!.nmUnit.toString(),
-                                style: TextStyle(
-                                  fontSize: 10.0,
-                                ),
-                              ),
-                              Spacer(),
-                              Container(
-                                margin: const EdgeInsets.only(
-                                  bottom: 10.0,
-                                ),
-                                child: Row(
-                                  children: [
-                                    TapDebouncer(
-                                        onTap: () async => controller.checkIn(),
-                                        builder: (BuildContext context,
-                                            TapDebouncerFunc? onTap) {
-                                          return ZoomTapAnimation(
-                                            onTap: onTap,
-                                            child: Container(
-                                              padding:
-                                                  const EdgeInsets.all(10.0),
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                horizontal: 2.0,
-                                              ),
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(8.0),
-                                                ),
-                                                color: controller.isLoading
-                                                    ? disabledColor
-                                                    : primaryColor,
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Icon(
-                                                    MdiIcons.qrcodeScan,
-                                                    size: 12.0,
-                                                    color: Colors.white,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 2.0,
-                                                  ),
-                                                  Text(
-                                                    "CHECK IN",
-                                                    style: TextStyle(
-                                                      fontSize: 10,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        }),
-                                    TapDebouncer(
-                                        onTap: () async =>
-                                            controller.checkOut(),
-                                        builder: (BuildContext context,
-                                            TapDebouncerFunc? onTap) {
-                                          return ZoomTapAnimation(
-                                            onTap: onTap,
-                                            child: Container(
-                                              padding:
-                                                  const EdgeInsets.all(10.0),
-                                              margin:
-                                                  const EdgeInsets.symmetric(
-                                                horizontal: 2.0,
-                                              ),
-                                              decoration: BoxDecoration(
-                                                borderRadius: BorderRadius.all(
-                                                  Radius.circular(8.0),
-                                                ),
-                                                color: controller.isLoading
-                                                    ? disabledColor
-                                                    : warningColor,
-                                              ),
-                                              child: Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment.start,
-                                                children: [
-                                                  Icon(
-                                                    MdiIcons.qrcodeScan,
-                                                    size: 12.0,
-                                                    color: Colors.white,
-                                                  ),
-                                                  SizedBox(
-                                                    width: 2.0,
-                                                  ),
-                                                  Text(
-                                                    "CHECK OUT",
-                                                    style: TextStyle(
-                                                      fontSize: 10,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          );
-                                        }),
-                                  ],
-                                ),
-                              ),
-                            ],
+                            ),
                           ),
-                        ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
-                ),
+                  Container(
+                    padding: const EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        TapDebouncer(
+                            onTap: () async => controller.checkIn(),
+                            builder: (BuildContext context,
+                                TapDebouncerFunc? onTap) {
+                              return ZoomTapAnimation(
+                                onTap: onTap,
+                                child: Container(
+                                  padding: const EdgeInsets.all(10.0),
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: 2.0,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(8.0),
+                                    ),
+                                    color: controller.isLoading
+                                        ? disabledColor
+                                        : primaryColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color(0x19000000),
+                                        blurRadius: 5,
+                                        offset: Offset(0, 0),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(
+                                        MdiIcons.qrcodeScan,
+                                        size: 16.0,
+                                        color: Colors.white,
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      Text(
+                                        "CHECK IN",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }),
+                        TapDebouncer(
+                            onTap: () async => controller.checkOut(),
+                            builder: (BuildContext context,
+                                TapDebouncerFunc? onTap) {
+                              return ZoomTapAnimation(
+                                onTap: onTap,
+                                child: Container(
+                                  padding: const EdgeInsets.all(10.0),
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: 2.0,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(8.0),
+                                    ),
+                                    color: controller.isLoading
+                                        ? disabledColor
+                                        : warningColor,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color(0x19000000),
+                                        blurRadius: 5,
+                                        offset: Offset(0, 0),
+                                      ),
+                                    ],
+                                  ),
+                                  child: Row(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    children: [
+                                      Icon(
+                                        MdiIcons.qrcodeScan,
+                                        size: 16.0,
+                                        color: Colors.white,
+                                      ),
+                                      SizedBox(
+                                        width: 10.0,
+                                      ),
+                                      Text(
+                                        "CHECK OUT",
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ],

@@ -111,191 +111,195 @@ class TugasDinasView extends StatefulWidget {
                           ),
                           onPressed: () {
                             controller.confirmData();
-                            showCustomDialog(title: "Konfirmasi", children: [
-                              Column(
-                                children: [
-                                  Card(
-                                    child: ListTile(
-                                      subtitle: Text(
-                                        "Mohon periksa kembali data yang akan anda kirimkan",
-                                        style: TextStyle(
-                                          fontSize: 10,
+                            if (controller.isConfirmedTrue) {
+                              showCustomDialog(title: "Konfirmasi", children: [
+                                Column(
+                                  children: [
+                                    Card(
+                                      child: ListTile(
+                                        subtitle: Text(
+                                          "Mohon periksa kembali data yang akan anda kirimkan",
+                                          style: TextStyle(
+                                            fontSize: 10,
+                                          ),
                                         ),
                                       ),
                                     ),
-                                  ),
-                                  Divider(),
-                                  Column(
-                                    children: [
-                                      Text(
-                                        "Tugas Dinas",
-                                        style: TextStyle(
-                                          fontSize: 14.0,
-                                          fontWeight: FontWeight.bold,
+                                    Divider(),
+                                    Column(
+                                      children: [
+                                        Text(
+                                          "Tugas Dinas",
+                                          style: TextStyle(
+                                            fontSize: 14.0,
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
-                                      ),
-                                      const SizedBox(
-                                        height: 5.0,
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              "Diajukan pada",
-                                              style: TextStyle(
-                                                fontSize: 10.0,
-                                              ),
-                                            ),
-                                          ),
-                                          Text(
-                                            ":  ",
-                                            style: TextStyle(
-                                              fontSize: 10.0,
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              DateFormat.yMMMMEEEEd('id_ID')
-                                                  .format(controller.dateTugas!)
-                                                  .toString(),
-                                              style: TextStyle(
-                                                fontSize: 10.0,
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              "Nomor Surat",
-                                              style: TextStyle(
-                                                fontSize: 10.0,
-                                              ),
-                                            ),
-                                          ),
-                                          Text(
-                                            ":  ",
-                                            style: TextStyle(
-                                              fontSize: 10.0,
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              controller.noSrt.toString(),
-                                              style: TextStyle(
-                                                fontSize: 10.0,
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              "Keterangan",
-                                              style: TextStyle(
-                                                fontSize: 10.0,
-                                              ),
-                                            ),
-                                          ),
-                                          Text(
-                                            ":  ",
-                                            style: TextStyle(
-                                              fontSize: 10.0,
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              controller.ketTugas.toString(),
-                                              style: TextStyle(
-                                                fontSize: 10.0,
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      Row(
-                                        children: [
-                                          Expanded(
-                                            child: Text(
-                                              "Tugas Dinas pada",
-                                              style: TextStyle(
-                                                fontSize: 10.0,
-                                              ),
-                                            ),
-                                          ),
-                                          Text(
-                                            ":  ",
-                                            style: TextStyle(
-                                              fontSize: 10.0,
-                                            ),
-                                          ),
-                                          Expanded(
-                                            child: Text(
-                                              controller
-                                                  .partDayToString(
-                                                      controller.partDay!)
-                                                  .toString(),
-                                              style: TextStyle(
-                                                fontSize: 10.0,
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                      Divider(),
-                                      SizedBox(
-                                        height: 100.0,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
+                                        const SizedBox(
+                                          height: 5.0,
+                                        ),
+                                        Row(
                                           children: [
-                                            TapDebouncer(
-                                              onTap: () =>
-                                                  controller.sendTugasData(),
-                                              builder: (BuildContext context,
-                                                  TapDebouncerFunc? onTap) {
-                                                return OutlinedButton.icon(
-                                                  icon: Icon(Icons.send),
-                                                  label: Text("Kirim"),
-                                                  style:
-                                                      OutlinedButton.styleFrom(
-                                                    foregroundColor:
-                                                        primaryColor,
-                                                    side: BorderSide(
-                                                      color: primaryColor,
-                                                    ),
-                                                  ),
-                                                  onPressed: () {
-                                                    controller.sendTugasData();
-                                                  },
-                                                );
-                                              },
-                                            ),
-                                            OutlinedButton.icon(
-                                              icon: Icon(Icons.exit_to_app),
-                                              label: Text("Batal"),
-                                              style: OutlinedButton.styleFrom(
-                                                foregroundColor: orangeColor,
-                                                side: BorderSide(
-                                                  color: orangeColor,
+                                            Expanded(
+                                              child: Text(
+                                                "Diajukan pada",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
                                                 ),
                                               ),
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                              },
                                             ),
+                                            Text(
+                                              ":  ",
+                                              style: TextStyle(
+                                                fontSize: 10.0,
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                DateFormat.yMMMMEEEEd('id_ID')
+                                                    .format(
+                                                        controller.dateTugas!)
+                                                    .toString(),
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                            )
                                           ],
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ]);
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                "Nomor Surat",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              ":  ",
+                                              style: TextStyle(
+                                                fontSize: 10.0,
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                controller.noSrt.toString(),
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                "Keterangan",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              ":  ",
+                                              style: TextStyle(
+                                                fontSize: 10.0,
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                controller.ketTugas.toString(),
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        Row(
+                                          children: [
+                                            Expanded(
+                                              child: Text(
+                                                "Tugas Dinas pada",
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                            ),
+                                            Text(
+                                              ":  ",
+                                              style: TextStyle(
+                                                fontSize: 10.0,
+                                              ),
+                                            ),
+                                            Expanded(
+                                              child: Text(
+                                                controller
+                                                    .partDayToString(
+                                                        controller.partDay!)
+                                                    .toString(),
+                                                style: TextStyle(
+                                                  fontSize: 10.0,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                        Divider(),
+                                        SizedBox(
+                                          height: 100.0,
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: [
+                                              TapDebouncer(
+                                                onTap: () =>
+                                                    controller.sendTugasData(),
+                                                builder: (BuildContext context,
+                                                    TapDebouncerFunc? onTap) {
+                                                  return OutlinedButton.icon(
+                                                    icon: Icon(Icons.send),
+                                                    label: Text("Kirim"),
+                                                    style: OutlinedButton
+                                                        .styleFrom(
+                                                      foregroundColor:
+                                                          primaryColor,
+                                                      side: BorderSide(
+                                                        color: primaryColor,
+                                                      ),
+                                                    ),
+                                                    onPressed: () {
+                                                      controller
+                                                          .sendTugasData();
+                                                    },
+                                                  );
+                                                },
+                                              ),
+                                              OutlinedButton.icon(
+                                                icon: Icon(Icons.exit_to_app),
+                                                label: Text("Batal"),
+                                                style: OutlinedButton.styleFrom(
+                                                  foregroundColor: orangeColor,
+                                                  side: BorderSide(
+                                                    color: orangeColor,
+                                                  ),
+                                                ),
+                                                onPressed: () {
+                                                  Navigator.pop(context);
+                                                },
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ]);
+                            }
                           },
                         ),
                       ],

@@ -3,16 +3,18 @@ import 'package:atei_bartim/shared/theme/theme_config.dart';
 import 'package:flutter/material.dart';
 
 ThemeData getDefaultTheme() {
-  return ThemeData().copyWith(
+  return ThemeData(
+    useMaterial3: false,
+  ).copyWith(
     // ignore: deprecated_member_use
-    useMaterial3: true,
+
     primaryColor: Colors.white,
     primaryColorLight: primaryColor,
     scaffoldBackgroundColor: scaffoldBackgroundColor,
     colorScheme: ColorScheme.fromSeed(seedColor: primaryColor),
     appBarTheme: AppBarTheme(
       elevation: 0.6,
-      titleTextStyle: GoogleFonts.ibmPlexSans(
+      titleTextStyle: GoogleFonts.roboto(
         color: Colors.white,
         fontWeight: FontWeight.bold,
       ),
@@ -31,22 +33,22 @@ ThemeData getDefaultTheme() {
       labelColor: Colors.blueGrey[900]!,
     ),
     textTheme: TextTheme(
-      titleSmall: GoogleFonts.ibmPlexSans(
+      titleSmall: GoogleFonts.roboto(
         color: textColor1,
       ),
-      titleMedium: GoogleFonts.ibmPlexSans(
+      titleMedium: GoogleFonts.roboto(
         color: textColor1,
       ),
-      titleLarge: GoogleFonts.ibmPlexSans(
+      titleLarge: GoogleFonts.roboto(
         color: textColor1,
       ),
-      bodyLarge: GoogleFonts.ibmPlexSans(
+      bodyLarge: GoogleFonts.roboto(
         color: textColor1,
       ),
-      bodySmall: GoogleFonts.ibmPlexSans(
+      bodySmall: GoogleFonts.roboto(
         color: textColor1,
       ),
-      bodyMedium: GoogleFonts.ibmPlexSans(
+      bodyMedium: GoogleFonts.roboto(
         color: textColor1,
       ),
     ),

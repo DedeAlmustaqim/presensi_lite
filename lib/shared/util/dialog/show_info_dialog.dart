@@ -7,6 +7,7 @@ Future showInfoDialog({
   required String title,
   Icon? icon,
   bool isIcon = true,
+  Function? onpress,
 }) async {
   await showDialog<void>(
     context: globalContext,
@@ -66,7 +67,11 @@ Future showInfoDialog({
                           style: ElevatedButton.styleFrom(
                             backgroundColor: primaryColor,
                           ),
-                          onPressed: () => Get.back(),
+                          onPressed: onpress != null
+                              ? () {
+                                  onpress();
+                                }
+                              : () => Get.back(),
                           child: Text(
                             "Oke",
                             style: TextStyle(

@@ -8,10 +8,9 @@ class MainNavigationController extends State<MainNavigationView> {
   @override
   initState() {
     // UserDataService.init();
-    isPrivacy();
+    isUpdate();
 
     instance = this;
-    print(privacy);
     super.initState();
   }
 
@@ -30,10 +29,33 @@ class MainNavigationController extends State<MainNavigationView> {
   }
 
   isPrivacy() async {
-    bool isAgree = await UserDataService.userData != null &&
-        UserDataService.userData!.isAgree!.toLowerCase() == "true";
-    if (!isAgree) {
+    var isAgree = await UserDataService().getIsAgree();
+    print(isAgree);
+    if (isAgree == "false") {
       await showPrivacyDialog(context: context, message: "", title: "");
+    } else {
+      return;
     }
+  }
+
+  isUpdate() async {
+    var appVersion = AppConfig.version;
+    var isUpdate = await VersiService().getVersion();
+    if (appVersion!.compareTo(isUpdate!) > 0) {
+      //Versi Atei lebih besar dari server
+      await isPrivacy();
+    } else if (appVersion.compareTo(isUpdate) < 0) {
+      //Versi Atei lebih kecil dari server
+      Get.offAll(VersionView());
+    } else {
+      //Versi Atei sama dari server
+      await isPrivacy();
+    }
+
+    // if (double.parse(AppConfig.version!) < isUpdate!) {
+    //   await showPrivacyDialog(context: context, message: "", title: "");
+    // } else {
+    //   isPrivacy();
+    // }
   }
 }

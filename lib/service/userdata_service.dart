@@ -182,4 +182,18 @@ class UserDataService {
 
     return success;
   }
+
+  getIsAgree() async {
+    var response = await Dio().get(
+      "${AppConfig.baseUrl}/api/user/get_is_agree/${AuthService.id}",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer ${AuthService.token}",
+        },
+      ),
+    );
+    Map obj = response.data;
+    return obj['data'];
+  }
 }

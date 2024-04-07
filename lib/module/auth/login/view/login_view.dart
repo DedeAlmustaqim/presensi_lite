@@ -56,7 +56,7 @@ class LoginView extends StatefulWidget {
                             errorStyle: TextStyle(
                                 color: Colors
                                     .white), // Mengatur warna teks validator menjadi putih
-                            labelText: "NIK",
+                            labelText: "Username",
                             suffixIcon: Icon(
                               MdiIcons.cardAccountDetails,
                             ),

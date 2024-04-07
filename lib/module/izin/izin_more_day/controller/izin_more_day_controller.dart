@@ -15,9 +15,10 @@ class IzinMoreDayController extends State<IzinMoreDayView> {
   confirmData() async {
     bool isNotValid = formKey.currentState!.validate() == false;
     if (isNotValid) {
+      isConfirmedTrue = false;
       return;
     }
-
+    isConfirmedTrue = true;
     setState(() {});
   }
 

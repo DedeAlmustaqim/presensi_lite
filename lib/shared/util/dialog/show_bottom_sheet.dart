@@ -27,9 +27,7 @@ class _BottomSheetViewState extends State<BottomSheetView> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onVerticalDragEnd: (e) {
-        print(e.velocity.pixelsPerSecond.direction);
-      },
+      onVerticalDragEnd: (e) {},
       child: Container(
         padding: const EdgeInsets.all(20.0),
         child: Wrap(

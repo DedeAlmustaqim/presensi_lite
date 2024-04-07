@@ -51,7 +51,7 @@ class VersionView extends StatefulWidget {
                 height: 10.0,
               ),
               Text(
-                "Versi tersedia : ${VersiService.version}",
+                "",
                 style: TextStyle(
                   fontSize: 12.0,
                   color: Colors.white,

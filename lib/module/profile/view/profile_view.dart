@@ -57,6 +57,7 @@ class ProfileView extends StatefulWidget {
                                   "Ganti Foto",
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
+                                      color: Colors.black,
                                       fontSize: 10),
                                 ),
                               ),
@@ -127,7 +128,6 @@ class ProfileView extends StatefulWidget {
                     ),
                   ),
                   Divider(),
-                  
                   if (controller.isDetail)
                     Container(
                       padding: EdgeInsets.all(10.0),

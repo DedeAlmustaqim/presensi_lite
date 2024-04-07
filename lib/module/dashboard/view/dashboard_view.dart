@@ -26,36 +26,67 @@ class DashboardView extends StatefulWidget {
               child: Row(
                 children: [
                   Expanded(
-                    flex: 3,
+                    flex: 1,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "Hai..!!!",
-                          style: TextStyle(
-                            fontSize: 12.0,
-                            color: Colors.white,
-                          ),
+                        Row(
+                          children: [
+                            Image.asset(
+                              "assets/icon/icon.png",
+                              width: 65.0,
+                              fit: BoxFit.fill,
+                            ),
+                            Text(
+                              "ATEI BARTIM",
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          UserDataService.userData!.name.toString(),
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 12.0,
-                            color: Colors.white,
-                          ),
-                        ),
+                        // Text(
+                        //   "Hai..!!!",
+                        //   style: TextStyle(
+                        //     fontSize: 12.0,
+                        //     color: Colors.white,
+                        //   ),
+                        // ),
+                        // Text(
+                        //   UserDataService.userData!.name.toString(),
+                        //   style: TextStyle(
+                        //     fontWeight: FontWeight.bold,
+                        //     fontSize: 12.0,
+                        //     color: Colors.white,
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
-                  Spacer(),
                   Expanded(
                     flex: 1,
-                    child: CircleAvatar(
-                      radius: 30,
-                      backgroundImage: CachedNetworkImageProvider(
-                          UserDataService.userData!.img.toString()),
+                    child: Column(
+                      children: [
+                        CircleAvatar(
+                          radius: 30,
+                          backgroundImage: CachedNetworkImageProvider(
+                              UserDataService.userData!.img.toString()),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.all(5.0),
+                          color: primaryColor,
+                          child: Text(
+                            // "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                            'Hai..!  ${UserDataService.userData!.name.toString()}',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 12.0,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -321,49 +352,49 @@ class DashboardView extends StatefulWidget {
                 ),
                 Divider(),
                 Container(
-                  margin: EdgeInsets.symmetric(horizontal: 6.0),
-                  child: Card(
+                  decoration: BoxDecoration(
                     color: Colors.white,
-                    child: Container(
-                      padding: const EdgeInsets.all(10.0),
-                      child: ListTile(
-                        // leading: Icon(
-                        //   Icons.info,
-                        //   size: 24.0,
-                        // ),
-                        title: Text(
-                          "Cari Data Absen Anda",
-                          style: TextStyle(fontSize: 14),
-                        ),
-                        subtitle: Text(
-                          "Pilih tanggal dan temukan data absen anda pada tanggal tersebut",
-                          textAlign: TextAlign.justify,
-                          style: TextStyle(
-                            fontSize: 12,
-                          ),
-                        ),
-                        trailing: OutlinedButton.icon(
-                          icon: Icon(
-                            Icons.date_range,
-                            size: 16,
-                          ),
-                          label: Text(
-                            "Pilih Tanggal",
-                            style: TextStyle(
-                              fontSize: 10,
-                            ),
-                          ),
-                          style: OutlinedButton.styleFrom(
-                            foregroundColor: primaryColor,
-                            side: BorderSide(
-                              color: primaryColor,
-                            ),
-                          ),
-                          onPressed: () {
-                            controller.showSelectDate(context);
-                          },
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(6.0),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0x19000000),
+                        blurRadius: 5,
+                        offset: Offset(0, 0),
+                      ),
+                    ],
+                  ),
+                  margin: const EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(10.0),
+                  child: ListTile(
+                    subtitle: Text(
+                      "Pilih tanggal dan temukan data absen anda pada tanggal tersebut",
+                      textAlign: TextAlign.justify,
+                      style: TextStyle(
+                        fontSize: 12,
+                      ),
+                    ),
+                    trailing: OutlinedButton.icon(
+                      icon: Icon(
+                        Icons.date_range,
+                        size: 16,
+                      ),
+                      label: Text(
+                        "Pilih Tanggal",
+                        style: TextStyle(
+                          fontSize: 10,
                         ),
                       ),
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: primaryColor,
+                        side: BorderSide(
+                          color: primaryColor,
+                        ),
+                      ),
+                      onPressed: () {
+                        controller.showSelectDate(context);
+                      },
                     ),
                   ),
                 ),

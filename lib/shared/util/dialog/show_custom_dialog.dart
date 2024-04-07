@@ -14,7 +14,9 @@ Future showCustomDialog({
         backgroundColor: Colors.white,
         title: Text(
           title,
-          style: TextStyle(color: titleColor ?? textColor1),
+          style: TextStyle(
+            color: Colors.black,
+          ),
         ),
         content: SingleChildScrollView(
           child: ListBody(

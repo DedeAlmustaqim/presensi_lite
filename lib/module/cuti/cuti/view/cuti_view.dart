@@ -12,7 +12,7 @@ class CutiView extends StatefulWidget {
         title: const Text("Cuti"),
         actions: const [],
       ),
-      body: SafeArea(
+      body: SingleChildScrollView(
         child: Container(
           padding: EdgeInsets.all(10.0),
           child: Column(
@@ -125,200 +125,218 @@ class CutiView extends StatefulWidget {
                             ),
                             onPressed: () {
                               controller.confirmData();
-                              showCustomDialog(title: "Konfirmasi", children: [
-                                Column(
-                                  children: [
-                                    Card(
-                                      child: ListTile(
-                                        subtitle: Text(
-                                          "Mohon periksa kembali data yang akan anda kirimkan",
-                                          style: TextStyle(
-                                            fontSize: 10,
+                              if (controller.isConfirmedTrue) {
+                                showCustomDialog(
+                                    title: "Konfirmasi",
+                                    children: [
+                                      Column(
+                                        children: [
+                                          Card(
+                                            child: ListTile(
+                                              subtitle: Text(
+                                                "Mohon periksa kembali data yang akan anda kirimkan",
+                                                style: TextStyle(
+                                                  fontSize: 10,
+                                                ),
+                                              ),
+                                            ),
                                           ),
-                                        ),
-                                      ),
-                                    ),
-                                    Divider(),
-                                    Column(
-                                      children: [
-                                        Text(
-                                          "Cuti",
-                                          style: TextStyle(
-                                            fontSize: 14.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                        ),
-                                        const SizedBox(
-                                          height: 5.0,
-                                        ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                "Dari",
+                                          Divider(),
+                                          Column(
+                                            children: [
+                                              Text(
+                                                "Cuti",
                                                 style: TextStyle(
-                                                  fontSize: 10.0,
+                                                  fontSize: 14.0,
+                                                  fontWeight: FontWeight.bold,
                                                 ),
                                               ),
-                                            ),
-                                            Text(
-                                              ":  ",
-                                              style: TextStyle(
-                                                fontSize: 10.0,
+                                              const SizedBox(
+                                                height: 5.0,
                                               ),
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                DateFormat.yMMMMEEEEd('id_ID')
-                                                    .format(controller
-                                                        .dateCutiFrom!)
-                                                    .toString(),
-                                                style: TextStyle(
-                                                  fontSize: 10.0,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                "Sampai",
-                                                style: TextStyle(
-                                                  fontSize: 10.0,
-                                                ),
-                                              ),
-                                            ),
-                                            Text(
-                                              ":  ",
-                                              style: TextStyle(
-                                                fontSize: 10.0,
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                DateFormat.yMMMMEEEEd('id_ID')
-                                                    .format(
-                                                        controller.dateCutiTo!)
-                                                    .toString(),
-                                                style: TextStyle(
-                                                  fontSize: 10.0,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                "Nomor Surat",
-                                                style: TextStyle(
-                                                  fontSize: 10.0,
-                                                ),
-                                              ),
-                                            ),
-                                            Text(
-                                              ":  ",
-                                              style: TextStyle(
-                                                fontSize: 10.0,
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: controller.noSrt != null
-                                                  ? Text(
-                                                      controller.noSrt
+                                              Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: Text(
+                                                      "Dari",
+                                                      style: TextStyle(
+                                                        fontSize: 10.0,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    ":  ",
+                                                    style: TextStyle(
+                                                      fontSize: 10.0,
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Text(
+                                                      DateFormat.yMMMMEEEEd(
+                                                              'id_ID')
+                                                          .format(controller
+                                                              .dateCutiFrom!)
                                                           .toString(),
                                                       style: TextStyle(
                                                         fontSize: 10.0,
                                                       ),
-                                                    )
-                                                  : Text(
-                                                      "-",
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: Text(
+                                                      "Sampai",
                                                       style: TextStyle(
                                                         fontSize: 10.0,
                                                       ),
                                                     ),
-                                            )
-                                          ],
-                                        ),
-                                        Row(
-                                          children: [
-                                            Expanded(
-                                              child: Text(
-                                                "Keterangan",
-                                                style: TextStyle(
-                                                  fontSize: 10.0,
-                                                ),
-                                              ),
-                                            ),
-                                            Text(
-                                              ":  ",
-                                              style: TextStyle(
-                                                fontSize: 10.0,
-                                              ),
-                                            ),
-                                            Expanded(
-                                              child: Text(
-                                                controller.ketCuti.toString(),
-                                                style: TextStyle(
-                                                  fontSize: 10.0,
-                                                ),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                        Divider(),
-                                        SizedBox(
-                                          height: 100.0,
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              TapDebouncer(
-                                                onTap: () =>
-                                                    controller.sendCuti(),
-                                                builder: (BuildContext context,
-                                                    TapDebouncerFunc? onTap) {
-                                                  return OutlinedButton.icon(
-                                                    icon: Icon(Icons.send),
-                                                    label: Text("Kirim"),
-                                                    style: OutlinedButton
-                                                        .styleFrom(
-                                                      foregroundColor:
-                                                          primaryColor,
-                                                      side: BorderSide(
-                                                        color: primaryColor,
+                                                  ),
+                                                  Text(
+                                                    ":  ",
+                                                    style: TextStyle(
+                                                      fontSize: 10.0,
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Text(
+                                                      DateFormat.yMMMMEEEEd(
+                                                              'id_ID')
+                                                          .format(controller
+                                                              .dateCutiTo!)
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        fontSize: 10.0,
                                                       ),
                                                     ),
-                                                    onPressed: () {
-                                                      controller.sendCuti();
-                                                    },
-                                                  );
-                                                },
+                                                  )
+                                                ],
                                               ),
-                                              OutlinedButton.icon(
-                                                icon: Icon(Icons.exit_to_app),
-                                                label: Text("Batal"),
-                                                style: OutlinedButton.styleFrom(
-                                                  foregroundColor: orangeColor,
-                                                  side: BorderSide(
-                                                    color: orangeColor,
+                                              Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: Text(
+                                                      "Nomor Surat",
+                                                      style: TextStyle(
+                                                        fontSize: 10.0,
+                                                      ),
+                                                    ),
                                                   ),
+                                                  Text(
+                                                    ":  ",
+                                                    style: TextStyle(
+                                                      fontSize: 10.0,
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: controller.noSrt !=
+                                                            null
+                                                        ? Text(
+                                                            controller.noSrt
+                                                                .toString(),
+                                                            style: TextStyle(
+                                                              fontSize: 10.0,
+                                                            ),
+                                                          )
+                                                        : Text(
+                                                            "-",
+                                                            style: TextStyle(
+                                                              fontSize: 10.0,
+                                                            ),
+                                                          ),
+                                                  )
+                                                ],
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Expanded(
+                                                    child: Text(
+                                                      "Keterangan",
+                                                      style: TextStyle(
+                                                        fontSize: 10.0,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  Text(
+                                                    ":  ",
+                                                    style: TextStyle(
+                                                      fontSize: 10.0,
+                                                    ),
+                                                  ),
+                                                  Expanded(
+                                                    child: Text(
+                                                      controller.ketCuti
+                                                          .toString(),
+                                                      style: TextStyle(
+                                                        fontSize: 10.0,
+                                                      ),
+                                                    ),
+                                                  )
+                                                ],
+                                              ),
+                                              Divider(),
+                                              SizedBox(
+                                                height: 100.0,
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceAround,
+                                                  children: [
+                                                    TapDebouncer(
+                                                      onTap: () =>
+                                                          controller.sendCuti(),
+                                                      builder:
+                                                          (BuildContext context,
+                                                              TapDebouncerFunc?
+                                                                  onTap) {
+                                                        return OutlinedButton
+                                                            .icon(
+                                                          icon:
+                                                              Icon(Icons.send),
+                                                          label: Text("Kirim"),
+                                                          style: OutlinedButton
+                                                              .styleFrom(
+                                                            foregroundColor:
+                                                                primaryColor,
+                                                            side: BorderSide(
+                                                              color:
+                                                                  primaryColor,
+                                                            ),
+                                                          ),
+                                                          onPressed: () {
+                                                            controller
+                                                                .sendCuti();
+                                                          },
+                                                        );
+                                                      },
+                                                    ),
+                                                    OutlinedButton.icon(
+                                                      icon: Icon(
+                                                          Icons.exit_to_app),
+                                                      label: Text("Batal"),
+                                                      style: OutlinedButton
+                                                          .styleFrom(
+                                                        foregroundColor:
+                                                            orangeColor,
+                                                        side: BorderSide(
+                                                          color: orangeColor,
+                                                        ),
+                                                      ),
+                                                      onPressed: () {
+                                                        Navigator.pop(context);
+                                                      },
+                                                    ),
+                                                  ],
                                                 ),
-                                                onPressed: () {
-                                                  Navigator.pop(context);
-                                                },
                                               ),
                                             ],
                                           ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ]);
+                                        ],
+                                      ),
+                                    ]);
+                              }
                             },
                           ),
                           const SizedBox(

@@ -21,15 +21,16 @@ class DalamDaerahController extends State<DalamDaerahView> {
   DateTime? dateEnd;
   String? ketDd;
   String? noSrt;
+  bool isConfirmedTrue = false;
 
   confirmData() async {
     bool isNotValid = formKey.currentState!.validate() == false;
     if (isNotValid) {
+      isConfirmedTrue = false;
       return;
     }
-
+    isConfirmedTrue = true;
     setState(() {});
-    // print('${dateStart}, ${dateEnd}, ${ketDd}, ${noSrt}');
   }
 
   sendDalamDaerah() async {
@@ -41,7 +42,6 @@ class DalamDaerahController extends State<DalamDaerahView> {
           noSurat: noSrt.toString(),
           ket: ketDd.toString());
       bool success = respond['success'];
-      print(success);
       if (success) {
         hideLoading();
         await showInfoDialog(
