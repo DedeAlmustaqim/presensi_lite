@@ -180,10 +180,105 @@ class AbsensiView extends StatefulWidget {
               child: Column(
                 children: [
                   Container(
+                    padding: const EdgeInsets.all(10.0),
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        TapDebouncer(
+                            onTap: () async => controller.checkIn(),
+                            builder: (BuildContext context,
+                                TapDebouncerFunc? onTap) {
+                              return ZoomTapAnimation(
+                                onTap: onTap,
+                                child: Container(
+                                  width: 100,
+                                  padding: const EdgeInsets.all(10.0),
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: 2.0,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(8.0),
+                                    ),
+                                    color: infoColor,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Icon(
+                                        MdiIcons.qrcodePlus,
+                                        size: 32.0,
+                                        color: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        height: 10.0,
+                                      ),
+                                      Text(
+                                        "CHECK IN",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }),
+                        TapDebouncer(
+                            onTap: () async => controller.checkOut(),
+                            builder: (BuildContext context,
+                                TapDebouncerFunc? onTap) {
+                              return ZoomTapAnimation(
+                                onTap: onTap,
+                                child: Container(
+                                  width: 100,
+                                  // height: 50,
+                                  padding: const EdgeInsets.all(10.0),
+                                  margin: const EdgeInsets.symmetric(
+                                    horizontal: 2.0,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(8.0),
+                                    ),
+                                    color: orangeColor,
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Icon(
+                                        MdiIcons.qrcodePlus,
+                                        size: 32.0,
+                                        color: Colors.white,
+                                      ),
+                                      const SizedBox(
+                                        height: 10.0,
+                                      ),
+                                      Text(
+                                        "CHECK OUT",
+                                        style: TextStyle(
+                                          fontSize: 12,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              );
+                            }),
+                      ],
+                    ),
+                  ),
+                  Container(
                     height: MediaQuery.of(context).size.height * 0.18,
                     width: MediaQuery.of(context).size.width,
                     decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
+                      // color: Theme.of(context).primaryColor,
+                      color: primaryColor,
                       boxShadow: [
                         BoxShadow(
                           color: Color(0x19000000),
@@ -222,15 +317,19 @@ class AbsensiView extends StatefulWidget {
                                     style: TextStyle(
                                       fontSize: 14.0,
                                       fontWeight: FontWeight.bold,
+                                      color: Colors.white,
                                     ),
                                   ),
-                                  Divider(),
+                                  Divider(
+                                    color: Colors.white,
+                                  ),
                                   Row(
                                     children: [
                                       Text(
-                                        "NIP.",
+                                        "NIP. ",
                                         style: TextStyle(
                                           fontSize: 12.0,
+                                          color: Colors.white,
                                         ),
                                       ),
                                       Text(
@@ -238,6 +337,7 @@ class AbsensiView extends StatefulWidget {
                                             .toString(),
                                         style: TextStyle(
                                           fontSize: 12.0,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ],
@@ -249,6 +349,7 @@ class AbsensiView extends StatefulWidget {
                                     UserDataService.userData!.jabatan
                                         .toString(),
                                     style: TextStyle(
+                                      color: Colors.white,
                                       fontSize: 12.0,
                                     ),
                                   ),
@@ -258,6 +359,7 @@ class AbsensiView extends StatefulWidget {
                                   Text(
                                     UserDataService.userData!.nmUnit.toString(),
                                     style: TextStyle(
+                                      color: Colors.white,
                                       fontSize: 12.0,
                                     ),
                                   ),
@@ -267,117 +369,6 @@ class AbsensiView extends StatefulWidget {
                           ),
                         ],
                       ),
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        TapDebouncer(
-                            onTap: () async => controller.checkIn(),
-                            builder: (BuildContext context,
-                                TapDebouncerFunc? onTap) {
-                              return ZoomTapAnimation(
-                                onTap: onTap,
-                                child: Container(
-                                  padding: const EdgeInsets.all(10.0),
-                                  margin: const EdgeInsets.symmetric(
-                                    horizontal: 2.0,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(8.0),
-                                    ),
-                                    color: controller.isLoading
-                                        ? disabledColor
-                                        : primaryColor,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Color(0x19000000),
-                                        blurRadius: 5,
-                                        offset: Offset(0, 0),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Icon(
-                                        MdiIcons.qrcodeScan,
-                                        size: 16.0,
-                                        color: Colors.white,
-                                      ),
-                                      SizedBox(
-                                        width: 10.0,
-                                      ),
-                                      Text(
-                                        "CHECK IN",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            }),
-                        TapDebouncer(
-                            onTap: () async => controller.checkOut(),
-                            builder: (BuildContext context,
-                                TapDebouncerFunc? onTap) {
-                              return ZoomTapAnimation(
-                                onTap: onTap,
-                                child: Container(
-                                  padding: const EdgeInsets.all(10.0),
-                                  margin: const EdgeInsets.symmetric(
-                                    horizontal: 2.0,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.all(
-                                      Radius.circular(8.0),
-                                    ),
-                                    color: controller.isLoading
-                                        ? disabledColor
-                                        : warningColor,
-                                    boxShadow: [
-                                      BoxShadow(
-                                        color: Color(0x19000000),
-                                        blurRadius: 5,
-                                        offset: Offset(0, 0),
-                                      ),
-                                    ],
-                                  ),
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      Icon(
-                                        MdiIcons.qrcodeScan,
-                                        size: 16.0,
-                                        color: Colors.white,
-                                      ),
-                                      SizedBox(
-                                        width: 10.0,
-                                      ),
-                                      Text(
-                                        "CHECK OUT",
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              );
-                            }),
-                      ],
                     ),
                   ),
                 ],

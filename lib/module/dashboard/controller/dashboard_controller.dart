@@ -97,7 +97,7 @@ class DashboardController extends State<DashboardView> {
   }
 
   refresh() async {
-    showLoading();
+    showSpin();
     getToday();
     getBanner();
     getInfo();
@@ -123,7 +123,7 @@ class DashboardController extends State<DashboardView> {
       try {
         Get.to(AbsenDetailSearchView());
       } on Exception {
-        showInfoDialog(message: "Terjadi Kesalahan Data", title: "Gagal");
+        NotifCherryToast().toastError("Terjadi Kesalahan Data", context);
       }
     }
   }

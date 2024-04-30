@@ -54,7 +54,7 @@ class ProfileController extends State<ProfileView> {
   Future<void> uploadPhoto() async {
     if (imageFile != null) {
       try {
-        showLoading();
+        showSpin();
 
         // Kompresi gambar sebelum di-upload
 
@@ -108,16 +108,16 @@ class ProfileController extends State<ProfileView> {
 
   update_pass() async {
     if (formKey.currentState?.validate() ?? false) {
-      showLoading();
+      showSpin();
       try {
         hideLoading();
         var success =
             await UserDataService().changePass(newPass!, confirmPass!);
 
         if (success) {
-          showInfoDialog(message: "Berhasil ubah Password", title: '');
+          NotifCherryToast().toastSuccess("Berhasil ubah Password", context);
         } else {
-          showInfoDialog(message: "Gagal ubah Password", title: '');
+          NotifCherryToast().toastError("Gagal ubah Password", context);
         }
       } on Exception {
         hideLoading();

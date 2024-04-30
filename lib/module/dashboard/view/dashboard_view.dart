@@ -21,9 +21,9 @@ class DashboardView extends StatefulWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-              padding:
-                  EdgeInsets.only(top: 40, left: 20, right: 20, bottom: 10),
+              padding: EdgeInsets.only(top: 30, left: 5, right: 5, bottom: 5),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
                     flex: 1,
@@ -32,6 +32,7 @@ class DashboardView extends StatefulWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Image.asset(
                               "assets/icon/icon.png",
@@ -67,6 +68,8 @@ class DashboardView extends StatefulWidget {
                   Expanded(
                     flex: 1,
                     child: Column(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         CircleAvatar(
                           radius: 30,
@@ -78,10 +81,10 @@ class DashboardView extends StatefulWidget {
                           color: primaryColor,
                           child: Text(
                             // "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-                            'Hai..!  ${UserDataService.userData!.name.toString()}',
+                            '${UserDataService.userData!.name.toString()}',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
-                              fontSize: 12.0,
+                              fontSize: 8.0,
                               color: Colors.white,
                             ),
                           ),
@@ -431,7 +434,7 @@ class DashboardView extends StatefulWidget {
                 ),
 
                 SizedBox(
-                  height: 150.0,
+                  height: 160.0,
                   child: ListView.builder(
                     padding: EdgeInsets.only(
                       left: 12.0,
@@ -463,72 +466,66 @@ class DashboardView extends StatefulWidget {
                               Radius.circular(5.0),
                             ),
                           ),
-                          child: Row(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Expanded(
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      item['title'],
-                                      textAlign: TextAlign.justify,
-                                      maxLines: 4,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        fontSize: 12.0,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 4.0,
-                                    ),
-                                    Flexible(
-                                      child: Text(
-                                        item['informasi'],
-                                        textAlign: TextAlign.justify,
-                                        maxLines: 3,
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                          fontSize: 10.0,
-                                        ),
-                                      ),
-                                    ),
-                                    Spacer(),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          DateFormat('dd MMMM yyyy', 'id')
-                                              .format(postTime),
-                                          style: TextStyle(
-                                            fontSize: 8.0,
-                                          ),
-                                        ),
-                                        Spacer(),
-                                        if (item['tag'] != null)
-                                          Container(
-                                            height: 20,
-                                            width: 100,
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.all(
-                                                Radius.circular(4.0),
-                                              ),
-                                              color: orangeColor,
-                                            ),
-                                            child: Center(
-                                              child: Text(
-                                                item['tag'],
-                                                style: TextStyle(
-                                                  fontSize: 12.0,
-                                                  color: Colors.white,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                      ],
-                                    ),
-                                  ],
+                              Text(
+                                item['title'],
+                                textAlign: TextAlign.justify,
+                                maxLines: 4,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 12.0,
+                                  fontWeight: FontWeight.bold,
                                 ),
+                              ),
+                              SizedBox(
+                                height: 4.0,
+                              ),
+                              Flexible(
+                                child: Text(
+                                  item['informasi'],
+                                  textAlign: TextAlign.justify,
+                                  maxLines: 3,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    fontSize: 10.0,
+                                  ),
+                                ),
+                              ),
+                              Spacer(),
+                              Row(
+                                children: [
+                                  Text(
+                                    DateFormat('dd MMMM yyyy', 'id')
+                                        .format(postTime),
+                                    style: TextStyle(
+                                      fontSize: 8.0,
+                                    ),
+                                  ),
+                                  Spacer(),
+                                  if (item['tag'] != null)
+                                    Container(
+                                      height: 20,
+                                      width: 100,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(4.0),
+                                        ),
+                                        color: orangeColor,
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          item['tag'],
+                                          style: TextStyle(
+                                            fontSize: 12.0,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                ],
                               ),
                             ],
                           ),

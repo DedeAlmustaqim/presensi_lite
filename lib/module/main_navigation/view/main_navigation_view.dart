@@ -8,7 +8,7 @@ class MainNavigationView extends StatefulWidget {
     controller.view = this;
 
     return DefaultTabController(
-      length: 3,
+      length: 4,
       initialIndex: controller.selectedIndex,
       child: Scaffold(
         body: IndexedStack(
@@ -16,6 +16,7 @@ class MainNavigationView extends StatefulWidget {
           children: [
             DashboardView(),
             AbsensiView(),
+            TppView(),
             ProfileView(),
           ],
         ),
@@ -42,6 +43,10 @@ class MainNavigationView extends StatefulWidget {
               BottomNavigationBarItem(
                 icon: Icon(MdiIcons.qrcodePlus),
                 label: "Absen",
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(MdiIcons.chartBar),
+                label: "Skor Disiplin",
               ),
               BottomNavigationBarItem(
                 icon: Icon(

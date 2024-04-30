@@ -22,7 +22,9 @@
         "privacy_disclaimer",
         "absen_detail",
         "absen_detail_search",
-        "logout_confirm"
+        "logout_confirm",
+        "tpp",
+        "tpp_pdf"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

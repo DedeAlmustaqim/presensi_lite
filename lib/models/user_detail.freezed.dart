@@ -27,7 +27,8 @@ mixin _$UserDetail {
   String? get nik => throw _privateConstructorUsedError;
   String? get nip => throw _privateConstructorUsedError;
   String? get jabatan => throw _privateConstructorUsedError;
-  String? get img => throw _privateConstructorUsedError;
+  String? get img =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @JsonKey(name: 'is_agree')
   String? get isAgree => throw _privateConstructorUsedError;
   @JsonKey(name: 'nm_unit')
@@ -277,6 +278,7 @@ class _$UserDetailImpl implements _UserDetail {
   final String? jabatan;
   @override
   final String? img;
+// ignore: invalid_annotation_target
   @override
   @JsonKey(name: 'is_agree')
   final String? isAgree;
@@ -365,7 +367,7 @@ abstract class _UserDetail implements UserDetail {
   String? get jabatan;
   @override
   String? get img;
-  @override
+  @override // ignore: invalid_annotation_target
   @JsonKey(name: 'is_agree')
   String? get isAgree;
   @override

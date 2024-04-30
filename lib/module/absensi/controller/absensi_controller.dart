@@ -25,89 +25,43 @@ class AbsensiController extends State<AbsensiView> {
   void dispose() => super.dispose();
 
   checkIn() async {
-    setState(() {
-      isLoading = true;
-    });
+    showSpin();
+    var user = await checkPermisionLokasi();
 
-    await PermissionService().checkLocationPermission();
-    await PermissionService().checkCameraPermission();
-
-    Position position = await LocationService().getLocation();
-
-    if (position.isMocked) {
-      showInfoDialog(
-        message: "Anda terdeteksi menggunakan lokasi palsu",
-        title: "Lokasi Palsu Terdeteksi",
-        icon: const Icon(
-          Icons.location_off_outlined,
-          color: Colors.red,
-          size: 24.0,
-        ),
-      );
-    } else {
-      var user = await ScanQr().checkLocation(
-          position.latitude.toString(), position.longitude.toString());
-
-      if (user['success'] == true) {
-        _postCheckIn();
-      } else if (user['success'] == false) {
-        return showInfoDialog(
-          message: "Anda diluar radius titik absen",
-          title: "Gagal",
-          icon: Icon(
-            Icons.info_outline,
-            size: 24.0,
-            color: orangeColor,
-          ),
-        );
-      }
+    if (user['success'] == true) {
+      _postCheckIn();
+    } else if (user['success'] == false) {
+      return NotifCherryToast()
+          .toastInfo("Anda diluar radius titik absen", context);
     }
   }
 
   checkOut() async {
-    setState(() {
-      isLoading = true;
-    });
-
+    showSpin();
     var user = await checkPermisionLokasi();
 
     if (user['success'] == true) {
       _postCheckOut();
     } else if (user['success'] == false) {
-      showInfoDialog(
-        message: "Anda diluar radius titik absen",
-        title: "Gagal",
-        icon: Icon(
-          Icons.info_outline,
-          size: 24.0,
-          color: orangeColor,
-        ),
-      );
+      return NotifCherryToast()
+          .toastInfo("Anda diluar radius titik absen", context);
     }
   }
 
   checkPermisionLokasi() async {
-    setState(() {
-      isLoading = false;
-    });
     await PermissionService().checkLocationPermission();
     await PermissionService().checkCameraPermission();
 
     Position position = await LocationService().getLocation();
 
     if (position.isMocked) {
-      showInfoDialog(
-        message: "Anda terdeteksi menggunakan lokasi palsu",
-        title: "Lokasi Palsu Terdeteksi",
-        icon: const Icon(
-          Icons.location_off_outlined,
-          color: Colors.red,
-          size: 24.0,
-        ),
-      );
+      hideLoading();
+      return NotifCherryToast()
+          .toastError("Anda terdeteksi menggunakan lokasi palsu", context);
     } else {
+      hideLoading();
       var user = await ScanQr().checkLocation(
-          position.latitude.toString(), position.longitude.toString());
+          position.latitude.toString(), position.longitude.toString(), context);
 
       return user;
     }
@@ -122,39 +76,13 @@ class AbsensiController extends State<AbsensiView> {
       bool success = postQr['success'];
       String judul = postQr['judul'];
       String msg = postQr['msg'];
-
-      showInfoDialog(
-        message: "$msg",
-        title: "$judul",
-        icon: success
-            ? Icon(
-                Icons.check,
-                size: 24.0,
-                color: successColor,
-              )
-            : Icon(
-                Icons.warning_amber,
-                size: 24.0,
-                color: orangeColor,
-              ),
-        onpress: () => Get.to(MainNavigationView()),
-      );
-      setState(() {
-        isLoading = false;
-      });
+      if (success) {
+        return NotifCherryToast().toastSuccess("$judul" " $msg", context);
+      } else {
+        return NotifCherryToast().toastError("$judul" " $msg", context);
+      }
     } catch (e) {
-      showInfoDialog(
-        message: "Terjadi Kesalahan",
-        title: "Error",
-        icon: Icon(
-          Icons.error,
-          size: 24.0,
-          color: Colors.red,
-        ),
-      );
-      setState(() {
-        isLoading = false;
-      });
+      return NotifCherryToast().toastWarning("Terjadi Kesalahan", context);
     }
   }
 
@@ -166,44 +94,18 @@ class AbsensiController extends State<AbsensiView> {
       String judul = postQr['judul'];
       String msg = postQr['msg'];
 
-      showInfoDialog(
-        message: "$msg",
-        title: "$judul",
-        icon: success
-            ? Icon(
-                Icons.check,
-                size: 24.0,
-                color: successColor,
-              )
-            : Icon(
-                Icons.warning_amber,
-                size: 24.0,
-                color: orangeColor,
-              ),
-        onpress: () => Get.to(MainNavigationView()),
-      );
-
-      setState(() {
-        isLoading = false;
-      });
+      if (success) {
+        return NotifCherryToast().toastSuccess("$judul" " $msg", context);
+      } else {
+        return NotifCherryToast().toastError("$judul" " $msg", context);
+      }
     } catch (e) {
-      showInfoDialog(
-        message: "Terjadi kesalahan",
-        title: "Error",
-        icon: Icon(
-          Icons.error,
-          size: 60.0,
-          color: Colors.red,
-        ),
-      );
-      setState(() {
-        isLoading = false;
-      });
+      return NotifCherryToast().toastWarning("Terjadi Kesalahan", context);
     }
   }
 
   refresUserData() async {
-    showLoading();
+    showSpin();
     await UserDataService.getUser();
     setState(() {
       userData = UserDataService.userData;

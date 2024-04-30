@@ -1,19 +1,18 @@
 name: atei_bartim
 description: ATEI (Attendance Employee Information).
 publish_to: 'none'
-version: 1.1.5+16
+version: 1.1.9+22
 environment:
   sdk: '>=3.0.0 <4.0.0'
 dependencies:
-  badges: ^3.1.1
   barcode_scan2: ^4.3.0
   blur: ^3.1.0
   cached_network_image: ^3.3.1
   carousel_slider: ^4.2.1
+  cherry_toast: ^1.10.0
   cupertino_icons: ^1.0.2
-  custom_clippers: ^2.0.0
   dio: ^5.0.1
-  dotted_border: ^2.0.0+3
+  easy_pdf_viewer: ^1.0.8
   faker_dart: ^0.2.1
   file_picker: ^6.1.1
   flutter:
@@ -35,6 +34,7 @@ dependencies:
   image_picker: ^1.0.4
   intl: 0.18.1
   json_annotation: ^4.8.1
+  logo_n_spinner: ^0.1.6
   material_design_icons_flutter: ^7.0.7296
   month_picker_dialog: ^2.4.0
   path_provider: ^2.0.11
@@ -43,6 +43,7 @@ dependencies:
   screenshot: ^2.1.0
   shared_preferences: ^2.2.1
   syncfusion_flutter_datepicker: ^24.1.45
+  syncfusion_flutter_pdfviewer: ^24.2.8
   tap_debouncer: ^2.2.0
   url_launcher: ^6.2.4
   uuid: ^4.0.0

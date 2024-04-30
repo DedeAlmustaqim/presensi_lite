@@ -35,48 +35,27 @@ class DalamDaerahController extends State<DalamDaerahView> {
 
   sendDalamDaerah() async {
     try {
-      showLoading();
+      showSpin();
       var respond = await DinasService().sendDalamDaerah(
           dateStart: dateStart.toString(),
           dateEnd: dateEnd.toString(),
           noSurat: noSrt.toString(),
           ket: ketDd.toString());
       bool success = respond['success'];
+      var title = respond['judul'];
+      var msg = respond['msg'];
       if (success) {
         hideLoading();
-        await showInfoDialog(
-          message: respond['msg'],
-          title: respond['judul'],
-          icon: Icon(
-            Icons.check,
-            color: successColor,
-            size: 24.0,
-          ),
-        );
+
+        await NotifCherryToast().toastSuccess("$title " "$msg", context);
 
         Get.offAll(MainNavigationView());
       } else {
         hideLoading();
-        showInfoDialog(
-          message: respond['msg'],
-          title: respond['judul'],
-          icon: Icon(
-            Icons.error_outline,
-            color: Colors.red,
-            size: 24.0,
-          ),
-        );
+        await NotifCherryToast().toastError("$title " "$msg", context);
       }
     } on Exception {
-      showInfoDialog(
-        message: "Terjadi Kesalahan Server",
-        title: "Error",
-        icon: Icon(
-          Icons.error_outline,
-          color: Colors.red,
-          size: 24.0,
-        ),
-      );
+      NotifCherryToast().toastError("Terjadi Kesalahan Server", context);
     }
   }
 }

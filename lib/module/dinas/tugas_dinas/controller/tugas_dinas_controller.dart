@@ -35,7 +35,7 @@ class TugasDinasController extends State<TugasDinasView> {
 
   sendTugasData() async {
     try {
-      showLoading();
+      showSpin();
       var respond = await DinasService().sendTugasDinas(
           date: dateTugas.toString(),
           ket: ketTugas.toString(),
@@ -43,41 +43,20 @@ class TugasDinasController extends State<TugasDinasView> {
           part: partDay!.toInt());
       bool success = respond['success'];
 
+      var title = respond['judul'];
+      var msg = respond['msg'];
       if (success) {
         hideLoading();
-        await showInfoDialog(
-          message: respond['msg'],
-          title: respond['judul'],
-          icon: Icon(
-            Icons.check,
-            color: successColor,
-            size: 24.0,
-          ),
-        );
+
+        await NotifCherryToast().toastSuccess("$title " "$msg", context);
 
         Get.offAll(MainNavigationView());
       } else {
         hideLoading();
-        showInfoDialog(
-          message: respond['msg'],
-          title: respond['judul'],
-          icon: const Icon(
-            Icons.error_outline,
-            color: Colors.red,
-            size: 24.0,
-          ),
-        );
+        await NotifCherryToast().toastError("$title " "$msg", context);
       }
     } on Exception {
-      showInfoDialog(
-        message: "Terjadi Kesalahan Server",
-        title: "Gagal",
-        icon: const Icon(
-          Icons.error_outline,
-          color: Colors.red,
-          size: 24.0,
-        ),
-      );
+      NotifCherryToast().toastError("Terjadi Kesalahan Server", context);
     }
   }
 

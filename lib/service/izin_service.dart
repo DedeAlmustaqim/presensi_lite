@@ -30,8 +30,7 @@ class IzinService {
       );
       Map obj = response.data;
       return obj['data'];
-    } on Exception {
-    }
+    } on Exception {}
   }
 
   sendMoreDay({
@@ -64,8 +63,7 @@ class IzinService {
       );
       Map obj = response.data;
       return obj['data'];
-    } on Exception {
-    }
+    } on Exception {}
   }
 
   String convertDate(String date) {

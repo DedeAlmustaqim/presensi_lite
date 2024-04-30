@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class ScanQr {
   final url = AppConfig.baseUrl;
   static Dio dio = Diointerceptors.dio;
-  checkLocation(String lat, String long) async {
+  checkLocation(String lat, String long, BuildContext context) async {
     try {
       var response = await Dio().post(
         "$url/api/user/verifikasi_loc",
@@ -21,15 +21,7 @@ class ScanQr {
       return obj['data'];
     } on Exception {
       hideLoading();
-      return showInfoDialog(
-        message: "Koneksi ke server gagal",
-        title: "Error",
-        icon: Icon(
-          Icons.error,
-          color: Colors.red,
-          size: 24.0,
-        ),
-      );
+      return NotifCherryToast().toastError("Koneksi ke server gagal", context);
     }
   }
 
@@ -50,7 +42,7 @@ class ScanQr {
       );
       Map obj = response.data;
       return obj['data'];
-    } on Exception catch (err) {
+    } on Exception {
       return;
     }
   }

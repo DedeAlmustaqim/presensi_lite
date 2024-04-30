@@ -13,6 +13,7 @@ class AuthService {
   login({
     required String nik,
     required String password,
+    required BuildContext context,
   }) async {
     try {
       var response = await dio.post(
@@ -44,26 +45,12 @@ class AuthService {
       }
       if (!status) {
         hideLoading();
-        showInfoDialog(
-          message: userMap['message'],
-          title: "Gagal Login",
-          icon: Icon(
-            Icons.error_outline,
-            color: Colors.red,
-            size: 24.0,
-          ),
-        );
+
+        NotifCherryToast().toastWarning(userMap['message'], context);
       }
     } on Exception {
       hideLoading();
-      showInfoDialog(
-        message: "Terjadi Kesalahan",
-        title: "Error",
-        icon: const Icon(
-          Icons.error,
-          size: 24.0,
-        ),
-      );
+      NotifCherryToast().toastError("Terjadi Kesalahan", context);
     }
   }
 

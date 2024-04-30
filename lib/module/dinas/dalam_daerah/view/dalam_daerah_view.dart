@@ -169,7 +169,7 @@ class DalamDaerahView extends StatefulWidget {
                                           children: [
                                             Expanded(
                                               child: Text(
-                                                "Tanggal Berangkat",
+                                                "Tanggal Kembali",
                                                 style: TextStyle(
                                                   fontSize: 10.0,
                                                 ),

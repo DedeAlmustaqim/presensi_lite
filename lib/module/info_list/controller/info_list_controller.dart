@@ -33,7 +33,7 @@ class InfoListController extends State<InfoListView> {
 
   nextPage() async {
     page++;
-    showLoading();
+    showSpin();
     var infoDataMap = await InfoService().getInfo(page: page);
 
     var newInfoData = infoDataMap['data'];

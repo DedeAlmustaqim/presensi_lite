@@ -36,11 +36,12 @@ class LoginController extends State<LoginView> {
       return;
     }
 
-    showLoading();
+    showSpin();
 
     await AuthService().login(
       nik: nik!,
       password: password!,
+      context: context,
     );
   }
 

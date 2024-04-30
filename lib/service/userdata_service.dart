@@ -1,8 +1,10 @@
 import 'package:atei_bartim/core.dart';
+import 'package:atei_bartim/models/tpp_model.dart';
 import 'package:atei_bartim/models/user_detail.dart';
 
 class UserDataService {
   static UserDetail? userData;
+  static TppModel? tppData;
   static init() async {
     await getUser();
   }
@@ -194,6 +196,24 @@ class UserDataService {
       ),
     );
     Map obj = response.data;
+    return obj['data'];
+  }
+
+  getTpp(int? id, DateTime? currentDate) async {
+    var month = currentDate!.month;
+    var year = currentDate.year;
+
+    var response = await Dio().get(
+      "${AppConfig.baseUrl}/api/user/get_tpp/${id}/${month}/${year}",
+      options: Options(
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer ${AuthService.token}",
+        },
+      ),
+    );
+    Map obj = response.data;
+
     return obj['data'];
   }
 }

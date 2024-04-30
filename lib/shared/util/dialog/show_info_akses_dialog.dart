@@ -34,17 +34,11 @@ Future showInfoAksesDialog({
                         Text(
                           title,
                           style: TextStyle(
-                            fontSize: 18.0,
+                            fontSize: 16.0,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
                         Divider(),
-                        icon ??
-                            const Icon(
-                              Icons.info,
-                              size: 40.0,
-                              color: Colors.amber,
-                            ),
                         Text(
                           message,
                           textAlign: TextAlign.center,

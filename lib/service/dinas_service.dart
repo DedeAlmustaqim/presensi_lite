@@ -28,8 +28,7 @@ class DinasService {
       );
       Map obj = response.data;
       return obj['data'];
-    } on Exception {
-    }
+    } on Exception {}
   }
 
   sendDalamDaerah({

@@ -1,3 +1,4 @@
+import 'package:atei_bartim/service/auth_service.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class UrlLauncher {
@@ -23,6 +24,16 @@ class UrlLauncher {
   static Future<void> playStore() async {
     String url =
         'https://play.google.com/store/apps/details?id=com.digitalnative.atei_bartim';
+    if (await canLaunchUrl(Uri.parse(url))) {
+      await launchUrl(Uri.parse(url));
+    } else {
+      throw 'Gagal membuka link.';
+    }
+  }
+
+  static Future<void> pdfAbsen({int? month, int? year}) async {
+    String url =
+        'http://10.191.254.149/presensi/skpd/rekap/view_absen_tpp_pdf/${AuthService.id}/${month}/${year}';
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(Uri.parse(url));
     } else {

@@ -71,6 +71,7 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
       debugShowCheckedModeBanner: false,
       theme: getDefaultTheme(),
       home: _showSplash ? SplashScreenView() : mainView,
+      // home: TppView(),
       // home: SplashScreenView(),
     );
   }

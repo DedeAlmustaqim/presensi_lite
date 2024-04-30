@@ -129,7 +129,7 @@ Future<bool?> showPrivacyDialog({
 }) async {
   return showDialog<bool>(
     context: context,
-    barrierDismissible: true,
+    barrierDismissible: false,
     builder: (BuildContext context) {
       return PrivacyDialog(
         isChecked: isChecked,

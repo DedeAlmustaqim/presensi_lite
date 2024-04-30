@@ -1,8 +1,6 @@
 import 'package:atei_bartim/core.dart';
 
 class CutiService {
-  
-
   sendMoreDay({
     required String dateStart,
     required String dateEnd,

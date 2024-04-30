@@ -16,7 +16,6 @@ class AbsenDetailSearchView extends StatefulWidget {
   }) : super(key: key);
 
   Widget build(context, AbsenDetailSearchController controller) {
-   
     controller.view = this;
     return Scaffold(
       appBar: AppBar(

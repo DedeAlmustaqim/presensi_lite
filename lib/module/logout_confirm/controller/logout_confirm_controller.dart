@@ -62,7 +62,7 @@ class LogoutConfirmController extends State<LogoutConfirmView> {
                   await DB.clearDatabase();
                   await Get.offAll(LoginView());
                 } else {
-                  showInfoDialog(message: "Terjadi Kesalahan", title: "Gagal");
+                  NotifCherryToast().toastError("Terjadi Kesalahan", context);
                 }
               },
               child: const Text(
