@@ -59,7 +59,7 @@ class TppPdfView extends StatefulWidget {
                   scrollDirection: Axis.vertical,
                   showIndicator: true,
                   document: controller.document,
-                  lazyLoad: false,
+                  lazyLoad: true,
                   // zoomSteps: 1,
                   numberPickerConfirmWidget: const Text(
                     "Confirm",

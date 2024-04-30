@@ -99,7 +99,7 @@ class AbsenDetailSearchView extends StatefulWidget {
                                   ),
                                   buildRow(
                                       label: "Keterangan",
-                                      value: controller.ketCheckInParam)
+                                      value: controller.ketIn)
                                 ],
                               )
                             // belum absen
@@ -193,7 +193,7 @@ class AbsenDetailSearchView extends StatefulWidget {
                                   ),
                                   buildRow(
                                       label: "Keterangan",
-                                      value: controller.ketCheckOutParam)
+                                      value: controller.ketOut)
                                 ],
                               )
                             // belum absen

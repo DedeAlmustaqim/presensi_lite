@@ -47,21 +47,6 @@ class DashboardView extends StatefulWidget {
                             ),
                           ],
                         ),
-                        // Text(
-                        //   "Hai..!!!",
-                        //   style: TextStyle(
-                        //     fontSize: 12.0,
-                        //     color: Colors.white,
-                        //   ),
-                        // ),
-                        // Text(
-                        //   UserDataService.userData!.name.toString(),
-                        //   style: TextStyle(
-                        //     fontWeight: FontWeight.bold,
-                        //     fontSize: 12.0,
-                        //     color: Colors.white,
-                        //   ),
-                        // ),
                       ],
                     ),
                   ),
@@ -78,7 +63,12 @@ class DashboardView extends StatefulWidget {
                         ),
                         Container(
                           padding: const EdgeInsets.all(5.0),
-                          color: primaryColor,
+                          decoration: BoxDecoration(
+                            color: primaryColor,
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(5.0),
+                            ),
+                          ),
                           child: Text(
                             // "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
                             '${UserDataService.userData!.name.toString()}',
@@ -106,7 +96,8 @@ class DashboardView extends StatefulWidget {
                         CarouselSlider(
                           carouselController: controller.carouselController,
                           options: CarouselOptions(
-                            height: 170.0,
+                            autoPlayInterval: Duration(seconds: 3),
+                            aspectRatio: 20 / 9,
                             autoPlay: true,
                             enlargeCenterPage: true,
                             viewportFraction: 1.0,

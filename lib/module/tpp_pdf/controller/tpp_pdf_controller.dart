@@ -22,15 +22,23 @@ class TppPdfController extends State<TppPdfView> {
   @override
   Widget build(BuildContext context) => widget.build(context, this);
   bool isLoading = true;
-  late PDFDocument document;
 
+  final noCacheConfig = CacheManager(Config(
+    'no_cache',
+    // Menentukan cache yang kedaluwarsa dalam waktu yang sangat singkat (misalnya, 1 detik)
+    stalePeriod: Duration(seconds: 1),
+    // Menentukan jumlah file cache maksimum yang dapat disimpan dalam cache (0 untuk menonaktifkan cache)
+    maxNrOfCacheObjects: 0,
+  ));
+  late PDFDocument document;
   loadDocument() async {
     print(month);
     print(year);
     setState(() => isLoading = true);
     try {
       document = await PDFDocument.fromURL(
-          'http://10.191.254.149/presensi/skpd/rekap/view_absen_tpp_pdf/${AuthService.id}/${month}/${year}',
+          'http://192.168.1.49/presensi/skpd/rekap/view_absen_tpp_pdf/${AuthService.id}/${month}/${year}',
+          cacheManager: noCacheConfig,
           clearPreviewCache: true);
       setState(() => isLoading = false);
     } on Exception catch (err) {

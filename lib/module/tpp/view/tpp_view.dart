@@ -215,9 +215,11 @@ class TppView extends StatefulWidget {
                                       height: 8.0,
                                     ),
                                     Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Expanded(
-                                          flex: 5,
+                                          flex: 4,
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -271,9 +273,11 @@ class TppView extends StatefulWidget {
                                       height: 8.0,
                                     ),
                                     Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
                                         Expanded(
-                                          flex: 5,
+                                          flex: 4,
                                           child: Column(
                                             crossAxisAlignment:
                                                 CrossAxisAlignment.start,
@@ -426,6 +430,7 @@ class TppView extends StatefulWidget {
           height: 8.0,
         ),
         Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
               flex: 8,

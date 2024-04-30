@@ -32,6 +32,8 @@ class AbsenDetailSearchController extends State<AbsenDetailSearchView> {
   String? ketCheckOutParam;
   String? noSrtInParam;
   String? noSrtOutParam;
+  String? ketIn;
+  String? ketOut;
 
   // setDate({String? dateParam}) async {
   //   date = dateParam;
@@ -53,6 +55,8 @@ class AbsenDetailSearchController extends State<AbsenDetailSearchView> {
         ketCheckOutParam = data['keterangan_out'] ?? null;
         noSrtInParam = data['no_surat_in'] ?? null;
         noSrtOutParam = data['no_surat_out'] ?? null;
+        ketIn = data['ket_in'] ?? null;
+        ketOut = data['ket_out'] ?? null;
       });
     }
   }
