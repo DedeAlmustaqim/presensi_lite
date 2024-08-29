@@ -1,3 +1,4 @@
+import 'package:atei_bartim/state_util.dart';
 import 'package:atei_bartim/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -60,6 +61,18 @@ class _MainAppState extends State<MainApp> with WidgetsBindingObserver {
       token = DB.getToken();
     });
   }
+
+  // Future<void> printAndroidDeviceInfo() async {
+  //   DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  //   AndroidDeviceInfo androidInfo = await deviceInfo.androidInfo;
+
+  //   print('Model: ${androidInfo.model}');
+  //   print('Device: ${androidInfo.device}');
+  //   print('id: ${androidInfo.id}');
+  //   print('Brand: ${androidInfo.brand}');
+  //   print('Product: ${androidInfo.product}');
+  //   print('Is Physical Device: ${androidInfo.isPhysicalDevice}');
+  // }
 
   Widget get mainView {
     if (!ConnectionService.connection!) return MaintenanceView();

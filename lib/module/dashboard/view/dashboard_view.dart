@@ -425,7 +425,7 @@ class DashboardView extends StatefulWidget {
                 ),
 
                 SizedBox(
-                  height: 160.0,
+                  height: 180.0,
                   child: ListView.builder(
                     padding: EdgeInsets.only(
                       left: 12.0,

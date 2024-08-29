@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:atei_bartim/core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:latlong2/latlong.dart';
@@ -9,7 +10,7 @@ class MapViewer extends StatefulWidget {
   final double? longitude;
   final Function(MapPosition, bool)? onPositionChanged;
   final MapController? controller;
-  const MapViewer({
+  MapViewer({
     Key? key,
     this.onPositionChanged,
     this.latitude,
@@ -57,10 +58,11 @@ class _MapViewerState extends State<MapViewer> {
         Align(
           alignment: Alignment.center,
           child: Padding(
-            padding: const EdgeInsets.only(bottom: 20.0),
-            child: Image.network(
-              "https://i.ibb.co/LzvYfTb/684908.png",
-              height: 20.0,
+            padding: EdgeInsets.only(bottom: 20.0),
+            child: Icon(
+              Icons.maps_home_work,
+              color: primaryColor,
+              size: 24.0,
             ),
           ),
         ),

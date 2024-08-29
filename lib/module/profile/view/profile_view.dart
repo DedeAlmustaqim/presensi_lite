@@ -393,6 +393,35 @@ class ProfileView extends StatefulWidget {
                       size: 24.0,
                     ),
                   ),
+                  Divider(),
+                  InkWell(
+                    onTap: () {
+                      Get.to(LegalFoundationView());
+                    },
+                    child: ListTile(
+                      leading: Icon(Icons.gavel),
+                      minLeadingWidth: 0.0,
+                      title: Text(
+                        'Dasar Hukum',
+                        style: TextStyle(color: textColor1),
+                      ),
+                    ),
+                  ),
+                  Divider(),
+                  InkWell(
+                    onTap: () {
+                      Get.to(CreditsView());
+                    },
+                    child: ListTile(
+                      leading: Icon(Icons.developer_mode),
+                      minLeadingWidth: 0.0,
+                      title: Text(
+                        'Tim Pengembang',
+                        style: TextStyle(color: textColor1),
+                      ),
+                    ),
+                  ),
+                  Divider(),
                   InkWell(
                     onTap: () {
                       Get.to(LogoutConfirmView());

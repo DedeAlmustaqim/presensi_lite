@@ -33,7 +33,7 @@ class UrlLauncher {
 
   static Future<void> pdfAbsen({int? month, int? year}) async {
     String url =
-        'http://10.191.254.149/presensi/skpd/rekap/view_absen_tpp_pdf/${AuthService.id}/${month}/${year}';
+        'https://presensi.baritotimurkab.go.id/view_absen_tpp_pdf/${AuthService.id}/${month}/${year}';
     if (await canLaunchUrl(Uri.parse(url))) {
       await launchUrl(Uri.parse(url));
     } else {

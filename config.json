@@ -24,7 +24,9 @@
         "absen_detail_search",
         "logout_confirm",
         "tpp",
-        "tpp_pdf"
+        "tpp_pdf",
+        "legal_foundation",
+        "credits"
     ],
     "module_directory_name": "module",
     "experimental_mode": false,

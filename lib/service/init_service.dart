@@ -3,6 +3,8 @@ import 'package:atei_bartim/service/connection_service.dart';
 import 'package:atei_bartim/service/local_data_service.dart';
 import 'package:atei_bartim/service/userdata_service.dart';
 import 'package:atei_bartim/shared/util/dio_interceptors/dio_interceptors.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
 class InitService {

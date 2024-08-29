@@ -34,6 +34,8 @@ class TppController extends State<TppView> {
   double? thck1;
   double? thck2;
   double? thck3;
+  double? ijm;
+  double? ijp;
   double? tk;
   double? tu;
   double? lhkpn;
@@ -82,6 +84,8 @@ class TppController extends State<TppView> {
         thck1 = tpp['thck1'].toDouble();
         thck2 = tpp['thck2'].toDouble();
         thck3 = tpp['thck3'].toDouble();
+        ijm = tpp['ijm'].toDouble();
+        ijp = tpp['ijp'].toDouble();
         tk = tpp['tk'].toDouble();
         tu = tpp['tu'].toDouble();
         lhkpn = tpp['lhkpn'].toDouble();

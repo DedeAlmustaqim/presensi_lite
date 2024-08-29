@@ -14,6 +14,8 @@ export 'package:atei_bartim/module/absen_detail_search/controller/absen_detail_s
 export 'package:atei_bartim/module/absen_detail_search/view/absen_detail_search_view.dart';
 export 'package:atei_bartim/module/auth/login/controller/login_controller.dart';
 export 'package:atei_bartim/module/auth/login/view/login_view.dart';
+export 'package:atei_bartim/module/credits/controller/credits_controller.dart';
+export 'package:atei_bartim/module/credits/view/credits_view.dart';
 export 'package:atei_bartim/module/cuti/cuti/controller/cuti_controller.dart';
 export 'package:atei_bartim/module/cuti/cuti/view/cuti_view.dart';
 export 'package:atei_bartim/module/dashboard/controller/dashboard_controller.dart';
@@ -44,6 +46,8 @@ export 'package:atei_bartim/module/izin/izin_tab/controller/izin_tab_controller.
 export 'package:atei_bartim/module/izin/izin_tab/view/izin_tab_view.dart';
 export 'package:atei_bartim/module/kehadiran/hadir_list/controller/hadir_list_controller.dart';
 export 'package:atei_bartim/module/kehadiran/hadir_list/view/hadir_list_view.dart';
+export 'package:atei_bartim/module/legal_foundation/controller/legal_foundation_controller.dart';
+export 'package:atei_bartim/module/legal_foundation/view/legal_foundation_view.dart';
 export 'package:atei_bartim/module/logout_confirm/controller/logout_confirm_controller.dart';
 export 'package:atei_bartim/module/logout_confirm/view/logout_confirm_view.dart';
 export 'package:atei_bartim/module/main_navigation/controller/main_navigation_controller.dart';

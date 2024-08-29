@@ -116,7 +116,7 @@ class LuarDaerahView extends StatefulWidget {
                                     Column(
                                       children: [
                                         Text(
-                                          "Dinas Dalam Daerah",
+                                          "Dinas Luar Daerah",
                                           style: TextStyle(
                                             fontSize: 14.0,
                                             fontWeight: FontWeight.bold,

@@ -70,19 +70,19 @@ class AbsensiController extends State<AbsensiView> {
   void _postCheckIn() async {
     try {
       final result = await BarcodeScanner.scan();
-      print('cancel ${result.type}');
 
       var postQr = await ScanQr().postQrIn(result.rawContent);
       bool success = postQr['success'];
       String judul = postQr['judul'];
       String msg = postQr['msg'];
       if (success) {
-        return NotifCherryToast().toastSuccess("$judul" " $msg", context);
+        // return NotifCherryToast().toastSuccess("$judul" " $msg", context);
+        return showInfoDialog(message: "$msg", title: "$judul");
       } else {
-        return NotifCherryToast().toastError("$judul" " $msg", context);
+        return showInfoDialog(message: "$msg", title: "$judul");
       }
     } catch (e) {
-      return NotifCherryToast().toastWarning("Terjadi Kesalahan", context);
+      return showInfoDialog(message: "Terjadi Kesalahan", title: "Gagal");
     }
   }
 
@@ -95,12 +95,12 @@ class AbsensiController extends State<AbsensiView> {
       String msg = postQr['msg'];
 
       if (success) {
-        return NotifCherryToast().toastSuccess("$judul" " $msg", context);
+        return showInfoDialog(message: "$msg", title: "$judul");
       } else {
-        return NotifCherryToast().toastError("$judul" " $msg", context);
+        return showInfoDialog(message: "$msg", title: "$judul");
       }
     } catch (e) {
-      return NotifCherryToast().toastWarning("Terjadi Kesalahan", context);
+      return showInfoDialog(message: "Terjadi Kesalahan", title: "Gagal");
     }
   }
 
